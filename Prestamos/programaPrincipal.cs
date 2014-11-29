@@ -12,9 +12,90 @@ namespace Prestamos
 {
     public partial class programaPrincipal : Form
     {
+
+        private abilitarDessabilitarBotones adb;
         public programaPrincipal()
         {
             InitializeComponent();
+           
+            adb = new abilitarDessabilitarBotones(this);
+        }
+
+        private void textBox1_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void programaPrincipal_Load(object sender, EventArgs e)
+        {
+            dropregistrarClientes.Visible = false;
+            dropeliminarcliente.Visible = false;
+            groupactualizarcliente.Visible = false;
+            groupabono.Visible = false;
+            groupnuevafactura.Visible = false;
+        }
+
+        private void nuevoClienteToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            dropregistrarClientes.Visible = true;
+            dropeliminarcliente.Visible = false;
+            groupactualizarcliente.Visible = false;
+            groupabono.Visible = false;
+            groupnuevafactura.Visible = false;
+
+            this.ClientSize = new System.Drawing.Size(751, dropregistrarClientes.Height + 20);
+        }
+
+        private void eliminarClienteToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            dropeliminarcliente.Visible = true;
+            dropregistrarClientes.Visible = false;
+            groupactualizarcliente.Visible = false;
+            groupabono.Visible = false;
+            groupnuevafactura.Visible = false;
+
+            this.ClientSize = new System.Drawing.Size(751, dropeliminarcliente.Height + 20);
+
+        }
+
+        private void actualizarToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            dropregistrarClientes.Visible = false;
+            dropeliminarcliente.Visible = false;
+            groupactualizarcliente.Visible = true;
+            groupabono.Visible = false;
+            groupnuevafactura.Visible = false;
+
+            this.ClientSize = new System.Drawing.Size(751,groupactualizarcliente.Height + 20);
+        }
+
+        private void nuevaToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            dropregistrarClientes.Visible = false;
+            dropeliminarcliente.Visible = false;
+            groupactualizarcliente.Visible = false;
+            groupabono.Visible = false;
+            groupnuevafactura.Visible = true;
+            this.nfbuscarcliente.Focus();
+            this.ClientSize = new System.Drawing.Size(751, groupnuevafactura.Height + 20);
+
+            
+        }
+
+        private void pagosToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            dropregistrarClientes.Visible = false;
+            dropeliminarcliente.Visible = false;
+            groupactualizarcliente.Visible = false;
+            groupabono.Visible = true;
+            groupnuevafactura.Visible = false;
+
+            this.ClientSize = new System.Drawing.Size(751, groupabono.Height + 20);
+        }
+
+        private void label19_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

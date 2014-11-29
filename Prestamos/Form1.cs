@@ -12,6 +12,9 @@ namespace Prestamos
 {
     public partial class Form1 : Form
     {
+
+       
+
         public Form1()
         {
             InitializeComponent();
@@ -33,7 +36,9 @@ namespace Prestamos
                 {
                     if (bcontrasena.Text.Trim().Length > 3)
                     {
-                        // CONNECT TO DB
+                        programaPrincipal pro = new programaPrincipal();
+                        pro.Show();
+                        this.Hide();
                     }
                     else
                     {
