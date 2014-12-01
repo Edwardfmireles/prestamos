@@ -12,20 +12,25 @@ namespace Prestamos
 {
     public partial class buscarCliente : Form
     {
-        public buscarCliente()
+
+        private programaPrincipal f;
+
+        public buscarCliente(programaPrincipal programaPrincipal)
         {
             InitializeComponent();
-        }
 
+            this.f = programaPrincipal;
+        }
+        
         private void bcBusqueda_TextChanged(object sender, EventArgs e)
         {
             TextBox sen = (TextBox)sender;
-
-            if (sen.Text.ToString().Trim() != "" && Convert.ToInt16(bcDataGridView.Rows[0].Cells[0].Value.ToString()) >= 1)
+            
+            if (sen.Text.ToString().Trim() != "" && bcDataGridView.Rows.Count >= 1)
             {
                 for (int i = 0; i < bcDataGridView.Rows.Count; i++)
                 {
-                    for (int j = 0; j < 4; j++)
+                    for (int j = 0; j < 5; j++)
                     {
                         if (bcDataGridView.Rows[i].Cells[j].Value.ToString().Contains(sen.Text.ToString()))
                         {
@@ -38,7 +43,18 @@ namespace Prestamos
 
         private void bcDataGridView_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
-            MessageBox.Show(bcDataGridView.Rows[e.RowIndex].Cells[1].Value.ToString());
+            //MessageBox.Show(bcDataGridView.Rows[e.RowIndex].Cells[1].Value.ToString());
+
+            this.f.nfnombre.Text = bcDataGridView.Rows[e.RowIndex].Cells[1].Value.ToString();
+            this.f.nfcedula.Text = bcDataGridView.Rows[e.RowIndex].Cells[2].Value.ToString();
+
+        }
+
+        private void buscarCliente_Load(object sender, EventArgs e)
+        {
+            // TODO: esta línea de código carga datos en la tabla 'prestamistaDataSet.clientes' Puede moverla o quitarla según sea necesario.
+            this.clientesTableAdapter.Fill(this.prestamistaDataSet.clientes);
+
         }
     }
 }

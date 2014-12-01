@@ -28,17 +28,36 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.bcDataGridView = new System.Windows.Forms.DataGridView();
+            this.clientesBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.prestamistaDataSet = new Prestamos.PrestamistaDataSet();
             this.bcBusqueda = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
+            this.clientesTableAdapter = new Prestamos.PrestamistaDataSetTableAdapters.clientesTableAdapter();
+            this.idClienteDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.nombreDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.cedulaDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.direccionDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.telefonoDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.bcDataGridView)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.clientesBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.prestamistaDataSet)).BeginInit();
             this.SuspendLayout();
             // 
             // bcDataGridView
             // 
             this.bcDataGridView.AllowUserToAddRows = false;
             this.bcDataGridView.AllowUserToDeleteRows = false;
+            this.bcDataGridView.AutoGenerateColumns = false;
             this.bcDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.bcDataGridView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.idClienteDataGridViewTextBoxColumn,
+            this.nombreDataGridViewTextBoxColumn,
+            this.cedulaDataGridViewTextBoxColumn,
+            this.direccionDataGridViewTextBoxColumn,
+            this.telefonoDataGridViewTextBoxColumn});
+            this.bcDataGridView.DataSource = this.clientesBindingSource;
             this.bcDataGridView.Location = new System.Drawing.Point(32, 65);
             this.bcDataGridView.MultiSelect = false;
             this.bcDataGridView.Name = "bcDataGridView";
@@ -47,6 +66,16 @@
             this.bcDataGridView.Size = new System.Drawing.Size(394, 150);
             this.bcDataGridView.TabIndex = 7;
             this.bcDataGridView.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.bcDataGridView_CellDoubleClick);
+            // 
+            // clientesBindingSource
+            // 
+            this.clientesBindingSource.DataMember = "clientes";
+            this.clientesBindingSource.DataSource = this.prestamistaDataSet;
+            // 
+            // prestamistaDataSet
+            // 
+            this.prestamistaDataSet.DataSetName = "PrestamistaDataSet";
+            this.prestamistaDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
             // 
             // bcBusqueda
             // 
@@ -67,6 +96,53 @@
             this.label1.TabIndex = 4;
             this.label1.Text = "Buscar cliente";
             // 
+            // clientesTableAdapter
+            // 
+            this.clientesTableAdapter.ClearBeforeFill = true;
+            // 
+            // idClienteDataGridViewTextBoxColumn
+            // 
+            this.idClienteDataGridViewTextBoxColumn.DataPropertyName = "idCliente";
+            this.idClienteDataGridViewTextBoxColumn.HeaderText = "idCliente";
+            this.idClienteDataGridViewTextBoxColumn.Name = "idClienteDataGridViewTextBoxColumn";
+            this.idClienteDataGridViewTextBoxColumn.ReadOnly = true;
+            this.idClienteDataGridViewTextBoxColumn.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.idClienteDataGridViewTextBoxColumn.Width = 50;
+            // 
+            // nombreDataGridViewTextBoxColumn
+            // 
+            this.nombreDataGridViewTextBoxColumn.DataPropertyName = "nombre";
+            this.nombreDataGridViewTextBoxColumn.HeaderText = "nombre";
+            this.nombreDataGridViewTextBoxColumn.Name = "nombreDataGridViewTextBoxColumn";
+            this.nombreDataGridViewTextBoxColumn.ReadOnly = true;
+            this.nombreDataGridViewTextBoxColumn.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.nombreDataGridViewTextBoxColumn.Width = 200;
+            // 
+            // cedulaDataGridViewTextBoxColumn
+            // 
+            this.cedulaDataGridViewTextBoxColumn.DataPropertyName = "cedula";
+            this.cedulaDataGridViewTextBoxColumn.HeaderText = "cedula";
+            this.cedulaDataGridViewTextBoxColumn.Name = "cedulaDataGridViewTextBoxColumn";
+            this.cedulaDataGridViewTextBoxColumn.ReadOnly = true;
+            this.cedulaDataGridViewTextBoxColumn.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            // 
+            // direccionDataGridViewTextBoxColumn
+            // 
+            this.direccionDataGridViewTextBoxColumn.DataPropertyName = "direccion";
+            this.direccionDataGridViewTextBoxColumn.HeaderText = "direccion";
+            this.direccionDataGridViewTextBoxColumn.Name = "direccionDataGridViewTextBoxColumn";
+            this.direccionDataGridViewTextBoxColumn.ReadOnly = true;
+            this.direccionDataGridViewTextBoxColumn.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.direccionDataGridViewTextBoxColumn.Width = 300;
+            // 
+            // telefonoDataGridViewTextBoxColumn
+            // 
+            this.telefonoDataGridViewTextBoxColumn.DataPropertyName = "telefono";
+            this.telefonoDataGridViewTextBoxColumn.HeaderText = "telefono";
+            this.telefonoDataGridViewTextBoxColumn.Name = "telefonoDataGridViewTextBoxColumn";
+            this.telefonoDataGridViewTextBoxColumn.ReadOnly = true;
+            this.telefonoDataGridViewTextBoxColumn.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            // 
             // buscarCliente
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -75,9 +151,14 @@
             this.Controls.Add(this.bcDataGridView);
             this.Controls.Add(this.bcBusqueda);
             this.Controls.Add(this.label1);
+            this.MaximizeBox = false;
             this.Name = "buscarCliente";
-            this.Text = "buscarCliente";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
+            this.Text = "Buscar cliente";
+            this.Load += new System.EventHandler(this.buscarCliente_Load);
             ((System.ComponentModel.ISupportInitialize)(this.bcDataGridView)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.clientesBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.prestamistaDataSet)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -88,5 +169,13 @@
         private System.Windows.Forms.DataGridView bcDataGridView;
         private System.Windows.Forms.TextBox bcBusqueda;
         private System.Windows.Forms.Label label1;
+        private PrestamistaDataSet prestamistaDataSet;
+        private System.Windows.Forms.BindingSource clientesBindingSource;
+        private PrestamistaDataSetTableAdapters.clientesTableAdapter clientesTableAdapter;
+        private System.Windows.Forms.DataGridViewTextBoxColumn idClienteDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn nombreDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn cedulaDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn direccionDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn telefonoDataGridViewTextBoxColumn;
     }
 }

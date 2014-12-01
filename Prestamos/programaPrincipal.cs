@@ -97,5 +97,36 @@ namespace Prestamos
         {
 
         }
+
+        private void nfbuscarcliente_Click(object sender, EventArgs e)
+        {
+            buscarCliente bc = new buscarCliente(this);
+            bc.ShowDialog();
+        }
+
+        private void nfnombre_TextChanged(object sender, EventArgs e)
+        {
+            if (nfnombre.Text.Length > 0)
+            {
+                nfmonto.Enabled = true;
+                nfperiodopago.Enabled = true;
+                nfmeses.Enabled = true;
+                nfinteres.Enabled = true;
+                nfmora.Enabled = true;
+            }
+        }
+
+        private void nfmonto_TextChanged(object sender, EventArgs e)
+        {
+            TextBox sen = (TextBox)sender;
+            int parse;
+
+
+            if (!int.TryParse(sen.Text.ToString().Trim(), out parse) && parse < 1)
+            {
+                sen.Text = "";    
+            }
+            
+        }
     }
 }

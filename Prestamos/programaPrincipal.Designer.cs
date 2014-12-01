@@ -55,6 +55,7 @@
             this.cedula = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.label10 = new System.Windows.Forms.Label();
             this.groupnuevafactura = new System.Windows.Forms.GroupBox();
+            this.label20 = new System.Windows.Forms.Label();
             this.nfcancelar = new System.Windows.Forms.Button();
             this.nffacturar = new System.Windows.Forms.Button();
             this.nffechafinal = new System.Windows.Forms.TextBox();
@@ -103,7 +104,8 @@
             this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.label6 = new System.Windows.Forms.Label();
-            this.label20 = new System.Windows.Forms.Label();
+            this.label21 = new System.Windows.Forms.Label();
+            this.label22 = new System.Windows.Forms.Label();
             this.menuStrip1.SuspendLayout();
             this.dropregistrarClientes.SuspendLayout();
             this.dropeliminarcliente.SuspendLayout();
@@ -169,14 +171,14 @@
             // nuevaToolStripMenuItem
             // 
             this.nuevaToolStripMenuItem.Name = "nuevaToolStripMenuItem";
-            this.nuevaToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.nuevaToolStripMenuItem.Size = new System.Drawing.Size(110, 22);
             this.nuevaToolStripMenuItem.Text = "Nueva";
             this.nuevaToolStripMenuItem.Click += new System.EventHandler(this.nuevaToolStripMenuItem_Click);
             // 
             // pagosToolStripMenuItem
             // 
             this.pagosToolStripMenuItem.Name = "pagosToolStripMenuItem";
-            this.pagosToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.pagosToolStripMenuItem.Size = new System.Drawing.Size(110, 22);
             this.pagosToolStripMenuItem.Text = "Abono";
             this.pagosToolStripMenuItem.Click += new System.EventHandler(this.pagosToolStripMenuItem_Click);
             // 
@@ -363,6 +365,8 @@
             // groupnuevafactura
             // 
             this.groupnuevafactura.BackColor = System.Drawing.SystemColors.Menu;
+            this.groupnuevafactura.Controls.Add(this.label22);
+            this.groupnuevafactura.Controls.Add(this.label21);
             this.groupnuevafactura.Controls.Add(this.label20);
             this.groupnuevafactura.Controls.Add(this.nfcancelar);
             this.groupnuevafactura.Controls.Add(this.nffacturar);
@@ -396,6 +400,17 @@
             this.groupnuevafactura.Size = new System.Drawing.Size(751, 355);
             this.groupnuevafactura.TabIndex = 23;
             this.groupnuevafactura.TabStop = false;
+            // 
+            // label20
+            // 
+            this.label20.AutoSize = true;
+            this.label20.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label20.Location = new System.Drawing.Point(331, 46);
+            this.label20.Name = "label20";
+            this.label20.Size = new System.Drawing.Size(35, 18);
+            this.label20.TabIndex = 46;
+            this.label20.Text = "No.";
+            this.label20.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // nfcancelar
             // 
@@ -441,7 +456,7 @@
             // nfmeses
             // 
             this.nfmeses.Enabled = false;
-            this.nfmeses.Location = new System.Drawing.Point(595, 134);
+            this.nfmeses.Location = new System.Drawing.Point(586, 134);
             this.nfmeses.Name = "nfmeses";
             this.nfmeses.Size = new System.Drawing.Size(103, 24);
             this.nfmeses.TabIndex = 3;
@@ -496,9 +511,9 @@
             // nfmora
             // 
             this.nfmora.Enabled = false;
-            this.nfmora.Location = new System.Drawing.Point(320, 178);
+            this.nfmora.Location = new System.Drawing.Point(345, 178);
             this.nfmora.Name = "nfmora";
-            this.nfmora.Size = new System.Drawing.Size(103, 24);
+            this.nfmora.Size = new System.Drawing.Size(43, 24);
             this.nfmora.TabIndex = 5;
             // 
             // nfinteres
@@ -516,6 +531,7 @@
             this.nfmonto.Name = "nfmonto";
             this.nfmonto.Size = new System.Drawing.Size(145, 24);
             this.nfmonto.TabIndex = 1;
+            this.nfmonto.TextChanged += new System.EventHandler(this.nfmonto_TextChanged);
             // 
             // nfcambiomeses
             // 
@@ -546,9 +562,9 @@
             this.label15.ForeColor = System.Drawing.SystemColors.ActiveCaption;
             this.label15.Location = new System.Drawing.Point(267, 181);
             this.label15.Name = "label15";
-            this.label15.Size = new System.Drawing.Size(47, 18);
+            this.label15.Size = new System.Drawing.Size(66, 18);
             this.label15.TabIndex = 33;
-            this.label15.Text = "Mora";
+            this.label15.Text = "Mora %";
             // 
             // label14
             // 
@@ -609,6 +625,7 @@
             this.nfnombre.Name = "nfnombre";
             this.nfnombre.Size = new System.Drawing.Size(247, 24);
             this.nfnombre.TabIndex = 27;
+            this.nfnombre.TextChanged += new System.EventHandler(this.nfnombre_TextChanged);
             // 
             // label9
             // 
@@ -640,6 +657,7 @@
             this.nfbuscarcliente.TabIndex = 0;
             this.nfbuscarcliente.Text = "Buscar Cliente";
             this.nfbuscarcliente.UseVisualStyleBackColor = true;
+            this.nfbuscarcliente.Click += new System.EventHandler(this.nfbuscarcliente_Click);
             // 
             // nfnumerofactura
             // 
@@ -865,16 +883,27 @@
             this.label6.TabIndex = 6;
             this.label6.Text = "Actualizar Cliente";
             // 
-            // label20
+            // label21
             // 
-            this.label20.AutoSize = true;
-            this.label20.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label20.Location = new System.Drawing.Point(331, 46);
-            this.label20.Name = "label20";
-            this.label20.Size = new System.Drawing.Size(35, 18);
-            this.label20.TabIndex = 46;
-            this.label20.Text = "No.";
-            this.label20.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.label21.AutoSize = true;
+            this.label21.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label21.ForeColor = System.Drawing.SystemColors.ActiveCaption;
+            this.label21.Location = new System.Drawing.Point(331, 181);
+            this.label21.Name = "label21";
+            this.label21.Size = new System.Drawing.Size(14, 18);
+            this.label21.TabIndex = 47;
+            this.label21.Text = "(";
+            // 
+            // label22
+            // 
+            this.label22.AutoSize = true;
+            this.label22.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label22.ForeColor = System.Drawing.SystemColors.ActiveCaption;
+            this.label22.Location = new System.Drawing.Point(391, 181);
+            this.label22.Name = "label22";
+            this.label22.Size = new System.Drawing.Size(14, 18);
+            this.label22.TabIndex = 48;
+            this.label22.Text = ")";
             // 
             // programaPrincipal
             // 
@@ -992,5 +1021,7 @@
         public System.Windows.Forms.Button nffacturar;
         public System.Windows.Forms.Button nfcancelar;
         public System.Windows.Forms.Label label20;
+        public System.Windows.Forms.Label label22;
+        public System.Windows.Forms.Label label21;
     }
 }

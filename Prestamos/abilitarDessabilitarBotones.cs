@@ -39,7 +39,6 @@ namespace Prestamos
             this.f.nfmeses.Text = "";
             this.f.nfinteres.Text = "";
             this.f.nfmora.Text = "";
-            this.f.nffacturar.Text = "";
             this.f.nffechainicial.Text = "";
             this.f.nffechafinal.Text = "";
 
