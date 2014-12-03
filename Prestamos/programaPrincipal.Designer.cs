@@ -55,6 +55,10 @@
             this.cedula = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.label10 = new System.Windows.Forms.Label();
             this.groupnuevafactura = new System.Windows.Forms.GroupBox();
+            this.nfMontoTotal = new System.Windows.Forms.TextBox();
+            this.label25 = new System.Windows.Forms.Label();
+            this.label24 = new System.Windows.Forms.Label();
+            this.label23 = new System.Windows.Forms.Label();
             this.label22 = new System.Windows.Forms.Label();
             this.label21 = new System.Windows.Forms.Label();
             this.label20 = new System.Windows.Forms.Label();
@@ -93,9 +97,9 @@
             this.dataGridViewTextBoxColumn4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.montoTotal = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.montoRestante = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.totalMonto = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.abonado = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.montoRestante = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.mora = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.fechaInicial = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.fechaFinal = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -106,10 +110,6 @@
             this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.label6 = new System.Windows.Forms.Label();
-            this.label23 = new System.Windows.Forms.Label();
-            this.label24 = new System.Windows.Forms.Label();
-            this.nfMontoTotal = new System.Windows.Forms.TextBox();
-            this.label25 = new System.Windows.Forms.Label();
             this.menuStrip1.SuspendLayout();
             this.dropregistrarClientes.SuspendLayout();
             this.dropeliminarcliente.SuspendLayout();
@@ -128,7 +128,7 @@
             this.facuraciónToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(751, 24);
+            this.menuStrip1.Size = new System.Drawing.Size(735, 24);
             this.menuStrip1.TabIndex = 4;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -408,6 +408,47 @@
             this.groupnuevafactura.Size = new System.Drawing.Size(751, 355);
             this.groupnuevafactura.TabIndex = 23;
             this.groupnuevafactura.TabStop = false;
+            // 
+            // nfMontoTotal
+            // 
+            this.nfMontoTotal.Enabled = false;
+            this.nfMontoTotal.Location = new System.Drawing.Point(551, 186);
+            this.nfMontoTotal.Name = "nfMontoTotal";
+            this.nfMontoTotal.Size = new System.Drawing.Size(155, 24);
+            this.nfMontoTotal.TabIndex = 51;
+            // 
+            // label25
+            // 
+            this.label25.AutoSize = true;
+            this.label25.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label25.ForeColor = System.Drawing.SystemColors.ActiveCaption;
+            this.label25.Location = new System.Drawing.Point(446, 189);
+            this.label25.Name = "label25";
+            this.label25.Size = new System.Drawing.Size(99, 18);
+            this.label25.TabIndex = 52;
+            this.label25.Text = "Monto Total";
+            // 
+            // label24
+            // 
+            this.label24.AutoSize = true;
+            this.label24.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label24.ForeColor = System.Drawing.SystemColors.ActiveCaption;
+            this.label24.Location = new System.Drawing.Point(150, 189);
+            this.label24.Name = "label24";
+            this.label24.Size = new System.Drawing.Size(14, 18);
+            this.label24.TabIndex = 50;
+            this.label24.Text = ")";
+            // 
+            // label23
+            // 
+            this.label23.AutoSize = true;
+            this.label23.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label23.ForeColor = System.Drawing.SystemColors.ActiveCaption;
+            this.label23.Location = new System.Drawing.Point(98, 189);
+            this.label23.Name = "label23";
+            this.label23.Size = new System.Drawing.Size(14, 18);
+            this.label23.TabIndex = 49;
+            this.label23.Text = "(";
             // 
             // label22
             // 
@@ -780,9 +821,9 @@
             this.dataGridViewTextBoxColumn4,
             this.dataGridViewTextBoxColumn5,
             this.dataGridViewTextBoxColumn6,
-            this.montoTotal,
-            this.montoRestante,
+            this.totalMonto,
             this.abonado,
+            this.montoRestante,
             this.mora,
             this.fechaInicial,
             this.fechaFinal});
@@ -813,12 +854,18 @@
             this.dataGridViewTextBoxColumn6.ReadOnly = true;
             this.dataGridViewTextBoxColumn6.Width = 200;
             // 
-            // montoTotal
+            // totalMonto
             // 
-            this.montoTotal.HeaderText = "MONTO TOTAL";
-            this.montoTotal.Name = "montoTotal";
-            this.montoTotal.ReadOnly = true;
-            this.montoTotal.Width = 150;
+            this.totalMonto.HeaderText = "MONTO TOTAL";
+            this.totalMonto.Name = "totalMonto";
+            this.totalMonto.ReadOnly = true;
+            this.totalMonto.Width = 150;
+            // 
+            // abonado
+            // 
+            this.abonado.HeaderText = "ABONADO";
+            this.abonado.Name = "abonado";
+            this.abonado.ReadOnly = true;
             // 
             // montoRestante
             // 
@@ -826,12 +873,6 @@
             this.montoRestante.Name = "montoRestante";
             this.montoRestante.ReadOnly = true;
             this.montoRestante.Width = 150;
-            // 
-            // abonado
-            // 
-            this.abonado.HeaderText = "ABONADO";
-            this.abonado.Name = "abonado";
-            this.abonado.ReadOnly = true;
             // 
             // mora
             // 
@@ -919,59 +960,18 @@
             this.label6.TabIndex = 6;
             this.label6.Text = "Actualizar Cliente";
             // 
-            // label23
-            // 
-            this.label23.AutoSize = true;
-            this.label23.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label23.ForeColor = System.Drawing.SystemColors.ActiveCaption;
-            this.label23.Location = new System.Drawing.Point(98, 189);
-            this.label23.Name = "label23";
-            this.label23.Size = new System.Drawing.Size(14, 18);
-            this.label23.TabIndex = 49;
-            this.label23.Text = "(";
-            // 
-            // label24
-            // 
-            this.label24.AutoSize = true;
-            this.label24.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label24.ForeColor = System.Drawing.SystemColors.ActiveCaption;
-            this.label24.Location = new System.Drawing.Point(150, 189);
-            this.label24.Name = "label24";
-            this.label24.Size = new System.Drawing.Size(14, 18);
-            this.label24.TabIndex = 50;
-            this.label24.Text = ")";
-            // 
-            // nfMontoTotal
-            // 
-            this.nfMontoTotal.Enabled = false;
-            this.nfMontoTotal.Location = new System.Drawing.Point(551, 186);
-            this.nfMontoTotal.Name = "nfMontoTotal";
-            this.nfMontoTotal.Size = new System.Drawing.Size(155, 24);
-            this.nfMontoTotal.TabIndex = 51;
-            // 
-            // label25
-            // 
-            this.label25.AutoSize = true;
-            this.label25.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label25.ForeColor = System.Drawing.SystemColors.ActiveCaption;
-            this.label25.Location = new System.Drawing.Point(446, 189);
-            this.label25.Name = "label25";
-            this.label25.Size = new System.Drawing.Size(99, 18);
-            this.label25.TabIndex = 52;
-            this.label25.Text = "Monto Total";
-            // 
             // programaPrincipal
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ActiveCaption;
-            this.ClientSize = new System.Drawing.Size(751, 394);
+            this.ClientSize = new System.Drawing.Size(735, 283);
             this.Controls.Add(this.groupnuevafactura);
+            this.Controls.Add(this.menuStrip1);
+            this.Controls.Add(this.groupabono);
             this.Controls.Add(this.dropeliminarcliente);
             this.Controls.Add(this.dropregistrarClientes);
-            this.Controls.Add(this.menuStrip1);
             this.Controls.Add(this.groupactualizarcliente);
-            this.Controls.Add(this.groupabono);
             this.MainMenuStrip = this.menuStrip1;
             this.MaximizeBox = false;
             this.Name = "programaPrincipal";
@@ -1029,15 +1029,7 @@
         private System.Windows.Forms.GroupBox groupnuevafactura;
         private System.Windows.Forms.GroupBox groupabono;
         private System.Windows.Forms.DataGridView dataGridabono;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn4;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn5;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn6;
-        private System.Windows.Forms.DataGridViewTextBoxColumn montoTotal;
-        private System.Windows.Forms.DataGridViewTextBoxColumn montoRestante;
-        private System.Windows.Forms.DataGridViewTextBoxColumn abonado;
-        private System.Windows.Forms.DataGridViewTextBoxColumn mora;
-        private System.Windows.Forms.DataGridViewTextBoxColumn fechaInicial;
-        private System.Windows.Forms.DataGridViewTextBoxColumn fechaFinal;
+        //private System.Windows.Forms.DataGridViewTextBoxColumn montoTotal;
         private System.Windows.Forms.Label label17;
         private System.Windows.Forms.Button abcancelar;
         private System.Windows.Forms.Button ababonar;
@@ -1082,5 +1074,14 @@
         public System.Windows.Forms.Label label23;
         public System.Windows.Forms.TextBox nfMontoTotal;
         public System.Windows.Forms.Label label25;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn4;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn5;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn6;
+        private System.Windows.Forms.DataGridViewTextBoxColumn totalMonto;
+        private System.Windows.Forms.DataGridViewTextBoxColumn abonado;
+        private System.Windows.Forms.DataGridViewTextBoxColumn montoRestante;
+        private System.Windows.Forms.DataGridViewTextBoxColumn mora;
+        private System.Windows.Forms.DataGridViewTextBoxColumn fechaInicial;
+        private System.Windows.Forms.DataGridViewTextBoxColumn fechaFinal;
     }
 }
