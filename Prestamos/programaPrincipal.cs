@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Data.SqlClient;
 
 namespace Prestamos
 {
@@ -14,8 +15,8 @@ namespace Prestamos
     {
 
         private abilitarDessabilitarBotones adb;
-        private short quinsenalMensualAnual;
-        private short calculoquincenasMensualidadAnual;
+        private int quinsenalMensualAnual;
+        private int calculoquincenasMensualidadAnual;
         private int montoTotal;
         private short cuotas;
 
@@ -24,6 +25,12 @@ namespace Prestamos
             InitializeComponent();
             nfnombre.Text = "asdkf";
             //adb = new abilitarDessabilitarBotones(this);
+
+            // Add -1 to now
+            DateTime y = DateTime.Today.AddDays(-1);
+
+            nffecha.Text = Convert.ToString(fecha.Day + "/" + fecha.Month + "/" + fecha.Year);
+
         }
 
         private void textBox1_TextChanged(object sender, EventArgs e)
@@ -118,6 +125,7 @@ namespace Prestamos
                 nfmeses.Enabled = true;
                 nfinteres.Enabled = true;
                 nfmora.Enabled = true;
+                nffacturar.Enabled = true;
             }
         }
 
@@ -136,17 +144,17 @@ namespace Prestamos
 
         private void nfperiodopago_SelectedIndexChanged(object sender, EventArgs e)
         {
-            switch (nfperiodopago.SelectedText) 
+            switch (nfperiodopago.SelectedIndex) 
             {
-                case "QUINCENAL":
+                case 0:
                     this.quinsenalMensualAnual = 15; 
                     nfcambiomeses.Text = "Quinsenas";
                     break;
-                case "MENSUAL":
+                case 1:
                     this.quinsenalMensualAnual = 30; // 30 días
                     nfcambiomeses.Text = "Meses";
                     break;
-                case "ANUAL":
+                case 2:
                     this.quinsenalMensualAnual = 365; // 365 días
                     nfcambiomeses.Text = "Año(s)";
                     break;
@@ -162,21 +170,22 @@ namespace Prestamos
             if (!int.TryParse(sen.Text.ToString().Trim(), out parse) && parse < 1)
             {
                 sen.Text = "";
-            }
+               
+            } 
 
 
 
             if (this.quinsenalMensualAnual == 15)
             {
-                if (parse > 999) sen.Text = ""; // si es quincenal y el 
+                this.calculoquincenasMensualidadAnual = 15 * parse;
             }
             else if (this.quinsenalMensualAnual == 30)
             {
-                if (parse < 999 && parse > 20000) sen.Text = "";
+                this.calculoquincenasMensualidadAnual = 30 * parse;
             }
             else if(this.quinsenalMensualAnual == 365)
             {
-                if (parse < 20000) sen.Text = "";
+                this.calculoquincenasMensualidadAnual = 365 * parse;
             }
 
 
@@ -209,7 +218,66 @@ namespace Prestamos
 
         private void nffacturar_Click(object sender, EventArgs e)
         {
+            if (nfmonto.Text.Length > 0)
+            {
+                if (this.quinsenalMensualAnual == 15 || this.quinsenalMensualAnual == 30 || this.quinsenalMensualAnual == 365)
+                {
+                    if (nfmeses.Text.Length > 0)
+                    {
+                        if (nfinteres.Text.Length > 0)
+                        {
+                            if (nfmora.Text.Length > 0)
+                            {
 
+
+
+
+
+
+
+
+
+
+                                //try
+                                //{
+                                //    Conexion con = new Conexion();
+                                //    Conexion.ConectarBD.Open();
+
+                                //}
+                                //catch (SqlException sql)
+                                //{
+                                //    MessageBox.Show("Error " + sql.ToString());
+                                //}
+                            }
+                            else
+                            {
+                                MessageBox.Show("Debe de ingresar la mora");
+                                nfmora.Focus();
+                            }
+                        }
+                        else
+                        {
+                            MessageBox.Show("Debe de ingresar el interés");
+                            nfinteres.Focus();
+                        }
+                    }
+                    else
+                    {
+                        MessageBox.Show("Debe de especificar el tiempo");
+                        nfmeses.Focus();
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("Debe de Elegir un periodo de pago");
+                    nfperiodopago.Focus();
+                }
+            }
+            else
+            {
+                MessageBox.Show("Debe de ingresar un monto");
+                nfmonto.Focus();
+            }
         }
 
         private void nfcancelar_Click(object sender, EventArgs e)

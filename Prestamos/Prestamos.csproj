@@ -51,6 +51,7 @@
     <Compile Include="buscarCliente.Designer.cs">
       <DependentUpon>buscarCliente.cs</DependentUpon>
     </Compile>
+    <Compile Include="Conexion.cs" />
     <Compile Include="login.cs">
       <SubType>Form</SubType>
     </Compile>
