@@ -30,6 +30,7 @@ namespace Prestamos
             this.f.nfinteres.Enabled = false;
             this.f.nfmora.Enabled = false;
             this.f.nffacturar.Enabled = false;
+            this.f.nfCalcularMonto.Enabled = false;
 
             this.f.nfnumerofactura.Text = "00001";
             this.f.nfnombre.Text = "";
@@ -41,6 +42,7 @@ namespace Prestamos
             this.f.nfmora.Text = "";
             this.f.nffechainicial.Text = "";
             this.f.nffechafinal.Text = "";
+            this.f.nfMontoTotal.Text = "";
 
 
 

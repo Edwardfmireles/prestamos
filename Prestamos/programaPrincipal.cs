@@ -17,8 +17,12 @@ namespace Prestamos
         private abilitarDessabilitarBotones adb;
         private int quinsenalMensualAnual;
         private int calculoquincenasMensualidadAnual;
-        private int montoTotal;
+        private int meses;
+        private List<DateTime> fechas = new List<DateTime>();
+        private DateTime[] fechasArray;
         private short cuotas;
+        private DateTime dFechaInicial = DateTime.Today;
+        private DateTime dFechaFinal;
 
         public programaPrincipal()
         {
@@ -26,10 +30,11 @@ namespace Prestamos
             nfnombre.Text = "asdkf";
             //adb = new abilitarDessabilitarBotones(this);
 
-            // Add -1 to now
-            DateTime y = DateTime.Today.AddDays(-1);
 
-            nffecha.Text = Convert.ToString(fecha.Day + "/" + fecha.Month + "/" + fecha.Year);
+ 
+
+            nffecha.Text = Convert.ToString(dFechaInicial.Day + "/" + dFechaInicial.Month + "/" + dFechaInicial.Year);
+            nffechainicial.Text = nffecha.Text;
 
         }
 
@@ -126,6 +131,7 @@ namespace Prestamos
                 nfinteres.Enabled = true;
                 nfmora.Enabled = true;
                 nffacturar.Enabled = true;
+                nfCalcularMonto.Enabled = true;
             }
         }
 
@@ -135,11 +141,14 @@ namespace Prestamos
             int parse;
 
 
-            if (!int.TryParse(sen.Text.ToString().Trim(), out parse) && parse < 1)
+            if (!int.TryParse(sen.Text.ToString().Trim(), out this.meses) && this.meses < 1 )
             {
                 sen.Text = "";
             }
 
+
+            nfCalcularMonto.Visible = true;
+            nfMontoTotal.Text = "";
         }
 
         private void nfperiodopago_SelectedIndexChanged(object sender, EventArgs e)
@@ -147,16 +156,19 @@ namespace Prestamos
             switch (nfperiodopago.SelectedIndex) 
             {
                 case 0:
-                    this.quinsenalMensualAnual = 15; 
+                    this.quinsenalMensualAnual = 15; // 15 días
                     nfcambiomeses.Text = "Quinsenas";
+                    nfmeses.Text = "";
                     break;
                 case 1:
                     this.quinsenalMensualAnual = 30; // 30 días
                     nfcambiomeses.Text = "Meses";
+                    nfmeses.Text = "";
                     break;
                 case 2:
                     this.quinsenalMensualAnual = 365; // 365 días
                     nfcambiomeses.Text = "Año(s)";
+                    nfmeses.Text = "";
                     break;
             }
         }
@@ -167,27 +179,20 @@ namespace Prestamos
             int parse;
 
 
-            if (!int.TryParse(sen.Text.ToString().Trim(), out parse) && parse < 1)
+
+
+            if (!int.TryParse(sen.Text.ToString().Trim(), out this.meses) && this.meses < 1 || this.meses > 99 || this.meses == 0)
             {
                 sen.Text = "";
-               
-            } 
-
-
-
-            if (this.quinsenalMensualAnual == 15)
-            {
-                this.calculoquincenasMensualidadAnual = 15 * parse;
+                nffechafinal.Text = "";
+                this.fechasArray = new DateTime[0];
             }
-            else if (this.quinsenalMensualAnual == 30)
+            else
             {
-                this.calculoquincenasMensualidadAnual = 30 * parse;
-            }
-            else if(this.quinsenalMensualAnual == 365)
-            {
-                this.calculoquincenasMensualidadAnual = 365 * parse;
-            }
 
+                generarfechas(this.meses);
+
+            }
 
 
         }
@@ -198,10 +203,20 @@ namespace Prestamos
             int parse;
 
 
-            if (!int.TryParse(sen.Text.ToString().Trim(), out parse) && parse < 1)
+            if (!int.TryParse(sen.Text.ToString().Trim(), out this.meses) && this.meses < 1 || this.meses > 50 || this.meses == 0) 
             {
                 sen.Text = "";
+                
             }
+
+
+            int monto = Convert.ToInt32(nfmonto.Text);
+            int interes = ((Convert.ToInt32(nfinteres.Text) / 100) * monto);
+            //int cuotas = 
+            
+
+            nfCalcularMonto.Visible = true;
+            nfMontoTotal.Text = "";
         }
 
         private void nfmora_TextChanged(object sender, EventArgs e)
@@ -210,13 +225,42 @@ namespace Prestamos
             int parse;
 
 
-            if (!int.TryParse(sen.Text.ToString().Trim(), out parse) && parse < 1)
+            if (!int.TryParse(sen.Text.ToString().Trim(), out this.meses) && this.meses < 1)
             {
                 sen.Text = "";
             }
+
+            nfCalcularMonto.Visible = true;
+            nfMontoTotal.Text = "";
         }
 
+
+        private void nfCalcularMonto_Click(object sender, EventArgs e)
+        {
+            if (validarCamposVacios() == true)
+            {
+                nfCalcularMonto.Visible = false;
+
+                nfMontoTotal.Text = "55454";
+            }
+        }
+
+
         private void nffacturar_Click(object sender, EventArgs e)
+        {
+           
+        }
+
+        private void nfcancelar_Click(object sender, EventArgs e)
+        {
+            groupnuevafactura.Visible = false;
+            adb = new abilitarDessabilitarBotones(this);
+            nfperiodopago.SelectedIndex = -1;
+            nfnombre.Text = "asd";
+        }
+
+
+        private bool validarCamposVacios()
         {
             if (nfmonto.Text.Length > 0)
             {
@@ -228,26 +272,7 @@ namespace Prestamos
                         {
                             if (nfmora.Text.Length > 0)
                             {
-
-
-
-
-
-
-
-
-
-
-                                //try
-                                //{
-                                //    Conexion con = new Conexion();
-                                //    Conexion.ConectarBD.Open();
-
-                                //}
-                                //catch (SqlException sql)
-                                //{
-                                //    MessageBox.Show("Error " + sql.ToString());
-                                //}
+                                return true;
                             }
                             else
                             {
@@ -278,14 +303,114 @@ namespace Prestamos
                 MessageBox.Show("Debe de ingresar un monto");
                 nfmonto.Focus();
             }
+
+            return false;
+
         }
 
-        private void nfcancelar_Click(object sender, EventArgs e)
+        private void generarfechas(int parse)
         {
-            groupnuevafactura.Visible = false;
-            adb = new abilitarDessabilitarBotones(this);
-            nfperiodopago.SelectedIndex = -1;
-            nfnombre.Text = "asd";
+            this.fechasArray = new DateTime[parse];
+
+
+            int j = 0;
+
+
+            fechas.Clear();
+
+            if (this.quinsenalMensualAnual == 15)
+            {
+                this.calculoquincenasMensualidadAnual = 15 * parse;
+
+
+                for (int i = 1; i <= parse; i++)
+                {
+                    fechas.Add(DateTime.Today.AddDays(i * 15));
+                }
+
+                foreach (var item in fechas)
+                {
+                    //MessageBox.Show(Convert.ToString(item.Day + "/" + item.Month + "/" + item.Year));
+
+
+                    this.fechasArray[j] = Convert.ToDateTime(item);
+                    j++;
+                }
+
+
+                nffechafinal.Text = Convert.ToString(this.fechasArray[fechas.Count - 1].Day + "/" + this.fechasArray[fechas.Count - 1].Month + "/" + this.fechasArray[fechas.Count - 1].Year);
+
+
+
+            }
+            else if (this.quinsenalMensualAnual == 30)
+            {
+                this.calculoquincenasMensualidadAnual = 30 * parse;
+
+                for (int i = 1; i <= parse; i++)
+                {
+                    fechas.Add(DateTime.Today.AddDays(i * 30));
+                }
+
+                foreach (var item in fechas)
+                {
+                    //MessageBox.Show(Convert.ToString(item.Day + "/" + item.Month + "/" + item.Year));
+
+
+                    this.fechasArray[j] = Convert.ToDateTime(item);
+                    j++;
+                }
+
+
+                nffechafinal.Text = Convert.ToString(this.fechasArray[fechas.Count - 1].Day + "/" + this.fechasArray[fechas.Count - 1].Month + "/" + this.fechasArray[fechas.Count - 1].Year);
+
+            }
+            else if (this.quinsenalMensualAnual == 365)
+            {
+                this.calculoquincenasMensualidadAnual = 12 * parse;
+
+                for (int i = 1; i <= parse; i++)
+                {
+                    fechas.Add(DateTime.Today.AddDays(i * 365));
+                }
+
+                foreach (var item in fechas)
+                {
+                    //MessageBox.Show(Convert.ToString(item.Day + "/" + item.Month + "/" + item.Year));
+
+
+                    this.fechasArray[j] = Convert.ToDateTime(item);
+                    j++;
+                }
+
+
+                nffechafinal.Text = Convert.ToString(this.fechasArray[fechas.Count - 1].Day + "/" + this.fechasArray[fechas.Count - 1].Month + "/" + this.fechasArray[fechas.Count - 1].Year);
+            }
         }
+
+        public void cuotas()
+        {
+
+            if (this.quinsenalMensualAnual == 15)
+            {
+             
+  
+
+            }
+
+            if (this.quinsenalMensualAnual == 30)
+            {
+               
+
+            }
+
+            if (this.quinsenalMensualAnual == 365)
+            {
+               
+
+            }
+        }
+
+
     }
 }

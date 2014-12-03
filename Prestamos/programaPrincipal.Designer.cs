@@ -110,6 +110,7 @@
             this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.label6 = new System.Windows.Forms.Label();
+            this.nfCalcularMonto = new System.Windows.Forms.Button();
             this.menuStrip1.SuspendLayout();
             this.dropregistrarClientes.SuspendLayout();
             this.dropeliminarcliente.SuspendLayout();
@@ -369,6 +370,7 @@
             // groupnuevafactura
             // 
             this.groupnuevafactura.BackColor = System.Drawing.SystemColors.Menu;
+            this.groupnuevafactura.Controls.Add(this.nfCalcularMonto);
             this.groupnuevafactura.Controls.Add(this.nfMontoTotal);
             this.groupnuevafactura.Controls.Add(this.label25);
             this.groupnuevafactura.Controls.Add(this.label24);
@@ -411,22 +413,24 @@
             // 
             // nfMontoTotal
             // 
+            this.nfMontoTotal.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.nfMontoTotal.Enabled = false;
-            this.nfMontoTotal.Location = new System.Drawing.Point(551, 186);
+            this.nfMontoTotal.ForeColor = System.Drawing.Color.DarkRed;
+            this.nfMontoTotal.Location = new System.Drawing.Point(551, 190);
             this.nfMontoTotal.Name = "nfMontoTotal";
-            this.nfMontoTotal.Size = new System.Drawing.Size(155, 24);
+            this.nfMontoTotal.Size = new System.Drawing.Size(155, 17);
             this.nfMontoTotal.TabIndex = 51;
             // 
             // label25
             // 
             this.label25.AutoSize = true;
             this.label25.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label25.ForeColor = System.Drawing.SystemColors.ActiveCaption;
-            this.label25.Location = new System.Drawing.Point(446, 189);
+            this.label25.ForeColor = System.Drawing.SystemColors.HotTrack;
+            this.label25.Location = new System.Drawing.Point(408, 189);
             this.label25.Name = "label25";
-            this.label25.Size = new System.Drawing.Size(99, 18);
+            this.label25.Size = new System.Drawing.Size(137, 18);
             this.label25.TabIndex = 52;
-            this.label25.Text = "Monto Total";
+            this.label25.Text = "Monto Total RD$";
             // 
             // label24
             // 
@@ -509,18 +513,17 @@
             this.nffechafinal.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.nffechafinal.Enabled = false;
             this.nffechafinal.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.nffechafinal.Location = new System.Drawing.Point(617, 246);
+            this.nffechafinal.Location = new System.Drawing.Point(542, 246);
             this.nffechafinal.Name = "nffechafinal";
             this.nffechafinal.Size = new System.Drawing.Size(108, 22);
             this.nffechafinal.TabIndex = 45;
-            this.nffechafinal.Text = "10/10/1111";
             // 
             // label18
             // 
             this.label18.AutoSize = true;
             this.label18.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label18.ForeColor = System.Drawing.SystemColors.ActiveCaption;
-            this.label18.Location = new System.Drawing.Point(521, 248);
+            this.label18.Location = new System.Drawing.Point(446, 248);
             this.label18.Name = "label18";
             this.label18.Size = new System.Drawing.Size(90, 18);
             this.label18.TabIndex = 44;
@@ -529,9 +532,9 @@
             // nfmeses
             // 
             this.nfmeses.Enabled = false;
-            this.nfmeses.Location = new System.Drawing.Point(603, 134);
+            this.nfmeses.Location = new System.Drawing.Point(630, 134);
             this.nfmeses.Name = "nfmeses";
-            this.nfmeses.Size = new System.Drawing.Size(103, 24);
+            this.nfmeses.Size = new System.Drawing.Size(46, 24);
             this.nfmeses.TabIndex = 3;
             this.nfmeses.TextChanged += new System.EventHandler(this.nfmeses_TextChanged);
             // 
@@ -577,11 +580,10 @@
             this.nffechainicial.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.nffechainicial.Enabled = false;
             this.nffechainicial.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.nffechainicial.Location = new System.Drawing.Point(394, 248);
+            this.nffechainicial.Location = new System.Drawing.Point(319, 248);
             this.nffechainicial.Name = "nffechainicial";
             this.nffechainicial.Size = new System.Drawing.Size(108, 22);
             this.nffechainicial.TabIndex = 39;
-            this.nffechainicial.Text = "10/10/1111";
             // 
             // nfmora
             // 
@@ -615,7 +617,7 @@
             this.nfcambiomeses.AutoSize = true;
             this.nfcambiomeses.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.nfcambiomeses.ForeColor = System.Drawing.SystemColors.ActiveCaption;
-            this.nfcambiomeses.Location = new System.Drawing.Point(521, 138);
+            this.nfcambiomeses.Location = new System.Drawing.Point(548, 138);
             this.nfcambiomeses.Name = "nfcambiomeses";
             this.nfcambiomeses.Size = new System.Drawing.Size(67, 18);
             this.nfcambiomeses.TabIndex = 35;
@@ -626,7 +628,7 @@
             this.label16.AutoSize = true;
             this.label16.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label16.ForeColor = System.Drawing.SystemColors.ActiveCaption;
-            this.label16.Location = new System.Drawing.Point(286, 250);
+            this.label16.Location = new System.Drawing.Point(211, 250);
             this.label16.Name = "label16";
             this.label16.Size = new System.Drawing.Size(102, 18);
             this.label16.TabIndex = 34;
@@ -960,6 +962,17 @@
             this.label6.TabIndex = 6;
             this.label6.Text = "Actualizar Cliente";
             // 
+            // nfCalcularMonto
+            // 
+            this.nfCalcularMonto.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.nfCalcularMonto.Location = new System.Drawing.Point(551, 187);
+            this.nfCalcularMonto.Name = "nfCalcularMonto";
+            this.nfCalcularMonto.Size = new System.Drawing.Size(86, 24);
+            this.nfCalcularMonto.TabIndex = 53;
+            this.nfCalcularMonto.Text = "Calcular";
+            this.nfCalcularMonto.UseVisualStyleBackColor = true;
+            this.nfCalcularMonto.Click += new System.EventHandler(this.nfCalcularMonto_Click);
+            // 
             // programaPrincipal
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1083,5 +1096,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn mora;
         private System.Windows.Forms.DataGridViewTextBoxColumn fechaInicial;
         private System.Windows.Forms.DataGridViewTextBoxColumn fechaFinal;
+        public System.Windows.Forms.Button nfCalcularMonto;
     }
 }
