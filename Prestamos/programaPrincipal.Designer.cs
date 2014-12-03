@@ -55,6 +55,8 @@
             this.cedula = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.label10 = new System.Windows.Forms.Label();
             this.groupnuevafactura = new System.Windows.Forms.GroupBox();
+            this.label22 = new System.Windows.Forms.Label();
+            this.label21 = new System.Windows.Forms.Label();
             this.label20 = new System.Windows.Forms.Label();
             this.nfcancelar = new System.Windows.Forms.Button();
             this.nffacturar = new System.Windows.Forms.Button();
@@ -104,8 +106,10 @@
             this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.label6 = new System.Windows.Forms.Label();
-            this.label21 = new System.Windows.Forms.Label();
-            this.label22 = new System.Windows.Forms.Label();
+            this.label23 = new System.Windows.Forms.Label();
+            this.label24 = new System.Windows.Forms.Label();
+            this.nfMontoTotal = new System.Windows.Forms.TextBox();
+            this.label25 = new System.Windows.Forms.Label();
             this.menuStrip1.SuspendLayout();
             this.dropregistrarClientes.SuspendLayout();
             this.dropeliminarcliente.SuspendLayout();
@@ -365,6 +369,10 @@
             // groupnuevafactura
             // 
             this.groupnuevafactura.BackColor = System.Drawing.SystemColors.Menu;
+            this.groupnuevafactura.Controls.Add(this.nfMontoTotal);
+            this.groupnuevafactura.Controls.Add(this.label25);
+            this.groupnuevafactura.Controls.Add(this.label24);
+            this.groupnuevafactura.Controls.Add(this.label23);
             this.groupnuevafactura.Controls.Add(this.label22);
             this.groupnuevafactura.Controls.Add(this.label21);
             this.groupnuevafactura.Controls.Add(this.label20);
@@ -401,6 +409,28 @@
             this.groupnuevafactura.TabIndex = 23;
             this.groupnuevafactura.TabStop = false;
             // 
+            // label22
+            // 
+            this.label22.AutoSize = true;
+            this.label22.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label22.ForeColor = System.Drawing.SystemColors.ActiveCaption;
+            this.label22.Location = new System.Drawing.Point(330, 189);
+            this.label22.Name = "label22";
+            this.label22.Size = new System.Drawing.Size(14, 18);
+            this.label22.TabIndex = 48;
+            this.label22.Text = ")";
+            // 
+            // label21
+            // 
+            this.label21.AutoSize = true;
+            this.label21.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label21.ForeColor = System.Drawing.SystemColors.ActiveCaption;
+            this.label21.Location = new System.Drawing.Point(276, 189);
+            this.label21.Name = "label21";
+            this.label21.Size = new System.Drawing.Size(14, 18);
+            this.label21.TabIndex = 47;
+            this.label21.Text = "(";
+            // 
             // label20
             // 
             this.label20.AutoSize = true;
@@ -420,6 +450,7 @@
             this.nfcancelar.TabIndex = 7;
             this.nfcancelar.Text = "Cancelar";
             this.nfcancelar.UseVisualStyleBackColor = true;
+            this.nfcancelar.Click += new System.EventHandler(this.nfcancelar_Click);
             // 
             // nffacturar
             // 
@@ -430,6 +461,7 @@
             this.nffacturar.TabIndex = 6;
             this.nffacturar.Text = "Facturar";
             this.nffacturar.UseVisualStyleBackColor = true;
+            this.nffacturar.Click += new System.EventHandler(this.nffacturar_Click);
             // 
             // nffechafinal
             // 
@@ -456,10 +488,11 @@
             // nfmeses
             // 
             this.nfmeses.Enabled = false;
-            this.nfmeses.Location = new System.Drawing.Point(586, 134);
+            this.nfmeses.Location = new System.Drawing.Point(603, 134);
             this.nfmeses.Name = "nfmeses";
             this.nfmeses.Size = new System.Drawing.Size(103, 24);
             this.nfmeses.TabIndex = 3;
+            this.nfmeses.TextChanged += new System.EventHandler(this.nfmeses_TextChanged);
             // 
             // nffecha
             // 
@@ -489,13 +522,14 @@
             this.nfperiodopago.Enabled = false;
             this.nfperiodopago.FormattingEnabled = true;
             this.nfperiodopago.Items.AddRange(new object[] {
-            "SEMANAL",
             "QUINCENAL",
-            "MENSUAL"});
+            "MENSUAL",
+            "ANUAL"});
             this.nfperiodopago.Location = new System.Drawing.Point(405, 135);
             this.nfperiodopago.Name = "nfperiodopago";
-            this.nfperiodopago.Size = new System.Drawing.Size(88, 26);
+            this.nfperiodopago.Size = new System.Drawing.Size(97, 26);
             this.nfperiodopago.TabIndex = 2;
+            this.nfperiodopago.SelectedIndexChanged += new System.EventHandler(this.nfperiodopago_SelectedIndexChanged);
             // 
             // nffechainicial
             // 
@@ -511,18 +545,20 @@
             // nfmora
             // 
             this.nfmora.Enabled = false;
-            this.nfmora.Location = new System.Drawing.Point(345, 178);
+            this.nfmora.Location = new System.Drawing.Point(288, 186);
             this.nfmora.Name = "nfmora";
             this.nfmora.Size = new System.Drawing.Size(43, 24);
             this.nfmora.TabIndex = 5;
+            this.nfmora.TextChanged += new System.EventHandler(this.nfmora_TextChanged);
             // 
             // nfinteres
             // 
             this.nfinteres.Enabled = false;
-            this.nfinteres.Location = new System.Drawing.Point(87, 182);
+            this.nfinteres.Location = new System.Drawing.Point(110, 186);
             this.nfinteres.Name = "nfinteres";
-            this.nfinteres.Size = new System.Drawing.Size(145, 24);
+            this.nfinteres.Size = new System.Drawing.Size(43, 24);
             this.nfinteres.TabIndex = 4;
+            this.nfinteres.TextChanged += new System.EventHandler(this.nfinteres_TextChanged);
             // 
             // nfmonto
             // 
@@ -538,11 +574,11 @@
             this.nfcambiomeses.AutoSize = true;
             this.nfcambiomeses.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.nfcambiomeses.ForeColor = System.Drawing.SystemColors.ActiveCaption;
-            this.nfcambiomeses.Location = new System.Drawing.Point(521, 135);
+            this.nfcambiomeses.Location = new System.Drawing.Point(521, 138);
             this.nfcambiomeses.Name = "nfcambiomeses";
-            this.nfcambiomeses.Size = new System.Drawing.Size(58, 18);
+            this.nfcambiomeses.Size = new System.Drawing.Size(67, 18);
             this.nfcambiomeses.TabIndex = 35;
-            this.nfcambiomeses.Text = "meses";
+            this.nfcambiomeses.Text = "Periodo";
             // 
             // label16
             // 
@@ -560,7 +596,7 @@
             this.label15.AutoSize = true;
             this.label15.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label15.ForeColor = System.Drawing.SystemColors.ActiveCaption;
-            this.label15.Location = new System.Drawing.Point(267, 181);
+            this.label15.Location = new System.Drawing.Point(210, 189);
             this.label15.Name = "label15";
             this.label15.Size = new System.Drawing.Size(66, 18);
             this.label15.TabIndex = 33;
@@ -593,11 +629,11 @@
             this.label12.AutoSize = true;
             this.label12.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label12.ForeColor = System.Drawing.SystemColors.ActiveCaption;
-            this.label12.Location = new System.Drawing.Point(13, 181);
+            this.label12.Location = new System.Drawing.Point(13, 189);
             this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(59, 18);
+            this.label12.Size = new System.Drawing.Size(78, 18);
             this.label12.TabIndex = 30;
-            this.label12.Text = "Interes";
+            this.label12.Text = "Interes %";
             // 
             // label11
             // 
@@ -883,27 +919,46 @@
             this.label6.TabIndex = 6;
             this.label6.Text = "Actualizar Cliente";
             // 
-            // label21
+            // label23
             // 
-            this.label21.AutoSize = true;
-            this.label21.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label21.ForeColor = System.Drawing.SystemColors.ActiveCaption;
-            this.label21.Location = new System.Drawing.Point(331, 181);
-            this.label21.Name = "label21";
-            this.label21.Size = new System.Drawing.Size(14, 18);
-            this.label21.TabIndex = 47;
-            this.label21.Text = "(";
+            this.label23.AutoSize = true;
+            this.label23.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label23.ForeColor = System.Drawing.SystemColors.ActiveCaption;
+            this.label23.Location = new System.Drawing.Point(98, 189);
+            this.label23.Name = "label23";
+            this.label23.Size = new System.Drawing.Size(14, 18);
+            this.label23.TabIndex = 49;
+            this.label23.Text = "(";
             // 
-            // label22
+            // label24
             // 
-            this.label22.AutoSize = true;
-            this.label22.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label22.ForeColor = System.Drawing.SystemColors.ActiveCaption;
-            this.label22.Location = new System.Drawing.Point(391, 181);
-            this.label22.Name = "label22";
-            this.label22.Size = new System.Drawing.Size(14, 18);
-            this.label22.TabIndex = 48;
-            this.label22.Text = ")";
+            this.label24.AutoSize = true;
+            this.label24.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label24.ForeColor = System.Drawing.SystemColors.ActiveCaption;
+            this.label24.Location = new System.Drawing.Point(150, 189);
+            this.label24.Name = "label24";
+            this.label24.Size = new System.Drawing.Size(14, 18);
+            this.label24.TabIndex = 50;
+            this.label24.Text = ")";
+            // 
+            // nfMontoTotal
+            // 
+            this.nfMontoTotal.Enabled = false;
+            this.nfMontoTotal.Location = new System.Drawing.Point(551, 186);
+            this.nfMontoTotal.Name = "nfMontoTotal";
+            this.nfMontoTotal.Size = new System.Drawing.Size(155, 24);
+            this.nfMontoTotal.TabIndex = 51;
+            // 
+            // label25
+            // 
+            this.label25.AutoSize = true;
+            this.label25.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label25.ForeColor = System.Drawing.SystemColors.ActiveCaption;
+            this.label25.Location = new System.Drawing.Point(446, 189);
+            this.label25.Name = "label25";
+            this.label25.Size = new System.Drawing.Size(99, 18);
+            this.label25.TabIndex = 52;
+            this.label25.Text = "Monto Total";
             // 
             // programaPrincipal
             // 
@@ -1023,5 +1078,9 @@
         public System.Windows.Forms.Label label20;
         public System.Windows.Forms.Label label22;
         public System.Windows.Forms.Label label21;
+        public System.Windows.Forms.Label label24;
+        public System.Windows.Forms.Label label23;
+        public System.Windows.Forms.TextBox nfMontoTotal;
+        public System.Windows.Forms.Label label25;
     }
 }

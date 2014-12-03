@@ -14,11 +14,16 @@ namespace Prestamos
     {
 
         private abilitarDessabilitarBotones adb;
+        private short quinsenalMensualAnual;
+        private short calculoquincenasMensualidadAnual;
+        private int montoTotal;
+        private short cuotas;
+
         public programaPrincipal()
         {
             InitializeComponent();
-           
-            adb = new abilitarDessabilitarBotones(this);
+            nfnombre.Text = "asdkf";
+            //adb = new abilitarDessabilitarBotones(this);
         }
 
         private void textBox1_TextChanged(object sender, EventArgs e)
@@ -124,9 +129,95 @@ namespace Prestamos
 
             if (!int.TryParse(sen.Text.ToString().Trim(), out parse) && parse < 1)
             {
-                sen.Text = "";    
+                sen.Text = "";
             }
-            
+
+        }
+
+        private void nfperiodopago_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            switch (nfperiodopago.SelectedText) 
+            {
+                case "QUINCENAL":
+                    this.quinsenalMensualAnual = 15; 
+                    nfcambiomeses.Text = "Quinsenas";
+                    break;
+                case "MENSUAL":
+                    this.quinsenalMensualAnual = 30; // 30 días
+                    nfcambiomeses.Text = "Meses";
+                    break;
+                case "ANUAL":
+                    this.quinsenalMensualAnual = 365; // 365 días
+                    nfcambiomeses.Text = "Año(s)";
+                    break;
+            }
+        }
+
+        private void nfmeses_TextChanged(object sender, EventArgs e)
+        {
+            TextBox sen = (TextBox)sender;
+            int parse;
+
+
+            if (!int.TryParse(sen.Text.ToString().Trim(), out parse) && parse < 1)
+            {
+                sen.Text = "";
+            }
+
+
+
+            if (this.quinsenalMensualAnual == 15)
+            {
+                if (parse > 999) sen.Text = ""; // si es quincenal y el 
+            }
+            else if (this.quinsenalMensualAnual == 30)
+            {
+                if (parse < 999 && parse > 20000) sen.Text = "";
+            }
+            else if(this.quinsenalMensualAnual == 365)
+            {
+                if (parse < 20000) sen.Text = "";
+            }
+
+
+
+        }
+
+        private void nfinteres_TextChanged(object sender, EventArgs e)
+        {
+            TextBox sen = (TextBox)sender;
+            int parse;
+
+
+            if (!int.TryParse(sen.Text.ToString().Trim(), out parse) && parse < 1)
+            {
+                sen.Text = "";
+            }
+        }
+
+        private void nfmora_TextChanged(object sender, EventArgs e)
+        {
+            TextBox sen = (TextBox)sender;
+            int parse;
+
+
+            if (!int.TryParse(sen.Text.ToString().Trim(), out parse) && parse < 1)
+            {
+                sen.Text = "";
+            }
+        }
+
+        private void nffacturar_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void nfcancelar_Click(object sender, EventArgs e)
+        {
+            groupnuevafactura.Visible = false;
+            adb = new abilitarDessabilitarBotones(this);
+            nfperiodopago.SelectedIndex = -1;
+            nfnombre.Text = "asd";
         }
     }
 }
