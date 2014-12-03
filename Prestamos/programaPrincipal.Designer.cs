@@ -55,7 +55,7 @@
             this.cedula = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.label10 = new System.Windows.Forms.Label();
             this.groupnuevafactura = new System.Windows.Forms.GroupBox();
-            this.nfMontoTotal = new System.Windows.Forms.TextBox();
+            this.nfCalcularMonto = new System.Windows.Forms.Button();
             this.label25 = new System.Windows.Forms.Label();
             this.label24 = new System.Windows.Forms.Label();
             this.label23 = new System.Windows.Forms.Label();
@@ -110,7 +110,7 @@
             this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.label6 = new System.Windows.Forms.Label();
-            this.nfCalcularMonto = new System.Windows.Forms.Button();
+            this.nfMontoTotal = new System.Windows.Forms.Label();
             this.menuStrip1.SuspendLayout();
             this.dropregistrarClientes.SuspendLayout();
             this.dropeliminarcliente.SuspendLayout();
@@ -370,8 +370,8 @@
             // groupnuevafactura
             // 
             this.groupnuevafactura.BackColor = System.Drawing.SystemColors.Menu;
-            this.groupnuevafactura.Controls.Add(this.nfCalcularMonto);
             this.groupnuevafactura.Controls.Add(this.nfMontoTotal);
+            this.groupnuevafactura.Controls.Add(this.nfCalcularMonto);
             this.groupnuevafactura.Controls.Add(this.label25);
             this.groupnuevafactura.Controls.Add(this.label24);
             this.groupnuevafactura.Controls.Add(this.label23);
@@ -411,15 +411,16 @@
             this.groupnuevafactura.TabIndex = 23;
             this.groupnuevafactura.TabStop = false;
             // 
-            // nfMontoTotal
+            // nfCalcularMonto
             // 
-            this.nfMontoTotal.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.nfMontoTotal.Enabled = false;
-            this.nfMontoTotal.ForeColor = System.Drawing.Color.DarkRed;
-            this.nfMontoTotal.Location = new System.Drawing.Point(551, 190);
-            this.nfMontoTotal.Name = "nfMontoTotal";
-            this.nfMontoTotal.Size = new System.Drawing.Size(155, 17);
-            this.nfMontoTotal.TabIndex = 51;
+            this.nfCalcularMonto.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.nfCalcularMonto.Location = new System.Drawing.Point(551, 187);
+            this.nfCalcularMonto.Name = "nfCalcularMonto";
+            this.nfCalcularMonto.Size = new System.Drawing.Size(86, 24);
+            this.nfCalcularMonto.TabIndex = 53;
+            this.nfCalcularMonto.Text = "Calcular";
+            this.nfCalcularMonto.UseVisualStyleBackColor = true;
+            this.nfCalcularMonto.Click += new System.EventHandler(this.nfCalcularMonto_Click);
             // 
             // label25
             // 
@@ -962,16 +963,15 @@
             this.label6.TabIndex = 6;
             this.label6.Text = "Actualizar Cliente";
             // 
-            // nfCalcularMonto
+            // nfMontoTotal
             // 
-            this.nfCalcularMonto.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.nfCalcularMonto.Location = new System.Drawing.Point(551, 187);
-            this.nfCalcularMonto.Name = "nfCalcularMonto";
-            this.nfCalcularMonto.Size = new System.Drawing.Size(86, 24);
-            this.nfCalcularMonto.TabIndex = 53;
-            this.nfCalcularMonto.Text = "Calcular";
-            this.nfCalcularMonto.UseVisualStyleBackColor = true;
-            this.nfCalcularMonto.Click += new System.EventHandler(this.nfCalcularMonto_Click);
+            this.nfMontoTotal.AutoSize = true;
+            this.nfMontoTotal.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.nfMontoTotal.ForeColor = System.Drawing.Color.Green;
+            this.nfMontoTotal.Location = new System.Drawing.Point(547, 188);
+            this.nfMontoTotal.Name = "nfMontoTotal";
+            this.nfMontoTotal.Size = new System.Drawing.Size(0, 18);
+            this.nfMontoTotal.TabIndex = 54;
             // 
             // programaPrincipal
             // 
@@ -1085,7 +1085,6 @@
         public System.Windows.Forms.Label label21;
         public System.Windows.Forms.Label label24;
         public System.Windows.Forms.Label label23;
-        public System.Windows.Forms.TextBox nfMontoTotal;
         public System.Windows.Forms.Label label25;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn4;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn5;
@@ -1097,5 +1096,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn fechaInicial;
         private System.Windows.Forms.DataGridViewTextBoxColumn fechaFinal;
         public System.Windows.Forms.Button nfCalcularMonto;
+        public System.Windows.Forms.Label nfMontoTotal;
     }
 }

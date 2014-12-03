@@ -144,11 +144,14 @@ namespace Prestamos
             if (!int.TryParse(sen.Text.ToString().Trim(), out this.meses) && this.meses < 1 )
             {
                 sen.Text = "";
+                nfcuotas.Text = "";
+                
             }
 
 
             nfCalcularMonto.Visible = true;
             nfMontoTotal.Text = "";
+            nfcuotas.Text = "";
         }
 
         private void nfperiodopago_SelectedIndexChanged(object sender, EventArgs e)
@@ -185,6 +188,7 @@ namespace Prestamos
             {
                 sen.Text = "";
                 nffechafinal.Text = "";
+                nfcuotas.Text = "";
                 this.fechasArray = new DateTime[0];
             }
             else
@@ -200,20 +204,14 @@ namespace Prestamos
         private void nfinteres_TextChanged(object sender, EventArgs e)
         {
             TextBox sen = (TextBox)sender;
-            int parse;
-
 
             if (!int.TryParse(sen.Text.ToString().Trim(), out this.meses) && this.meses < 1 || this.meses > 50 || this.meses == 0) 
             {
                 sen.Text = "";
+                nfcuotas.Text = "";
                 
             }
 
-
-            int monto = Convert.ToInt32(nfmonto.Text);
-            int interes = ((Convert.ToInt32(nfinteres.Text) / 100) * monto);
-            //int cuotas = 
-            
 
             nfCalcularMonto.Visible = true;
             nfMontoTotal.Text = "";
@@ -222,8 +220,6 @@ namespace Prestamos
         private void nfmora_TextChanged(object sender, EventArgs e)
         {
             TextBox sen = (TextBox)sender;
-            int parse;
-
 
             if (!int.TryParse(sen.Text.ToString().Trim(), out this.meses) && this.meses < 1)
             {
@@ -240,8 +236,7 @@ namespace Prestamos
             if (validarCamposVacios() == true)
             {
                 nfCalcularMonto.Visible = false;
-
-                nfMontoTotal.Text = "55454";
+                genearCuotasYTotal();
             }
         }
 
@@ -256,7 +251,6 @@ namespace Prestamos
             groupnuevafactura.Visible = false;
             adb = new abilitarDessabilitarBotones(this);
             nfperiodopago.SelectedIndex = -1;
-            nfnombre.Text = "asd";
         }
 
 
@@ -376,9 +370,6 @@ namespace Prestamos
 
                 foreach (var item in fechas)
                 {
-                    //MessageBox.Show(Convert.ToString(item.Day + "/" + item.Month + "/" + item.Year));
-
-
                     this.fechasArray[j] = Convert.ToDateTime(item);
                     j++;
                 }
@@ -388,8 +379,17 @@ namespace Prestamos
             }
         }
 
-        public void cuotas()
+        public void genearCuotasYTotal()
         {
+
+            float monto = float.Parse(nfmonto.Text);
+            float interes = (float.Parse(nfinteres.Text) / 100) * monto;
+            float montoT = monto + interes;
+            float cuotas = montoT / float.Parse(nfmeses.Text);
+
+            nfcuotas.Text = cuotas.ToString();
+
+            nfMontoTotal.Text = montoT.ToString();
 
             if (this.quinsenalMensualAnual == 15)
             {
