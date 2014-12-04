@@ -45,6 +45,10 @@ namespace Prestamos
 
         private void programaPrincipal_Load(object sender, EventArgs e)
         {
+            // TODO: esta línea de código carga datos en la tabla 'prestamistaDataSet1.clientes' Puede moverla o quitarla según sea necesario.
+            this.clientesTableAdapter1.Fill(this.prestamistaDataSet1.clientes);
+            // TODO: esta línea de código carga datos en la tabla 'prestamistaDataSet.clientes' Puede moverla o quitarla según sea necesario.
+            this.clientesTableAdapter.Fill(this.prestamistaDataSet.clientes);
             dropregistrarClientes.Visible = false;
             dropeliminarcliente.Visible = false;
             groupactualizarcliente.Visible = false;
@@ -73,6 +77,15 @@ namespace Prestamos
 
             this.ClientSize = new System.Drawing.Size(751, dropeliminarcliente.Height + 20);
 
+
+            try
+            {
+                this.clientesTableAdapter1.EliminarCliente(this.prestamistaDataSet1.clientes);
+            }
+            catch (System.Exception ex)
+            {
+                System.Windows.Forms.MessageBox.Show(ex.Message);
+            }
         }
 
         private void actualizarToolStripMenuItem_Click(object sender, EventArgs e)
@@ -394,6 +407,75 @@ namespace Prestamos
             nfMontoTotal.Text = Convert.ToString((Math.Floor(montoT))) + ".00";
 
         }
+
+        private void ecbuscarcliente_TextChanged(object sender, EventArgs e)
+        {
+            TextBox sen = (TextBox)sender;
+
+            if (sen.Text.ToString().Trim() != "" && dataGridEliminarCliente.Rows.Count > 0)
+            {
+                for (int i = 0; i < dataGridEliminarCliente.Rows.Count; i++)
+                {
+                    for (int j = 0; j < 4; j++)
+                    {
+                        if (dataGridEliminarCliente.Rows[i].Cells[j].Value.ToString().Contains(sen.Text.ToString()))
+                        {
+                            dataGridEliminarCliente.Rows[i].Cells[j].Selected = true;
+                        }
+                    }
+                }
+            }
+        }
+
+        private void dataGridEliminarCliente_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+            
+            string nombre = dataGridEliminarCliente.Rows[e.RowIndex].Cells[1].Value.ToString();
+            int idCliente = Convert.ToInt16(dataGridEliminarCliente.Rows[e.RowIndex].Cells[0].Value.ToString());
+
+
+            metodoEliminarClienteSeleccionado(nombre, idCliente);
+
+        }
+
+        private void metodoEliminarClienteSeleccionado(string nombre, int idCliente)
+        {
+            if (MessageBox.Show("Desea eliminar el usuario " + nombre, "Eliminar Usuario", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == System.Windows.Forms.DialogResult.Yes)
+            {
+                try
+                {
+                    Conexion con = new Conexion();
+
+                    Conexion.ConectarBD.Open();
+
+                    SqlCommand com = new SqlCommand("delete from clientes where idCliente=" + idCliente, Conexion.ConectarBD);
+
+                    int dataR = com.ExecuteNonQuery();
+
+
+                    dataGridEliminarCliente.Rows.RemoveAt(dataGridEliminarCliente.CurrentRow.Index);
+
+                }
+                catch (SqlException sqle)
+                {
+                    MessageBox.Show(sqle.ToString());
+                }
+
+
+                Conexion.ConectarBD.Close();
+            }
+        }
+
+        private void eccancelar_Click(object sender, EventArgs e)
+        {
+            string nombre = dataGridEliminarCliente.Rows[dataGridEliminarCliente.CurrentRow.Index].Cells[1].Value.ToString();
+            int idCliente = Convert.ToInt16(dataGridEliminarCliente.Rows[dataGridEliminarCliente.CurrentRow.Index].Cells[0].Value.ToString());
+
+
+            metodoEliminarClienteSeleccionado(nombre, idCliente);
+
+        }
+
 
 
     }

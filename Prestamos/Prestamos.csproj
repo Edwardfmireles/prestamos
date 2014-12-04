@@ -63,6 +63,11 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>PrestamistaDataSet.xsd</DependentUpon>
     </Compile>
+    <Compile Include="PrestamistaDataSet1.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>PrestamistaDataSet1.xsd</DependentUpon>
+    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="programaPrincipal.cs">
       <SubType>Form</SubType>
@@ -99,6 +104,17 @@
     </None>
     <None Include="PrestamistaDataSet.xss">
       <DependentUpon>PrestamistaDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="PrestamistaDataSet1.xsc">
+      <DependentUpon>PrestamistaDataSet1.xsd</DependentUpon>
+    </None>
+    <None Include="PrestamistaDataSet1.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>PrestamistaDataSet1.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="PrestamistaDataSet1.xss">
+      <DependentUpon>PrestamistaDataSet1.xsd</DependentUpon>
     </None>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>

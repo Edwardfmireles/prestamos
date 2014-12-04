@@ -26,7 +26,7 @@ namespace Prestamos.Properties {
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.ConnectionString)]
-        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=EDWARD-D;Initial Catalog=Prestamista;Integrated Security=True")]
+        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=EDWARD-PC;Initial Catalog=Prestamista;Integrated Security=True")]
         public string PrestamistaConnectionString {
             get {
                 return ((string)(this["PrestamistaConnectionString"]));

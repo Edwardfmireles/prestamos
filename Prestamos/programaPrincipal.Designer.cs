@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.clientesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.nuevoClienteToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -49,12 +50,19 @@
             this.button1 = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.dropeliminarcliente = new System.Windows.Forms.GroupBox();
-            this.dataGridactualizarcliente = new System.Windows.Forms.DataGridView();
-            this.ID = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.nombre = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.cedula = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.eccancelar = new System.Windows.Forms.Button();
+            this.eceliminar = new System.Windows.Forms.Button();
+            this.ecbuscarcliente = new System.Windows.Forms.TextBox();
+            this.label26 = new System.Windows.Forms.Label();
+            this.dataGridEliminarCliente = new System.Windows.Forms.DataGridView();
+            this.idClienteDataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.nombreDataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.cedulaDataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clientesBindingSource1 = new System.Windows.Forms.BindingSource(this.components);
+            this.prestamistaDataSet1 = new Prestamos.PrestamistaDataSet1();
             this.label10 = new System.Windows.Forms.Label();
             this.groupnuevafactura = new System.Windows.Forms.GroupBox();
+            this.nfcuotas = new System.Windows.Forms.Label();
             this.nfMontoTotal = new System.Windows.Forms.Label();
             this.nfCalcularMonto = new System.Windows.Forms.Button();
             this.label25 = new System.Windows.Forms.Label();
@@ -110,16 +118,23 @@
             this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.label6 = new System.Windows.Forms.Label();
-            this.nfcuotas = new System.Windows.Forms.Label();
+            this.clientesBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.prestamistaDataSet = new Prestamos.PrestamistaDataSet();
+            this.clientesTableAdapter = new Prestamos.PrestamistaDataSetTableAdapters.clientesTableAdapter();
+            this.clientesTableAdapter1 = new Prestamos.PrestamistaDataSet1TableAdapters.clientesTableAdapter();
             this.menuStrip1.SuspendLayout();
             this.dropregistrarClientes.SuspendLayout();
             this.dropeliminarcliente.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridactualizarcliente)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridEliminarCliente)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.clientesBindingSource1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.prestamistaDataSet1)).BeginInit();
             this.groupnuevafactura.SuspendLayout();
             this.groupabono.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridabono)).BeginInit();
             this.groupactualizarcliente.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.clientesBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.prestamistaDataSet)).BeginInit();
             this.SuspendLayout();
             // 
             // menuStrip1
@@ -313,49 +328,113 @@
             // dropeliminarcliente
             // 
             this.dropeliminarcliente.BackColor = System.Drawing.SystemColors.Menu;
-            this.dropeliminarcliente.Controls.Add(this.dataGridactualizarcliente);
+            this.dropeliminarcliente.Controls.Add(this.eccancelar);
+            this.dropeliminarcliente.Controls.Add(this.eceliminar);
+            this.dropeliminarcliente.Controls.Add(this.ecbuscarcliente);
+            this.dropeliminarcliente.Controls.Add(this.label26);
+            this.dropeliminarcliente.Controls.Add(this.dataGridEliminarCliente);
             this.dropeliminarcliente.Controls.Add(this.label10);
             this.dropeliminarcliente.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.dropeliminarcliente.Location = new System.Drawing.Point(0, 24);
             this.dropeliminarcliente.Name = "dropeliminarcliente";
-            this.dropeliminarcliente.Size = new System.Drawing.Size(751, 241);
+            this.dropeliminarcliente.Size = new System.Drawing.Size(751, 266);
             this.dropeliminarcliente.TabIndex = 21;
             this.dropeliminarcliente.TabStop = false;
             // 
-            // dataGridactualizarcliente
+            // eccancelar
             // 
-            this.dataGridactualizarcliente.AllowUserToAddRows = false;
-            this.dataGridactualizarcliente.AllowUserToDeleteRows = false;
-            this.dataGridactualizarcliente.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridactualizarcliente.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.ID,
-            this.nombre,
-            this.cedula});
-            this.dataGridactualizarcliente.Location = new System.Drawing.Point(44, 57);
-            this.dataGridactualizarcliente.Name = "dataGridactualizarcliente";
-            this.dataGridactualizarcliente.ReadOnly = true;
-            this.dataGridactualizarcliente.Size = new System.Drawing.Size(645, 150);
-            this.dataGridactualizarcliente.TabIndex = 5;
+            this.eccancelar.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.eccancelar.Location = new System.Drawing.Point(466, 59);
+            this.eccancelar.Name = "eccancelar";
+            this.eccancelar.Size = new System.Drawing.Size(83, 25);
+            this.eccancelar.TabIndex = 9;
+            this.eccancelar.Text = "Cancelar";
+            this.eccancelar.UseVisualStyleBackColor = true;
+            this.eccancelar.Click += new System.EventHandler(this.eccancelar_Click);
             // 
-            // ID
+            // eceliminar
             // 
-            this.ID.HeaderText = "ID";
-            this.ID.Name = "ID";
-            this.ID.ReadOnly = true;
+            this.eceliminar.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.eceliminar.Location = new System.Drawing.Point(350, 59);
+            this.eceliminar.Name = "eceliminar";
+            this.eceliminar.Size = new System.Drawing.Size(83, 25);
+            this.eceliminar.TabIndex = 8;
+            this.eceliminar.Text = "Eliminar";
+            this.eceliminar.UseVisualStyleBackColor = true;
             // 
-            // nombre
+            // ecbuscarcliente
             // 
-            this.nombre.HeaderText = "NOMBRE";
-            this.nombre.Name = "nombre";
-            this.nombre.ReadOnly = true;
-            this.nombre.Width = 300;
+            this.ecbuscarcliente.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ecbuscarcliente.Location = new System.Drawing.Point(168, 58);
+            this.ecbuscarcliente.Name = "ecbuscarcliente";
+            this.ecbuscarcliente.Size = new System.Drawing.Size(176, 26);
+            this.ecbuscarcliente.TabIndex = 7;
+            this.ecbuscarcliente.TextChanged += new System.EventHandler(this.ecbuscarcliente_TextChanged);
             // 
-            // cedula
+            // label26
             // 
-            this.cedula.HeaderText = "CÉDULA";
-            this.cedula.Name = "cedula";
-            this.cedula.ReadOnly = true;
-            this.cedula.Width = 200;
+            this.label26.AutoSize = true;
+            this.label26.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label26.Location = new System.Drawing.Point(46, 61);
+            this.label26.Name = "label26";
+            this.label26.Size = new System.Drawing.Size(123, 20);
+            this.label26.TabIndex = 6;
+            this.label26.Text = "Buscar cliente";
+            // 
+            // dataGridEliminarCliente
+            // 
+            this.dataGridEliminarCliente.AllowUserToAddRows = false;
+            this.dataGridEliminarCliente.AllowUserToDeleteRows = false;
+            this.dataGridEliminarCliente.AutoGenerateColumns = false;
+            this.dataGridEliminarCliente.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridEliminarCliente.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.idClienteDataGridViewTextBoxColumn1,
+            this.nombreDataGridViewTextBoxColumn1,
+            this.cedulaDataGridViewTextBoxColumn1});
+            this.dataGridEliminarCliente.DataSource = this.clientesBindingSource1;
+            this.dataGridEliminarCliente.Location = new System.Drawing.Point(44, 95);
+            this.dataGridEliminarCliente.Name = "dataGridEliminarCliente";
+            this.dataGridEliminarCliente.ReadOnly = true;
+            this.dataGridEliminarCliente.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dataGridEliminarCliente.Size = new System.Drawing.Size(654, 143);
+            this.dataGridEliminarCliente.TabIndex = 5;
+            this.dataGridEliminarCliente.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridEliminarCliente_CellDoubleClick);
+            // 
+            // idClienteDataGridViewTextBoxColumn1
+            // 
+            this.idClienteDataGridViewTextBoxColumn1.DataPropertyName = "idCliente";
+            this.idClienteDataGridViewTextBoxColumn1.HeaderText = "ID";
+            this.idClienteDataGridViewTextBoxColumn1.Name = "idClienteDataGridViewTextBoxColumn1";
+            this.idClienteDataGridViewTextBoxColumn1.ReadOnly = true;
+            this.idClienteDataGridViewTextBoxColumn1.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            // 
+            // nombreDataGridViewTextBoxColumn1
+            // 
+            this.nombreDataGridViewTextBoxColumn1.DataPropertyName = "nombre";
+            this.nombreDataGridViewTextBoxColumn1.HeaderText = "NOMBRE";
+            this.nombreDataGridViewTextBoxColumn1.Name = "nombreDataGridViewTextBoxColumn1";
+            this.nombreDataGridViewTextBoxColumn1.ReadOnly = true;
+            this.nombreDataGridViewTextBoxColumn1.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.nombreDataGridViewTextBoxColumn1.Width = 320;
+            // 
+            // cedulaDataGridViewTextBoxColumn1
+            // 
+            this.cedulaDataGridViewTextBoxColumn1.DataPropertyName = "cedula";
+            this.cedulaDataGridViewTextBoxColumn1.HeaderText = "CÉDULA";
+            this.cedulaDataGridViewTextBoxColumn1.Name = "cedulaDataGridViewTextBoxColumn1";
+            this.cedulaDataGridViewTextBoxColumn1.ReadOnly = true;
+            this.cedulaDataGridViewTextBoxColumn1.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.cedulaDataGridViewTextBoxColumn1.Width = 200;
+            // 
+            // clientesBindingSource1
+            // 
+            this.clientesBindingSource1.DataMember = "clientes";
+            this.clientesBindingSource1.DataSource = this.prestamistaDataSet1;
+            // 
+            // prestamistaDataSet1
+            // 
+            this.prestamistaDataSet1.DataSetName = "PrestamistaDataSet1";
+            this.prestamistaDataSet1.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
             // 
             // label10
             // 
@@ -410,6 +489,16 @@
             this.groupnuevafactura.Size = new System.Drawing.Size(751, 355);
             this.groupnuevafactura.TabIndex = 23;
             this.groupnuevafactura.TabStop = false;
+            // 
+            // nfcuotas
+            // 
+            this.nfcuotas.AutoSize = true;
+            this.nfcuotas.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.nfcuotas.ForeColor = System.Drawing.Color.SteelBlue;
+            this.nfcuotas.Location = new System.Drawing.Point(114, 250);
+            this.nfcuotas.Name = "nfcuotas";
+            this.nfcuotas.Size = new System.Drawing.Size(0, 18);
+            this.nfcuotas.TabIndex = 55;
             // 
             // nfMontoTotal
             // 
@@ -962,15 +1051,23 @@
             this.label6.TabIndex = 6;
             this.label6.Text = "Actualizar Cliente";
             // 
-            // nfcuotas
+            // clientesBindingSource
             // 
-            this.nfcuotas.AutoSize = true;
-            this.nfcuotas.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.nfcuotas.ForeColor = System.Drawing.Color.SteelBlue;
-            this.nfcuotas.Location = new System.Drawing.Point(114, 250);
-            this.nfcuotas.Name = "nfcuotas";
-            this.nfcuotas.Size = new System.Drawing.Size(0, 18);
-            this.nfcuotas.TabIndex = 55;
+            this.clientesBindingSource.DataMember = "clientes";
+            this.clientesBindingSource.DataSource = this.prestamistaDataSet;
+            // 
+            // prestamistaDataSet
+            // 
+            this.prestamistaDataSet.DataSetName = "PrestamistaDataSet";
+            this.prestamistaDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
+            // 
+            // clientesTableAdapter
+            // 
+            this.clientesTableAdapter.ClearBeforeFill = true;
+            // 
+            // clientesTableAdapter1
+            // 
+            this.clientesTableAdapter1.ClearBeforeFill = true;
             // 
             // programaPrincipal
             // 
@@ -978,12 +1075,12 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ActiveCaption;
             this.ClientSize = new System.Drawing.Size(735, 424);
-            this.Controls.Add(this.groupnuevafactura);
             this.Controls.Add(this.menuStrip1);
-            this.Controls.Add(this.groupabono);
             this.Controls.Add(this.dropeliminarcliente);
             this.Controls.Add(this.dropregistrarClientes);
             this.Controls.Add(this.groupactualizarcliente);
+            this.Controls.Add(this.groupnuevafactura);
+            this.Controls.Add(this.groupabono);
             this.MainMenuStrip = this.menuStrip1;
             this.MaximizeBox = false;
             this.Name = "programaPrincipal";
@@ -996,7 +1093,9 @@
             this.dropregistrarClientes.PerformLayout();
             this.dropeliminarcliente.ResumeLayout(false);
             this.dropeliminarcliente.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridactualizarcliente)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridEliminarCliente)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.clientesBindingSource1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.prestamistaDataSet1)).EndInit();
             this.groupnuevafactura.ResumeLayout(false);
             this.groupnuevafactura.PerformLayout();
             this.groupabono.ResumeLayout(false);
@@ -1005,6 +1104,8 @@
             this.groupactualizarcliente.ResumeLayout(false);
             this.groupactualizarcliente.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.clientesBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.prestamistaDataSet)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -1034,10 +1135,7 @@
         private System.Windows.Forms.TextBox tnombre;
         private System.Windows.Forms.GroupBox dropeliminarcliente;
         private System.Windows.Forms.Label label10;
-        private System.Windows.Forms.DataGridView dataGridactualizarcliente;
-        private System.Windows.Forms.DataGridViewTextBoxColumn ID;
-        private System.Windows.Forms.DataGridViewTextBoxColumn nombre;
-        private System.Windows.Forms.DataGridViewTextBoxColumn cedula;
+        private System.Windows.Forms.DataGridView dataGridEliminarCliente;
         private System.Windows.Forms.GroupBox groupnuevafactura;
         private System.Windows.Forms.GroupBox groupabono;
         private System.Windows.Forms.DataGridView dataGridabono;
@@ -1096,5 +1194,18 @@
         public System.Windows.Forms.Button nfCalcularMonto;
         public System.Windows.Forms.Label nfMontoTotal;
         public System.Windows.Forms.Label nfcuotas;
+        private PrestamistaDataSet prestamistaDataSet;
+        private System.Windows.Forms.BindingSource clientesBindingSource;
+        private PrestamistaDataSetTableAdapters.clientesTableAdapter clientesTableAdapter;
+        private PrestamistaDataSet1 prestamistaDataSet1;
+        private System.Windows.Forms.BindingSource clientesBindingSource1;
+        private PrestamistaDataSet1TableAdapters.clientesTableAdapter clientesTableAdapter1;
+        private System.Windows.Forms.Button eccancelar;
+        private System.Windows.Forms.Button eceliminar;
+        private System.Windows.Forms.TextBox ecbuscarcliente;
+        private System.Windows.Forms.Label label26;
+        private System.Windows.Forms.DataGridViewTextBoxColumn idClienteDataGridViewTextBoxColumn1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn nombreDataGridViewTextBoxColumn1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn cedulaDataGridViewTextBoxColumn1;
     }
 }
