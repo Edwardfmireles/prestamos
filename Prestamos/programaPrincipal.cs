@@ -162,16 +162,19 @@ namespace Prestamos
                     this.quinsenalMensualAnual = 15; // 15 días
                     nfcambiomeses.Text = "Quinsenas";
                     nfmeses.Text = "";
+                    nfmeses.Focus();
                     break;
                 case 1:
                     this.quinsenalMensualAnual = 30; // 30 días
                     nfcambiomeses.Text = "Meses";
                     nfmeses.Text = "";
+                    nfmeses.Focus();
                     break;
                 case 2:
                     this.quinsenalMensualAnual = 365; // 365 días
                     nfcambiomeses.Text = "Año(s)";
                     nfmeses.Text = "";
+                    nfmeses.Focus();
                     break;
             }
         }
@@ -179,21 +182,17 @@ namespace Prestamos
         private void nfmeses_TextChanged(object sender, EventArgs e)
         {
             TextBox sen = (TextBox)sender;
-            int parse;
-
-
-
 
             if (!int.TryParse(sen.Text.ToString().Trim(), out this.meses) && this.meses < 1 || this.meses > 99 || this.meses == 0)
             {
                 sen.Text = "";
                 nffechafinal.Text = "";
-                nfcuotas.Text = "";
                 this.fechasArray = new DateTime[0];
             }
             else
             {
 
+                nfcuotas.Text = "";
                 generarfechas(this.meses);
 
             }
@@ -208,11 +207,11 @@ namespace Prestamos
             if (!int.TryParse(sen.Text.ToString().Trim(), out this.meses) && this.meses < 1 || this.meses > 50 || this.meses == 0) 
             {
                 sen.Text = "";
-                nfcuotas.Text = "";
                 
             }
 
 
+            nfcuotas.Text = "";
             nfCalcularMonto.Visible = true;
             nfMontoTotal.Text = "";
         }
@@ -321,6 +320,7 @@ namespace Prestamos
                 {
                     fechas.Add(DateTime.Today.AddDays(i * 15));
                 }
+               
 
                 foreach (var item in fechas)
                 {
@@ -387,28 +387,12 @@ namespace Prestamos
             float montoT = monto + interes;
             float cuotas = montoT / float.Parse(nfmeses.Text);
 
-            nfcuotas.Text = cuotas.ToString();
+            
 
-            nfMontoTotal.Text = montoT.ToString();
+            nfcuotas.Text = Convert.ToString((Math.Floor(cuotas))) + ".00";
 
-            if (this.quinsenalMensualAnual == 15)
-            {
-             
-  
+            nfMontoTotal.Text = Convert.ToString((Math.Floor(montoT))) + ".00";
 
-            }
-
-            if (this.quinsenalMensualAnual == 30)
-            {
-               
-
-            }
-
-            if (this.quinsenalMensualAnual == 365)
-            {
-               
-
-            }
         }
 
 

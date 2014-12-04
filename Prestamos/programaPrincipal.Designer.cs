@@ -55,6 +55,7 @@
             this.cedula = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.label10 = new System.Windows.Forms.Label();
             this.groupnuevafactura = new System.Windows.Forms.GroupBox();
+            this.nfMontoTotal = new System.Windows.Forms.Label();
             this.nfCalcularMonto = new System.Windows.Forms.Button();
             this.label25 = new System.Windows.Forms.Label();
             this.label24 = new System.Windows.Forms.Label();
@@ -68,7 +69,6 @@
             this.label18 = new System.Windows.Forms.Label();
             this.nfmeses = new System.Windows.Forms.TextBox();
             this.nffecha = new System.Windows.Forms.Label();
-            this.nfcuotas = new System.Windows.Forms.TextBox();
             this.nfperiodopago = new System.Windows.Forms.ComboBox();
             this.nffechainicial = new System.Windows.Forms.TextBox();
             this.nfmora = new System.Windows.Forms.TextBox();
@@ -110,7 +110,7 @@
             this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.label6 = new System.Windows.Forms.Label();
-            this.nfMontoTotal = new System.Windows.Forms.Label();
+            this.nfcuotas = new System.Windows.Forms.Label();
             this.menuStrip1.SuspendLayout();
             this.dropregistrarClientes.SuspendLayout();
             this.dropeliminarcliente.SuspendLayout();
@@ -370,6 +370,7 @@
             // groupnuevafactura
             // 
             this.groupnuevafactura.BackColor = System.Drawing.SystemColors.Menu;
+            this.groupnuevafactura.Controls.Add(this.nfcuotas);
             this.groupnuevafactura.Controls.Add(this.nfMontoTotal);
             this.groupnuevafactura.Controls.Add(this.nfCalcularMonto);
             this.groupnuevafactura.Controls.Add(this.label25);
@@ -384,7 +385,6 @@
             this.groupnuevafactura.Controls.Add(this.label18);
             this.groupnuevafactura.Controls.Add(this.nfmeses);
             this.groupnuevafactura.Controls.Add(this.nffecha);
-            this.groupnuevafactura.Controls.Add(this.nfcuotas);
             this.groupnuevafactura.Controls.Add(this.nfperiodopago);
             this.groupnuevafactura.Controls.Add(this.nffechainicial);
             this.groupnuevafactura.Controls.Add(this.nfmora);
@@ -411,13 +411,23 @@
             this.groupnuevafactura.TabIndex = 23;
             this.groupnuevafactura.TabStop = false;
             // 
+            // nfMontoTotal
+            // 
+            this.nfMontoTotal.AutoSize = true;
+            this.nfMontoTotal.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.nfMontoTotal.ForeColor = System.Drawing.Color.Green;
+            this.nfMontoTotal.Location = new System.Drawing.Point(546, 188);
+            this.nfMontoTotal.Name = "nfMontoTotal";
+            this.nfMontoTotal.Size = new System.Drawing.Size(0, 18);
+            this.nfMontoTotal.TabIndex = 54;
+            // 
             // nfCalcularMonto
             // 
             this.nfCalcularMonto.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.nfCalcularMonto.Location = new System.Drawing.Point(551, 187);
+            this.nfCalcularMonto.Location = new System.Drawing.Point(550, 187);
             this.nfCalcularMonto.Name = "nfCalcularMonto";
             this.nfCalcularMonto.Size = new System.Drawing.Size(86, 24);
-            this.nfCalcularMonto.TabIndex = 53;
+            this.nfCalcularMonto.TabIndex = 6;
             this.nfCalcularMonto.Text = "Calcular";
             this.nfCalcularMonto.UseVisualStyleBackColor = true;
             this.nfCalcularMonto.Click += new System.EventHandler(this.nfCalcularMonto_Click);
@@ -493,7 +503,7 @@
             this.nfcancelar.Location = new System.Drawing.Point(389, 307);
             this.nfcancelar.Name = "nfcancelar";
             this.nfcancelar.Size = new System.Drawing.Size(102, 24);
-            this.nfcancelar.TabIndex = 7;
+            this.nfcancelar.TabIndex = 8;
             this.nfcancelar.Text = "Cancelar";
             this.nfcancelar.UseVisualStyleBackColor = true;
             this.nfcancelar.Click += new System.EventHandler(this.nfcancelar_Click);
@@ -504,7 +514,7 @@
             this.nffacturar.Location = new System.Drawing.Point(260, 307);
             this.nffacturar.Name = "nffacturar";
             this.nffacturar.Size = new System.Drawing.Size(102, 24);
-            this.nffacturar.TabIndex = 6;
+            this.nffacturar.TabIndex = 7;
             this.nffacturar.Text = "Facturar";
             this.nffacturar.UseVisualStyleBackColor = true;
             this.nffacturar.Click += new System.EventHandler(this.nffacturar_Click);
@@ -549,17 +559,6 @@
             this.nffecha.Size = new System.Drawing.Size(110, 24);
             this.nffecha.TabIndex = 42;
             this.nffecha.Text = "12/99/9999";
-            // 
-            // nfcuotas
-            // 
-            this.nfcuotas.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.nfcuotas.Enabled = false;
-            this.nfcuotas.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.nfcuotas.ForeColor = System.Drawing.Color.Red;
-            this.nfcuotas.Location = new System.Drawing.Point(119, 246);
-            this.nfcuotas.Name = "nfcuotas";
-            this.nfcuotas.Size = new System.Drawing.Size(89, 22);
-            this.nfcuotas.TabIndex = 38;
             // 
             // nfperiodopago
             // 
@@ -963,22 +962,22 @@
             this.label6.TabIndex = 6;
             this.label6.Text = "Actualizar Cliente";
             // 
-            // nfMontoTotal
+            // nfcuotas
             // 
-            this.nfMontoTotal.AutoSize = true;
-            this.nfMontoTotal.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.nfMontoTotal.ForeColor = System.Drawing.Color.Green;
-            this.nfMontoTotal.Location = new System.Drawing.Point(547, 188);
-            this.nfMontoTotal.Name = "nfMontoTotal";
-            this.nfMontoTotal.Size = new System.Drawing.Size(0, 18);
-            this.nfMontoTotal.TabIndex = 54;
+            this.nfcuotas.AutoSize = true;
+            this.nfcuotas.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.nfcuotas.ForeColor = System.Drawing.Color.SteelBlue;
+            this.nfcuotas.Location = new System.Drawing.Point(114, 250);
+            this.nfcuotas.Name = "nfcuotas";
+            this.nfcuotas.Size = new System.Drawing.Size(0, 18);
+            this.nfcuotas.TabIndex = 55;
             // 
             // programaPrincipal
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ActiveCaption;
-            this.ClientSize = new System.Drawing.Size(735, 283);
+            this.ClientSize = new System.Drawing.Size(735, 424);
             this.Controls.Add(this.groupnuevafactura);
             this.Controls.Add(this.menuStrip1);
             this.Controls.Add(this.groupabono);
@@ -1073,7 +1072,6 @@
         public System.Windows.Forms.Label label13;
         public System.Windows.Forms.Label label12;
         public System.Windows.Forms.Label label11;
-        public System.Windows.Forms.TextBox nfcuotas;
         public System.Windows.Forms.Label nffecha;
         public System.Windows.Forms.TextBox nffechafinal;
         public System.Windows.Forms.Label label18;
@@ -1097,5 +1095,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn fechaFinal;
         public System.Windows.Forms.Button nfCalcularMonto;
         public System.Windows.Forms.Label nfMontoTotal;
+        public System.Windows.Forms.Label nfcuotas;
     }
 }
