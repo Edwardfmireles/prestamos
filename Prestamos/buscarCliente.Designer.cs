@@ -30,16 +30,17 @@
         {
             this.components = new System.ComponentModel.Container();
             this.bcDataGridView = new System.Windows.Forms.DataGridView();
-            this.clientesBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.prestamistaDataSet = new Prestamos.PrestamistaDataSet();
-            this.bcBusqueda = new System.Windows.Forms.TextBox();
-            this.label1 = new System.Windows.Forms.Label();
-            this.clientesTableAdapter = new Prestamos.PrestamistaDataSetTableAdapters.clientesTableAdapter();
             this.idClienteDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.nombreDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.cedulaDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.direccionDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.telefonoDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clientesBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.prestamistaDataSet = new Prestamos.PrestamistaDataSet();
+            this.bcBusqueda = new System.Windows.Forms.TextBox();
+            this.label1 = new System.Windows.Forms.Label();
+            this.clientesTableAdapter = new Prestamos.PrestamistaDataSetTableAdapters.clientesTableAdapter();
+            this.eccancelar = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.bcDataGridView)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.clientesBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.prestamistaDataSet)).BeginInit();
@@ -66,39 +67,6 @@
             this.bcDataGridView.Size = new System.Drawing.Size(394, 150);
             this.bcDataGridView.TabIndex = 7;
             this.bcDataGridView.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.bcDataGridView_CellDoubleClick);
-            // 
-            // clientesBindingSource
-            // 
-            this.clientesBindingSource.DataMember = "clientes";
-            this.clientesBindingSource.DataSource = this.prestamistaDataSet;
-            // 
-            // prestamistaDataSet
-            // 
-            this.prestamistaDataSet.DataSetName = "PrestamistaDataSet";
-            this.prestamistaDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
-            // 
-            // bcBusqueda
-            // 
-            this.bcBusqueda.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.bcBusqueda.Location = new System.Drawing.Point(144, 28);
-            this.bcBusqueda.Name = "bcBusqueda";
-            this.bcBusqueda.Size = new System.Drawing.Size(178, 22);
-            this.bcBusqueda.TabIndex = 5;
-            this.bcBusqueda.TextChanged += new System.EventHandler(this.bcBusqueda_TextChanged);
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(32, 28);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(106, 16);
-            this.label1.TabIndex = 4;
-            this.label1.Text = "Buscar cliente";
-            // 
-            // clientesTableAdapter
-            // 
-            this.clientesTableAdapter.ClearBeforeFill = true;
             // 
             // idClienteDataGridViewTextBoxColumn
             // 
@@ -143,11 +111,56 @@
             this.telefonoDataGridViewTextBoxColumn.ReadOnly = true;
             this.telefonoDataGridViewTextBoxColumn.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
             // 
+            // clientesBindingSource
+            // 
+            this.clientesBindingSource.DataMember = "clientes";
+            this.clientesBindingSource.DataSource = this.prestamistaDataSet;
+            // 
+            // prestamistaDataSet
+            // 
+            this.prestamistaDataSet.DataSetName = "PrestamistaDataSet";
+            this.prestamistaDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
+            // 
+            // bcBusqueda
+            // 
+            this.bcBusqueda.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.bcBusqueda.Location = new System.Drawing.Point(144, 28);
+            this.bcBusqueda.Name = "bcBusqueda";
+            this.bcBusqueda.Size = new System.Drawing.Size(178, 22);
+            this.bcBusqueda.TabIndex = 5;
+            this.bcBusqueda.TextChanged += new System.EventHandler(this.bcBusqueda_TextChanged);
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Location = new System.Drawing.Point(32, 28);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(106, 16);
+            this.label1.TabIndex = 4;
+            this.label1.Text = "Buscar cliente";
+            // 
+            // clientesTableAdapter
+            // 
+            this.clientesTableAdapter.ClearBeforeFill = true;
+            // 
+            // eccancelar
+            // 
+            this.eccancelar.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.eccancelar.Location = new System.Drawing.Point(328, 28);
+            this.eccancelar.Name = "eccancelar";
+            this.eccancelar.Size = new System.Drawing.Size(76, 22);
+            this.eccancelar.TabIndex = 8;
+            this.eccancelar.Text = "Insertar";
+            this.eccancelar.UseVisualStyleBackColor = true;
+            this.eccancelar.Click += new System.EventHandler(this.eccancelar_Click);
+            // 
             // buscarCliente
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(458, 242);
+            this.Controls.Add(this.eccancelar);
             this.Controls.Add(this.bcDataGridView);
             this.Controls.Add(this.bcBusqueda);
             this.Controls.Add(this.label1);
@@ -177,5 +190,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn cedulaDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn direccionDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn telefonoDataGridViewTextBoxColumn;
+        public System.Windows.Forms.Button eccancelar;
     }
 }

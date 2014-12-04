@@ -28,7 +28,7 @@ namespace Prestamos
         {
             InitializeComponent();
             nfnombre.Text = "asdkf";
-            //adb = new abilitarDessabilitarBotones(this);
+            adb = new abilitarDessabilitarBotones(this);
 
 
  
@@ -96,7 +96,7 @@ namespace Prestamos
             groupabono.Visible = false;
             groupnuevafactura.Visible = false;
 
-            this.ClientSize = new System.Drawing.Size(751,groupactualizarcliente.Height + 20);
+            this.ClientSize = new System.Drawing.Size(606, groupactualizarcliente.Height + 20);
         }
 
         private void nuevaToolStripMenuItem_Click(object sender, EventArgs e)
@@ -260,8 +260,8 @@ namespace Prestamos
 
         private void nfcancelar_Click(object sender, EventArgs e)
         {
-            groupnuevafactura.Visible = false;
-            adb = new abilitarDessabilitarBotones(this);
+            groupnuevafactura.Visible = false; 
+            adb.deshabilitarLimpiarnuevaFactura();
             nfperiodopago.SelectedIndex = -1;
         }
 
@@ -408,23 +408,14 @@ namespace Prestamos
 
         }
 
+
+
+
+
+
         private void ecbuscarcliente_TextChanged(object sender, EventArgs e)
         {
-            TextBox sen = (TextBox)sender;
-
-            if (sen.Text.ToString().Trim() != "" && dataGridEliminarCliente.Rows.Count > 0)
-            {
-                for (int i = 0; i < dataGridEliminarCliente.Rows.Count; i++)
-                {
-                    for (int j = 0; j < 4; j++)
-                    {
-                        if (dataGridEliminarCliente.Rows[i].Cells[j].Value.ToString().Contains(sen.Text.ToString()))
-                        {
-                            dataGridEliminarCliente.Rows[i].Cells[j].Selected = true;
-                        }
-                    }
-                }
-            }
+            seleccionarLineaDataGridView(sender);
         }
 
         private void dataGridEliminarCliente_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
@@ -440,6 +431,7 @@ namespace Prestamos
 
         private void metodoEliminarClienteSeleccionado(string nombre, int idCliente)
         {
+            MessageBox.Show(idCliente.ToString());
             if (MessageBox.Show("Desea eliminar el usuario " + nombre, "Eliminar Usuario", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == System.Windows.Forms.DialogResult.Yes)
             {
                 try
@@ -450,7 +442,7 @@ namespace Prestamos
 
                     SqlCommand com = new SqlCommand("delete from clientes where idCliente=" + idCliente, Conexion.ConectarBD);
 
-                    int dataR = com.ExecuteNonQuery();
+                    com.ExecuteNonQuery();
 
 
                     dataGridEliminarCliente.Rows.RemoveAt(dataGridEliminarCliente.CurrentRow.Index);
@@ -468,15 +460,51 @@ namespace Prestamos
 
         private void eccancelar_Click(object sender, EventArgs e)
         {
+            adb.limpiarEliminarCliente();
+            dropeliminarcliente.Visible = false;
+
+            
+
+        }
+
+        private void eceliminar_Click(object sender, EventArgs e)
+        {
             string nombre = dataGridEliminarCliente.Rows[dataGridEliminarCliente.CurrentRow.Index].Cells[1].Value.ToString();
             int idCliente = Convert.ToInt16(dataGridEliminarCliente.Rows[dataGridEliminarCliente.CurrentRow.Index].Cells[0].Value.ToString());
 
 
             metodoEliminarClienteSeleccionado(nombre, idCliente);
-
         }
 
+        private void acbuscarcliente_TextChanged(object sender, EventArgs e)
+        {
+            seleccionarLineaDataGridView(sender);
+        }
 
+        private void aceditar_Click(object sender, EventArgs e)
+        {
+            this.acdireccion.Text = acDataGridView.Rows[acDataGridView.CurrentRow.Index].Cells[2].Value.ToString();
+            this.actelefono.Text = acDataGridView.Rows[acDataGridView.CurrentRow.Index].Cells[3].Value.ToString();
+        }
+
+        public void seleccionarLineaDataGridView(object sender)
+        {
+            TextBox sen = (TextBox)sender;
+
+            if (sen.Text.ToString().Trim() != "" && dataGridEliminarCliente.Rows.Count > 0)
+            {
+                for (int i = 0; i < dataGridEliminarCliente.Rows.Count; i++)
+                {
+                    for (int j = 0; j < 3; j++)
+                    {
+                        if (dataGridEliminarCliente.Rows[i].Cells[j].Value.ToString().Contains(sen.Text.ToString()))
+                        {
+                            dataGridEliminarCliente.Rows[i].Cells[j].Selected = true;
+                        }
+                    }
+                }
+            }
+        }
 
     }
 }

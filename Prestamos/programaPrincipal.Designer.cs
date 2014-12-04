@@ -113,15 +113,26 @@
             this.fechaFinal = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.label17 = new System.Windows.Forms.Label();
             this.groupactualizarcliente = new System.Windows.Forms.GroupBox();
-            this.dataGridView2 = new System.Windows.Forms.DataGridView();
-            this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.acDataGridView = new System.Windows.Forms.DataGridView();
             this.label6 = new System.Windows.Forms.Label();
             this.clientesBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.prestamistaDataSet = new Prestamos.PrestamistaDataSet();
             this.clientesTableAdapter = new Prestamos.PrestamistaDataSetTableAdapters.clientesTableAdapter();
             this.clientesTableAdapter1 = new Prestamos.PrestamistaDataSet1TableAdapters.clientesTableAdapter();
+            this.idClienteDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.nombreDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.cedulaDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.direccionDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.telefonoDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.accancelar = new System.Windows.Forms.Button();
+            this.acdireccion = new System.Windows.Forms.TextBox();
+            this.actelefono = new System.Windows.Forms.TextBox();
+            this.label27 = new System.Windows.Forms.Label();
+            this.label28 = new System.Windows.Forms.Label();
+            this.acactualizar = new System.Windows.Forms.Button();
+            this.acbuscarcliente = new System.Windows.Forms.TextBox();
+            this.label29 = new System.Windows.Forms.Label();
+            this.aceditar = new System.Windows.Forms.Button();
             this.menuStrip1.SuspendLayout();
             this.dropregistrarClientes.SuspendLayout();
             this.dropeliminarcliente.SuspendLayout();
@@ -132,7 +143,7 @@
             this.groupabono.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridabono)).BeginInit();
             this.groupactualizarcliente.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.acDataGridView)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.clientesBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.prestamistaDataSet)).BeginInit();
             this.SuspendLayout();
@@ -347,7 +358,7 @@
             this.eccancelar.Location = new System.Drawing.Point(466, 59);
             this.eccancelar.Name = "eccancelar";
             this.eccancelar.Size = new System.Drawing.Size(83, 25);
-            this.eccancelar.TabIndex = 9;
+            this.eccancelar.TabIndex = 2;
             this.eccancelar.Text = "Cancelar";
             this.eccancelar.UseVisualStyleBackColor = true;
             this.eccancelar.Click += new System.EventHandler(this.eccancelar_Click);
@@ -358,9 +369,10 @@
             this.eceliminar.Location = new System.Drawing.Point(350, 59);
             this.eceliminar.Name = "eceliminar";
             this.eceliminar.Size = new System.Drawing.Size(83, 25);
-            this.eceliminar.TabIndex = 8;
+            this.eceliminar.TabIndex = 1;
             this.eceliminar.Text = "Eliminar";
             this.eceliminar.UseVisualStyleBackColor = true;
+            this.eceliminar.Click += new System.EventHandler(this.eceliminar_Click);
             // 
             // ecbuscarcliente
             // 
@@ -368,7 +380,7 @@
             this.ecbuscarcliente.Location = new System.Drawing.Point(168, 58);
             this.ecbuscarcliente.Name = "ecbuscarcliente";
             this.ecbuscarcliente.Size = new System.Drawing.Size(176, 26);
-            this.ecbuscarcliente.TabIndex = 7;
+            this.ecbuscarcliente.TabIndex = 0;
             this.ecbuscarcliente.TextChanged += new System.EventHandler(this.ecbuscarcliente_TextChanged);
             // 
             // label26
@@ -393,6 +405,7 @@
             this.cedulaDataGridViewTextBoxColumn1});
             this.dataGridEliminarCliente.DataSource = this.clientesBindingSource1;
             this.dataGridEliminarCliente.Location = new System.Drawing.Point(44, 95);
+            this.dataGridEliminarCliente.MultiSelect = false;
             this.dataGridEliminarCliente.Name = "dataGridEliminarCliente";
             this.dataGridEliminarCliente.ReadOnly = true;
             this.dataGridEliminarCliente.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
@@ -998,54 +1011,49 @@
             // groupactualizarcliente
             // 
             this.groupactualizarcliente.BackColor = System.Drawing.SystemColors.Menu;
-            this.groupactualizarcliente.Controls.Add(this.dataGridView2);
+            this.groupactualizarcliente.Controls.Add(this.acbuscarcliente);
+            this.groupactualizarcliente.Controls.Add(this.label29);
+            this.groupactualizarcliente.Controls.Add(this.aceditar);
+            this.groupactualizarcliente.Controls.Add(this.accancelar);
+            this.groupactualizarcliente.Controls.Add(this.acdireccion);
+            this.groupactualizarcliente.Controls.Add(this.actelefono);
+            this.groupactualizarcliente.Controls.Add(this.label27);
+            this.groupactualizarcliente.Controls.Add(this.label28);
+            this.groupactualizarcliente.Controls.Add(this.acactualizar);
+            this.groupactualizarcliente.Controls.Add(this.acDataGridView);
             this.groupactualizarcliente.Controls.Add(this.label6);
             this.groupactualizarcliente.Location = new System.Drawing.Point(0, 24);
             this.groupactualizarcliente.Name = "groupactualizarcliente";
-            this.groupactualizarcliente.Size = new System.Drawing.Size(751, 227);
+            this.groupactualizarcliente.Size = new System.Drawing.Size(606, 377);
             this.groupactualizarcliente.TabIndex = 25;
             this.groupactualizarcliente.TabStop = false;
             // 
-            // dataGridView2
+            // acDataGridView
             // 
-            this.dataGridView2.AllowUserToAddRows = false;
-            this.dataGridView2.AllowUserToDeleteRows = false;
-            this.dataGridView2.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView2.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.dataGridViewTextBoxColumn1,
-            this.dataGridViewTextBoxColumn2,
-            this.dataGridViewTextBoxColumn3});
-            this.dataGridView2.Location = new System.Drawing.Point(53, 56);
-            this.dataGridView2.Name = "dataGridView2";
-            this.dataGridView2.ReadOnly = true;
-            this.dataGridView2.Size = new System.Drawing.Size(645, 150);
-            this.dataGridView2.TabIndex = 7;
-            // 
-            // dataGridViewTextBoxColumn1
-            // 
-            this.dataGridViewTextBoxColumn1.HeaderText = "ID";
-            this.dataGridViewTextBoxColumn1.Name = "dataGridViewTextBoxColumn1";
-            this.dataGridViewTextBoxColumn1.ReadOnly = true;
-            // 
-            // dataGridViewTextBoxColumn2
-            // 
-            this.dataGridViewTextBoxColumn2.HeaderText = "NOMBRE";
-            this.dataGridViewTextBoxColumn2.Name = "dataGridViewTextBoxColumn2";
-            this.dataGridViewTextBoxColumn2.ReadOnly = true;
-            this.dataGridViewTextBoxColumn2.Width = 300;
-            // 
-            // dataGridViewTextBoxColumn3
-            // 
-            this.dataGridViewTextBoxColumn3.HeaderText = "CÉDULA";
-            this.dataGridViewTextBoxColumn3.Name = "dataGridViewTextBoxColumn3";
-            this.dataGridViewTextBoxColumn3.ReadOnly = true;
-            this.dataGridViewTextBoxColumn3.Width = 200;
+            this.acDataGridView.AllowUserToAddRows = false;
+            this.acDataGridView.AllowUserToDeleteRows = false;
+            this.acDataGridView.AutoGenerateColumns = false;
+            this.acDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.acDataGridView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.idClienteDataGridViewTextBoxColumn,
+            this.nombreDataGridViewTextBoxColumn,
+            this.cedulaDataGridViewTextBoxColumn,
+            this.direccionDataGridViewTextBoxColumn,
+            this.telefonoDataGridViewTextBoxColumn});
+            this.acDataGridView.DataSource = this.clientesBindingSource;
+            this.acDataGridView.Location = new System.Drawing.Point(43, 104);
+            this.acDataGridView.MultiSelect = false;
+            this.acDataGridView.Name = "acDataGridView";
+            this.acDataGridView.ReadOnly = true;
+            this.acDataGridView.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.acDataGridView.Size = new System.Drawing.Size(525, 150);
+            this.acDataGridView.TabIndex = 7;
             // 
             // label6
             // 
             this.label6.AutoSize = true;
             this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label6.Location = new System.Drawing.Point(306, 21);
+            this.label6.Location = new System.Drawing.Point(217, 21);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(172, 24);
             this.label6.TabIndex = 6;
@@ -1069,6 +1077,134 @@
             // 
             this.clientesTableAdapter1.ClearBeforeFill = true;
             // 
+            // idClienteDataGridViewTextBoxColumn
+            // 
+            this.idClienteDataGridViewTextBoxColumn.DataPropertyName = "idCliente";
+            this.idClienteDataGridViewTextBoxColumn.HeaderText = "idCliente";
+            this.idClienteDataGridViewTextBoxColumn.Name = "idClienteDataGridViewTextBoxColumn";
+            this.idClienteDataGridViewTextBoxColumn.ReadOnly = true;
+            this.idClienteDataGridViewTextBoxColumn.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            // 
+            // nombreDataGridViewTextBoxColumn
+            // 
+            this.nombreDataGridViewTextBoxColumn.DataPropertyName = "nombre";
+            this.nombreDataGridViewTextBoxColumn.HeaderText = "nombre";
+            this.nombreDataGridViewTextBoxColumn.Name = "nombreDataGridViewTextBoxColumn";
+            this.nombreDataGridViewTextBoxColumn.ReadOnly = true;
+            this.nombreDataGridViewTextBoxColumn.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.nombreDataGridViewTextBoxColumn.Width = 200;
+            // 
+            // cedulaDataGridViewTextBoxColumn
+            // 
+            this.cedulaDataGridViewTextBoxColumn.DataPropertyName = "cedula";
+            this.cedulaDataGridViewTextBoxColumn.HeaderText = "cedula";
+            this.cedulaDataGridViewTextBoxColumn.Name = "cedulaDataGridViewTextBoxColumn";
+            this.cedulaDataGridViewTextBoxColumn.ReadOnly = true;
+            this.cedulaDataGridViewTextBoxColumn.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            // 
+            // direccionDataGridViewTextBoxColumn
+            // 
+            this.direccionDataGridViewTextBoxColumn.DataPropertyName = "direccion";
+            this.direccionDataGridViewTextBoxColumn.HeaderText = "direccion";
+            this.direccionDataGridViewTextBoxColumn.Name = "direccionDataGridViewTextBoxColumn";
+            this.direccionDataGridViewTextBoxColumn.ReadOnly = true;
+            this.direccionDataGridViewTextBoxColumn.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.direccionDataGridViewTextBoxColumn.Width = 200;
+            // 
+            // telefonoDataGridViewTextBoxColumn
+            // 
+            this.telefonoDataGridViewTextBoxColumn.DataPropertyName = "telefono";
+            this.telefonoDataGridViewTextBoxColumn.HeaderText = "telefono";
+            this.telefonoDataGridViewTextBoxColumn.Name = "telefonoDataGridViewTextBoxColumn";
+            this.telefonoDataGridViewTextBoxColumn.ReadOnly = true;
+            this.telefonoDataGridViewTextBoxColumn.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            // 
+            // accancelar
+            // 
+            this.accancelar.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.accancelar.Location = new System.Drawing.Point(483, 324);
+            this.accancelar.Name = "accancelar";
+            this.accancelar.Size = new System.Drawing.Size(77, 25);
+            this.accancelar.TabIndex = 26;
+            this.accancelar.Text = "Cancelar";
+            this.accancelar.UseVisualStyleBackColor = true;
+            // 
+            // acdireccion
+            // 
+            this.acdireccion.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.acdireccion.Location = new System.Drawing.Point(137, 278);
+            this.acdireccion.Name = "acdireccion";
+            this.acdireccion.Size = new System.Drawing.Size(232, 22);
+            this.acdireccion.TabIndex = 25;
+            // 
+            // actelefono
+            // 
+            this.actelefono.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.actelefono.Location = new System.Drawing.Point(137, 324);
+            this.actelefono.Name = "actelefono";
+            this.actelefono.Size = new System.Drawing.Size(232, 22);
+            this.actelefono.TabIndex = 24;
+            // 
+            // label27
+            // 
+            this.label27.AutoSize = true;
+            this.label27.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label27.Location = new System.Drawing.Point(39, 281);
+            this.label27.Name = "label27";
+            this.label27.Size = new System.Drawing.Size(74, 16);
+            this.label27.TabIndex = 23;
+            this.label27.Text = "Dirección";
+            // 
+            // label28
+            // 
+            this.label28.AutoSize = true;
+            this.label28.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label28.Location = new System.Drawing.Point(39, 327);
+            this.label28.Name = "label28";
+            this.label28.Size = new System.Drawing.Size(70, 16);
+            this.label28.TabIndex = 22;
+            this.label28.Text = "Teléfono";
+            // 
+            // acactualizar
+            // 
+            this.acactualizar.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.acactualizar.Location = new System.Drawing.Point(483, 281);
+            this.acactualizar.Name = "acactualizar";
+            this.acactualizar.Size = new System.Drawing.Size(77, 24);
+            this.acactualizar.TabIndex = 21;
+            this.acactualizar.Text = "Actualizar";
+            this.acactualizar.UseVisualStyleBackColor = true;
+            // 
+            // acbuscarcliente
+            // 
+            this.acbuscarcliente.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.acbuscarcliente.Location = new System.Drawing.Point(102, 70);
+            this.acbuscarcliente.Name = "acbuscarcliente";
+            this.acbuscarcliente.Size = new System.Drawing.Size(232, 22);
+            this.acbuscarcliente.TabIndex = 29;
+            this.acbuscarcliente.TextChanged += new System.EventHandler(this.acbuscarcliente_TextChanged);
+            // 
+            // label29
+            // 
+            this.label29.AutoSize = true;
+            this.label29.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label29.Location = new System.Drawing.Point(47, 73);
+            this.label29.Name = "label29";
+            this.label29.Size = new System.Drawing.Size(56, 16);
+            this.label29.TabIndex = 28;
+            this.label29.Text = "Buscar";
+            // 
+            // aceditar
+            // 
+            this.aceditar.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.aceditar.Location = new System.Drawing.Point(363, 69);
+            this.aceditar.Name = "aceditar";
+            this.aceditar.Size = new System.Drawing.Size(77, 23);
+            this.aceditar.TabIndex = 27;
+            this.aceditar.Text = "Editar";
+            this.aceditar.UseVisualStyleBackColor = true;
+            this.aceditar.Click += new System.EventHandler(this.aceditar_Click);
+            // 
             // programaPrincipal
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1076,11 +1212,11 @@
             this.BackColor = System.Drawing.SystemColors.ActiveCaption;
             this.ClientSize = new System.Drawing.Size(735, 424);
             this.Controls.Add(this.menuStrip1);
-            this.Controls.Add(this.dropeliminarcliente);
-            this.Controls.Add(this.dropregistrarClientes);
             this.Controls.Add(this.groupactualizarcliente);
             this.Controls.Add(this.groupnuevafactura);
             this.Controls.Add(this.groupabono);
+            this.Controls.Add(this.dropeliminarcliente);
+            this.Controls.Add(this.dropregistrarClientes);
             this.MainMenuStrip = this.menuStrip1;
             this.MaximizeBox = false;
             this.Name = "programaPrincipal";
@@ -1103,7 +1239,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.dataGridabono)).EndInit();
             this.groupactualizarcliente.ResumeLayout(false);
             this.groupactualizarcliente.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.acDataGridView)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.clientesBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.prestamistaDataSet)).EndInit();
             this.ResumeLayout(false);
@@ -1146,10 +1282,7 @@
         private System.Windows.Forms.Label label19;
         private System.Windows.Forms.TextBox textBox1;
         private System.Windows.Forms.GroupBox groupactualizarcliente;
-        private System.Windows.Forms.DataGridView dataGridView2;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn1;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn2;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn3;
+        private System.Windows.Forms.DataGridView acDataGridView;
         private System.Windows.Forms.Label label6;
         public System.Windows.Forms.Label label7;
         public System.Windows.Forms.Label nfnumerofactura;
@@ -1200,12 +1333,26 @@
         private PrestamistaDataSet1 prestamistaDataSet1;
         private System.Windows.Forms.BindingSource clientesBindingSource1;
         private PrestamistaDataSet1TableAdapters.clientesTableAdapter clientesTableAdapter1;
-        private System.Windows.Forms.Button eccancelar;
-        private System.Windows.Forms.Button eceliminar;
-        private System.Windows.Forms.TextBox ecbuscarcliente;
         private System.Windows.Forms.Label label26;
         private System.Windows.Forms.DataGridViewTextBoxColumn idClienteDataGridViewTextBoxColumn1;
         private System.Windows.Forms.DataGridViewTextBoxColumn nombreDataGridViewTextBoxColumn1;
         private System.Windows.Forms.DataGridViewTextBoxColumn cedulaDataGridViewTextBoxColumn1;
+        public System.Windows.Forms.Button eccancelar;
+        public System.Windows.Forms.Button eceliminar;
+        public System.Windows.Forms.TextBox ecbuscarcliente;
+        private System.Windows.Forms.DataGridViewTextBoxColumn idClienteDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn nombreDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn cedulaDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn direccionDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn telefonoDataGridViewTextBoxColumn;
+        private System.Windows.Forms.Button accancelar;
+        private System.Windows.Forms.TextBox acdireccion;
+        private System.Windows.Forms.TextBox actelefono;
+        private System.Windows.Forms.Label label27;
+        private System.Windows.Forms.Label label28;
+        private System.Windows.Forms.Button acactualizar;
+        private System.Windows.Forms.TextBox acbuscarcliente;
+        private System.Windows.Forms.Label label29;
+        private System.Windows.Forms.Button aceditar;
     }
 }

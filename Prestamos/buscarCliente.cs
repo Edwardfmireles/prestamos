@@ -56,5 +56,12 @@ namespace Prestamos
             this.clientesTableAdapter.Fill(this.prestamistaDataSet.clientes);
 
         }
+
+        private void eccancelar_Click(object sender, EventArgs e)
+        {
+            this.f.nfnombre.Text = bcDataGridView.Rows[bcDataGridView.CurrentRow.Index].Cells[1].Value.ToString();
+            this.f.nfcedula.Text = bcDataGridView.Rows[bcDataGridView.CurrentRow.Index].Cells[2].Value.ToString();
+            this.Dispose();
+        }
     }
 }

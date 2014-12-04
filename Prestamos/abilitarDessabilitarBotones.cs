@@ -44,13 +44,11 @@ namespace Prestamos
             this.f.nffechafinal.Text = "";
             this.f.nfMontoTotal.Text = "";
 
+        }
 
-
-
-            // ABONO
-
-
-
+        public void limpiarEliminarCliente()
+        {
+            this.f.ecbuscarcliente.Text = "";
         }
     }
 }
