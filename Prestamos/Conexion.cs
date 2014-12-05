@@ -138,7 +138,7 @@ namespace Prestamos
         {
             if (tabla != String.Empty && tabla.Length > 4 && columna != String.Empty && columna.Length > 4 && valor != String.Empty && valor.Length > 0 && where != String.Empty && where.Length > 4)
             {
-                this.query = "UPDATE " + tabla + " SET " + columna + " = " + valor + " WHERE " + where;
+                this.query = "UPDATE " + tabla + " SET " + columna + "='" + valor + "' WHERE " + where;
 
                 try
                 {
@@ -146,6 +146,7 @@ namespace Prestamos
                     Conexion.ConectarBD.Open();
                     this.comsql = new SqlCommand(this.query, Conexion.ConectarBD);
 
+                    Conexion.mensaje = this.query;
 
                     this.comsql.ExecuteNonQuery();
                     return true;

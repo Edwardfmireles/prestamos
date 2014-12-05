@@ -50,5 +50,16 @@ namespace Prestamos
         {
             this.f.ecbuscarcliente.Text = "";
         }
+
+        public void limpiarActualizarCliente()
+        {
+            this.f.acactualizar.Enabled = false;
+
+            this.f.acbuscarcliente.Text = "";
+            this.f.acnombre.Text = "";
+            this.f.accedula.Text = "";
+            this.f.actelefono.Text = "";
+            this.f.acdireccion.Text = "";
+        }
     }
 }

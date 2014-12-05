@@ -113,26 +113,30 @@
             this.fechaFinal = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.label17 = new System.Windows.Forms.Label();
             this.groupactualizarcliente = new System.Windows.Forms.GroupBox();
-            this.acDataGridView = new System.Windows.Forms.DataGridView();
-            this.label6 = new System.Windows.Forms.Label();
-            this.clientesBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.prestamistaDataSet = new Prestamos.PrestamistaDataSet();
-            this.clientesTableAdapter = new Prestamos.PrestamistaDataSetTableAdapters.clientesTableAdapter();
-            this.clientesTableAdapter1 = new Prestamos.PrestamistaDataSet1TableAdapters.clientesTableAdapter();
-            this.idClienteDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.nombreDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.cedulaDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.direccionDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.telefonoDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.acnombre = new System.Windows.Forms.TextBox();
+            this.accedula = new System.Windows.Forms.TextBox();
+            this.label30 = new System.Windows.Forms.Label();
+            this.label31 = new System.Windows.Forms.Label();
+            this.acbuscarcliente = new System.Windows.Forms.TextBox();
+            this.label29 = new System.Windows.Forms.Label();
+            this.aceditar = new System.Windows.Forms.Button();
             this.accancelar = new System.Windows.Forms.Button();
             this.acdireccion = new System.Windows.Forms.TextBox();
             this.actelefono = new System.Windows.Forms.TextBox();
             this.label27 = new System.Windows.Forms.Label();
             this.label28 = new System.Windows.Forms.Label();
             this.acactualizar = new System.Windows.Forms.Button();
-            this.acbuscarcliente = new System.Windows.Forms.TextBox();
-            this.label29 = new System.Windows.Forms.Label();
-            this.aceditar = new System.Windows.Forms.Button();
+            this.acDataGridView = new System.Windows.Forms.DataGridView();
+            this.label6 = new System.Windows.Forms.Label();
+            this.clientesTableAdapter1 = new Prestamos.PrestamistaDataSet1TableAdapters.clientesTableAdapter();
+            this.idClienteDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.nombreDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.cedulaDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.direccionDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.telefonoDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clientesBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.prestamistaDataSet = new Prestamos.PrestamistaDataSet();
+            this.clientesTableAdapter = new Prestamos.PrestamistaDataSetTableAdapters.clientesTableAdapter();
             this.menuStrip1.SuspendLayout();
             this.dropregistrarClientes.SuspendLayout();
             this.dropeliminarcliente.SuspendLayout();
@@ -1011,6 +1015,10 @@
             // groupactualizarcliente
             // 
             this.groupactualizarcliente.BackColor = System.Drawing.SystemColors.Menu;
+            this.groupactualizarcliente.Controls.Add(this.acnombre);
+            this.groupactualizarcliente.Controls.Add(this.accedula);
+            this.groupactualizarcliente.Controls.Add(this.label30);
+            this.groupactualizarcliente.Controls.Add(this.label31);
             this.groupactualizarcliente.Controls.Add(this.acbuscarcliente);
             this.groupactualizarcliente.Controls.Add(this.label29);
             this.groupactualizarcliente.Controls.Add(this.aceditar);
@@ -1024,9 +1032,136 @@
             this.groupactualizarcliente.Controls.Add(this.label6);
             this.groupactualizarcliente.Location = new System.Drawing.Point(0, 24);
             this.groupactualizarcliente.Name = "groupactualizarcliente";
-            this.groupactualizarcliente.Size = new System.Drawing.Size(606, 377);
+            this.groupactualizarcliente.Size = new System.Drawing.Size(606, 381);
             this.groupactualizarcliente.TabIndex = 25;
             this.groupactualizarcliente.TabStop = false;
+            // 
+            // acnombre
+            // 
+            this.acnombre.Enabled = false;
+            this.acnombre.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.acnombre.Location = new System.Drawing.Point(117, 266);
+            this.acnombre.Name = "acnombre";
+            this.acnombre.Size = new System.Drawing.Size(232, 22);
+            this.acnombre.TabIndex = 33;
+            this.acnombre.TextChanged += new System.EventHandler(this.acnombre_TextChanged);
+            // 
+            // accedula
+            // 
+            this.accedula.Enabled = false;
+            this.accedula.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.accedula.Location = new System.Drawing.Point(439, 266);
+            this.accedula.Name = "accedula";
+            this.accedula.Size = new System.Drawing.Size(129, 22);
+            this.accedula.TabIndex = 32;
+            // 
+            // label30
+            // 
+            this.label30.AutoSize = true;
+            this.label30.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label30.Location = new System.Drawing.Point(41, 269);
+            this.label30.Name = "label30";
+            this.label30.Size = new System.Drawing.Size(63, 16);
+            this.label30.TabIndex = 31;
+            this.label30.Text = "Nombre";
+            // 
+            // label31
+            // 
+            this.label31.AutoSize = true;
+            this.label31.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label31.Location = new System.Drawing.Point(376, 269);
+            this.label31.Name = "label31";
+            this.label31.Size = new System.Drawing.Size(57, 16);
+            this.label31.TabIndex = 30;
+            this.label31.Text = "Cédula";
+            // 
+            // acbuscarcliente
+            // 
+            this.acbuscarcliente.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.acbuscarcliente.Location = new System.Drawing.Point(102, 70);
+            this.acbuscarcliente.Name = "acbuscarcliente";
+            this.acbuscarcliente.Size = new System.Drawing.Size(232, 22);
+            this.acbuscarcliente.TabIndex = 0;
+            this.acbuscarcliente.TextChanged += new System.EventHandler(this.acbuscarcliente_TextChanged);
+            // 
+            // label29
+            // 
+            this.label29.AutoSize = true;
+            this.label29.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label29.Location = new System.Drawing.Point(47, 73);
+            this.label29.Name = "label29";
+            this.label29.Size = new System.Drawing.Size(56, 16);
+            this.label29.TabIndex = 28;
+            this.label29.Text = "Buscar";
+            // 
+            // aceditar
+            // 
+            this.aceditar.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.aceditar.Location = new System.Drawing.Point(363, 69);
+            this.aceditar.Name = "aceditar";
+            this.aceditar.Size = new System.Drawing.Size(77, 23);
+            this.aceditar.TabIndex = 1;
+            this.aceditar.Text = "Editar";
+            this.aceditar.UseVisualStyleBackColor = true;
+            this.aceditar.Click += new System.EventHandler(this.aceditar_Click);
+            // 
+            // accancelar
+            // 
+            this.accancelar.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.accancelar.Location = new System.Drawing.Point(311, 343);
+            this.accancelar.Name = "accancelar";
+            this.accancelar.Size = new System.Drawing.Size(77, 25);
+            this.accancelar.TabIndex = 5;
+            this.accancelar.Text = "Cancelar";
+            this.accancelar.UseVisualStyleBackColor = true;
+            this.accancelar.Click += new System.EventHandler(this.accancelar_Click);
+            // 
+            // acdireccion
+            // 
+            this.acdireccion.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.acdireccion.Location = new System.Drawing.Point(117, 304);
+            this.acdireccion.Name = "acdireccion";
+            this.acdireccion.Size = new System.Drawing.Size(232, 22);
+            this.acdireccion.TabIndex = 2;
+            // 
+            // actelefono
+            // 
+            this.actelefono.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.actelefono.Location = new System.Drawing.Point(439, 304);
+            this.actelefono.Name = "actelefono";
+            this.actelefono.Size = new System.Drawing.Size(129, 22);
+            this.actelefono.TabIndex = 3;
+            // 
+            // label27
+            // 
+            this.label27.AutoSize = true;
+            this.label27.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label27.Location = new System.Drawing.Point(41, 307);
+            this.label27.Name = "label27";
+            this.label27.Size = new System.Drawing.Size(74, 16);
+            this.label27.TabIndex = 23;
+            this.label27.Text = "Dirección";
+            // 
+            // label28
+            // 
+            this.label28.AutoSize = true;
+            this.label28.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label28.Location = new System.Drawing.Point(363, 307);
+            this.label28.Name = "label28";
+            this.label28.Size = new System.Drawing.Size(70, 16);
+            this.label28.TabIndex = 22;
+            this.label28.Text = "Teléfono";
+            // 
+            // acactualizar
+            // 
+            this.acactualizar.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.acactualizar.Location = new System.Drawing.Point(218, 343);
+            this.acactualizar.Name = "acactualizar";
+            this.acactualizar.Size = new System.Drawing.Size(77, 24);
+            this.acactualizar.TabIndex = 4;
+            this.acactualizar.Text = "Actualizar";
+            this.acactualizar.UseVisualStyleBackColor = true;
+            this.acactualizar.Click += new System.EventHandler(this.acactualizar_Click);
             // 
             // acDataGridView
             // 
@@ -1048,6 +1183,7 @@
             this.acDataGridView.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.acDataGridView.Size = new System.Drawing.Size(525, 150);
             this.acDataGridView.TabIndex = 7;
+            this.acDataGridView.SelectionChanged += new System.EventHandler(this.acDataGridView_SelectionChanged);
             // 
             // label6
             // 
@@ -1058,20 +1194,6 @@
             this.label6.Size = new System.Drawing.Size(172, 24);
             this.label6.TabIndex = 6;
             this.label6.Text = "Actualizar Cliente";
-            // 
-            // clientesBindingSource
-            // 
-            this.clientesBindingSource.DataMember = "clientes";
-            this.clientesBindingSource.DataSource = this.prestamistaDataSet;
-            // 
-            // prestamistaDataSet
-            // 
-            this.prestamistaDataSet.DataSetName = "PrestamistaDataSet";
-            this.prestamistaDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
-            // 
-            // clientesTableAdapter
-            // 
-            this.clientesTableAdapter.ClearBeforeFill = true;
             // 
             // clientesTableAdapter1
             // 
@@ -1119,103 +1241,31 @@
             this.telefonoDataGridViewTextBoxColumn.ReadOnly = true;
             this.telefonoDataGridViewTextBoxColumn.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
             // 
-            // accancelar
+            // clientesBindingSource
             // 
-            this.accancelar.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.accancelar.Location = new System.Drawing.Point(483, 324);
-            this.accancelar.Name = "accancelar";
-            this.accancelar.Size = new System.Drawing.Size(77, 25);
-            this.accancelar.TabIndex = 26;
-            this.accancelar.Text = "Cancelar";
-            this.accancelar.UseVisualStyleBackColor = true;
+            this.clientesBindingSource.DataMember = "clientes";
+            this.clientesBindingSource.DataSource = this.prestamistaDataSet;
             // 
-            // acdireccion
+            // prestamistaDataSet
             // 
-            this.acdireccion.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.acdireccion.Location = new System.Drawing.Point(137, 278);
-            this.acdireccion.Name = "acdireccion";
-            this.acdireccion.Size = new System.Drawing.Size(232, 22);
-            this.acdireccion.TabIndex = 25;
+            this.prestamistaDataSet.DataSetName = "PrestamistaDataSet";
+            this.prestamistaDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
             // 
-            // actelefono
+            // clientesTableAdapter
             // 
-            this.actelefono.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.actelefono.Location = new System.Drawing.Point(137, 324);
-            this.actelefono.Name = "actelefono";
-            this.actelefono.Size = new System.Drawing.Size(232, 22);
-            this.actelefono.TabIndex = 24;
-            // 
-            // label27
-            // 
-            this.label27.AutoSize = true;
-            this.label27.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label27.Location = new System.Drawing.Point(39, 281);
-            this.label27.Name = "label27";
-            this.label27.Size = new System.Drawing.Size(74, 16);
-            this.label27.TabIndex = 23;
-            this.label27.Text = "Dirección";
-            // 
-            // label28
-            // 
-            this.label28.AutoSize = true;
-            this.label28.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label28.Location = new System.Drawing.Point(39, 327);
-            this.label28.Name = "label28";
-            this.label28.Size = new System.Drawing.Size(70, 16);
-            this.label28.TabIndex = 22;
-            this.label28.Text = "Teléfono";
-            // 
-            // acactualizar
-            // 
-            this.acactualizar.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.acactualizar.Location = new System.Drawing.Point(483, 281);
-            this.acactualizar.Name = "acactualizar";
-            this.acactualizar.Size = new System.Drawing.Size(77, 24);
-            this.acactualizar.TabIndex = 21;
-            this.acactualizar.Text = "Actualizar";
-            this.acactualizar.UseVisualStyleBackColor = true;
-            // 
-            // acbuscarcliente
-            // 
-            this.acbuscarcliente.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.acbuscarcliente.Location = new System.Drawing.Point(102, 70);
-            this.acbuscarcliente.Name = "acbuscarcliente";
-            this.acbuscarcliente.Size = new System.Drawing.Size(232, 22);
-            this.acbuscarcliente.TabIndex = 29;
-            this.acbuscarcliente.TextChanged += new System.EventHandler(this.acbuscarcliente_TextChanged);
-            // 
-            // label29
-            // 
-            this.label29.AutoSize = true;
-            this.label29.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label29.Location = new System.Drawing.Point(47, 73);
-            this.label29.Name = "label29";
-            this.label29.Size = new System.Drawing.Size(56, 16);
-            this.label29.TabIndex = 28;
-            this.label29.Text = "Buscar";
-            // 
-            // aceditar
-            // 
-            this.aceditar.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.aceditar.Location = new System.Drawing.Point(363, 69);
-            this.aceditar.Name = "aceditar";
-            this.aceditar.Size = new System.Drawing.Size(77, 23);
-            this.aceditar.TabIndex = 27;
-            this.aceditar.Text = "Editar";
-            this.aceditar.UseVisualStyleBackColor = true;
-            this.aceditar.Click += new System.EventHandler(this.aceditar_Click);
+            this.clientesTableAdapter.ClearBeforeFill = true;
             // 
             // programaPrincipal
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ActiveCaption;
-            this.ClientSize = new System.Drawing.Size(735, 424);
+            this.ClientSize = new System.Drawing.Size(735, 592);
             this.Controls.Add(this.menuStrip1);
-            this.Controls.Add(this.groupactualizarcliente);
             this.Controls.Add(this.groupnuevafactura);
             this.Controls.Add(this.groupabono);
             this.Controls.Add(this.dropeliminarcliente);
+            this.Controls.Add(this.groupactualizarcliente);
             this.Controls.Add(this.dropregistrarClientes);
             this.MainMenuStrip = this.menuStrip1;
             this.MaximizeBox = false;
@@ -1345,14 +1395,18 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn cedulaDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn direccionDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn telefonoDataGridViewTextBoxColumn;
-        private System.Windows.Forms.Button accancelar;
-        private System.Windows.Forms.TextBox acdireccion;
-        private System.Windows.Forms.TextBox actelefono;
         private System.Windows.Forms.Label label27;
         private System.Windows.Forms.Label label28;
-        private System.Windows.Forms.Button acactualizar;
-        private System.Windows.Forms.TextBox acbuscarcliente;
         private System.Windows.Forms.Label label29;
         private System.Windows.Forms.Button aceditar;
+        private System.Windows.Forms.Label label30;
+        private System.Windows.Forms.Label label31;
+        public System.Windows.Forms.TextBox acdireccion;
+        public System.Windows.Forms.TextBox actelefono;
+        public System.Windows.Forms.TextBox acbuscarcliente;
+        public System.Windows.Forms.TextBox acnombre;
+        public System.Windows.Forms.TextBox accedula;
+        public System.Windows.Forms.Button accancelar;
+        public System.Windows.Forms.Button acactualizar;
     }
 }

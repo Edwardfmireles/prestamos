@@ -27,19 +27,10 @@ namespace Prestamos
         public programaPrincipal()
         {
             InitializeComponent();
-            nfnombre.Text = "asdkf";
             adb = new abilitarDessabilitarBotones(this);
-
-
- 
-
+            
             nffecha.Text = Convert.ToString(dFechaInicial.Day + "/" + dFechaInicial.Month + "/" + dFechaInicial.Year);
             nffechainicial.Text = nffecha.Text;
-
-        }
-
-        private void textBox1_TextChanged(object sender, EventArgs e)
-        {
 
         }
 
@@ -48,12 +39,17 @@ namespace Prestamos
             // TODO: esta línea de código carga datos en la tabla 'prestamistaDataSet1.clientes' Puede moverla o quitarla según sea necesario.
             this.clientesTableAdapter1.Fill(this.prestamistaDataSet1.clientes);
             // TODO: esta línea de código carga datos en la tabla 'prestamistaDataSet.clientes' Puede moverla o quitarla según sea necesario.
-            this.clientesTableAdapter.Fill(this.prestamistaDataSet.clientes);
+
             dropregistrarClientes.Visible = false;
             dropeliminarcliente.Visible = false;
             groupactualizarcliente.Visible = false;
             groupabono.Visible = false;
             groupnuevafactura.Visible = false;
+        }
+
+        private void textBox1_TextChanged(object sender, EventArgs e)
+        {
+
         }
 
         private void nuevoClienteToolStripMenuItem_Click(object sender, EventArgs e)
@@ -97,6 +93,13 @@ namespace Prestamos
             groupnuevafactura.Visible = false;
 
             this.ClientSize = new System.Drawing.Size(606, groupactualizarcliente.Height + 20);
+
+
+            this.clientesTableAdapter.Fill(this.prestamistaDataSet.clientes);
+            acDataGridView.ClearSelection();
+            acDataGridView.Rows[0].Cells[0].Selected = false;
+            
+            this.adb.limpiarActualizarCliente();
         }
 
         private void nuevaToolStripMenuItem_Click(object sender, EventArgs e)
@@ -255,7 +258,7 @@ namespace Prestamos
 
         private void nffacturar_Click(object sender, EventArgs e)
         {
-           
+            //////////////////////////////////////////////////////////////////////////////////////////////////////////
         }
 
         private void nfcancelar_Click(object sender, EventArgs e)
@@ -263,8 +266,9 @@ namespace Prestamos
             groupnuevafactura.Visible = false; 
             adb.deshabilitarLimpiarnuevaFactura();
             nfperiodopago.SelectedIndex = -1;
-        }
 
+            this.ClientSize = new System.Drawing.Size(751,261);
+        }
 
         private bool validarCamposVacios()
         {
@@ -408,14 +412,9 @@ namespace Prestamos
 
         }
 
-
-
-
-
-
         private void ecbuscarcliente_TextChanged(object sender, EventArgs e)
         {
-            seleccionarLineaDataGridView(sender);
+            seleccionarLineaDataGridView(sender, dataGridEliminarCliente);
         }
 
         private void dataGridEliminarCliente_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
@@ -431,7 +430,6 @@ namespace Prestamos
 
         private void metodoEliminarClienteSeleccionado(string nombre, int idCliente)
         {
-            MessageBox.Show(idCliente.ToString());
             if (MessageBox.Show("Desea eliminar el usuario " + nombre, "Eliminar Usuario", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == System.Windows.Forms.DialogResult.Yes)
             {
                 try
@@ -440,9 +438,13 @@ namespace Prestamos
 
                     Conexion.ConectarBD.Open();
 
-                    SqlCommand com = new SqlCommand("delete from clientes where idCliente=" + idCliente, Conexion.ConectarBD);
+                    SqlCommand intervalos = new SqlCommand("delete from intervalos where idCliente=" + idCliente, Conexion.ConectarBD);
 
-                    com.ExecuteNonQuery();
+                    intervalos.ExecuteNonQuery();
+
+                    SqlCommand clientes = new SqlCommand("delete from clientes where idCliente=" + idCliente, Conexion.ConectarBD);
+
+                    clientes.ExecuteNonQuery();
 
 
                     dataGridEliminarCliente.Rows.RemoveAt(dataGridEliminarCliente.CurrentRow.Index);
@@ -463,7 +465,7 @@ namespace Prestamos
             adb.limpiarEliminarCliente();
             dropeliminarcliente.Visible = false;
 
-            
+            this.ClientSize = new System.Drawing.Size(751, 261);
 
         }
 
@@ -478,33 +480,149 @@ namespace Prestamos
 
         private void acbuscarcliente_TextChanged(object sender, EventArgs e)
         {
-            seleccionarLineaDataGridView(sender);
+            seleccionarLineaDataGridView(sender,acDataGridView);
         }
 
         private void aceditar_Click(object sender, EventArgs e)
         {
-            this.acdireccion.Text = acDataGridView.Rows[acDataGridView.CurrentRow.Index].Cells[2].Value.ToString();
-            this.actelefono.Text = acDataGridView.Rows[acDataGridView.CurrentRow.Index].Cells[3].Value.ToString();
+            llenarCamposActualizarCliente();
         }
 
-        public void seleccionarLineaDataGridView(object sender)
+        public void seleccionarLineaDataGridView(object sender, DataGridView datagrid)
         {
             TextBox sen = (TextBox)sender;
 
-            if (sen.Text.ToString().Trim() != "" && dataGridEliminarCliente.Rows.Count > 0)
+            if (sen.Text.ToString().Trim().Length > 0 && datagrid.Rows.Count > 0)
             {
-                for (int i = 0; i < dataGridEliminarCliente.Rows.Count; i++)
+                for (int i = 0; i < datagrid.Rows.Count; i++)
                 {
                     for (int j = 0; j < 3; j++)
                     {
-                        if (dataGridEliminarCliente.Rows[i].Cells[j].Value.ToString().Contains(sen.Text.ToString()))
+                        if (datagrid.Rows[i].Cells[j].Value.ToString().Contains(sen.Text.ToLower()))
                         {
-                            dataGridEliminarCliente.Rows[i].Cells[j].Selected = true;
+                            datagrid.Rows[i].Cells[j].Selected = true;
                         }
                     }
                 }
             }
         }
+
+        private void acDataGridView_SelectionChanged(object sender, EventArgs e)
+        {
+            llenarCamposActualizarCliente();
+        }
+
+        private void llenarCamposActualizarCliente()
+        {
+            if(acDataGridView.Rows.Count > 0)
+            {
+                this.acnombre.Text = acDataGridView.Rows[acDataGridView.CurrentRow.Index].Cells[1].Value.ToString();
+                this.accedula.Text = acDataGridView.Rows[acDataGridView.CurrentRow.Index].Cells[2].Value.ToString();
+                this.acdireccion.Text = acDataGridView.Rows[acDataGridView.CurrentRow.Index].Cells[3].Value.ToString();
+                this.actelefono.Text = acDataGridView.Rows[acDataGridView.CurrentRow.Index].Cells[4].Value.ToString();
+            }
+            
+        }
+
+        private void acactualizar_Click(object sender, EventArgs e)
+        {
+            
+            bool dir = false;
+            bool tel = false;
+
+            Conexion con = new Conexion();
+
+            try
+            {
+
+
+                if (acdireccion.Text.ToLower().Trim() != acDataGridView.Rows[acDataGridView.CurrentRow.Index].Cells[3].Value.ToString().ToLower().Trim())
+                {
+                    //MessageBox.Show(acDataGridView.Rows[acDataGridView.CurrentRow.Index].Cells[3].Value.ToString());
+                    dir = con.actualizar("clientes", "direccion", acdireccion.Text.Trim(), "clientes.idCliente=CONVERT(int," + acDataGridView.Rows[acDataGridView.CurrentRow.Index].Cells[0].Value.ToString() + ")");
+                    MessageBox.Show(Conexion.mensaje);
+                }
+
+                if (actelefono.Text.ToLower().Trim() != acDataGridView.Rows[acDataGridView.CurrentRow.Index].Cells[4].Value.ToString().ToLower().Trim())
+                {
+
+                    tel = con.actualizar("clientes", "telefono", actelefono.Text.Trim(), "clientes.idCliente=CONVERT(int," + acDataGridView.Rows[acDataGridView.CurrentRow.Index].Cells[0].Value.ToString() + ")");
+                }
+                
+
+            }
+            catch (SqlException)
+            {
+                MessageBox.Show("Error al actualizar Datos");
+            }
+
+
+
+            if (dir == true || tel == true)
+            {
+                MessageBox.Show("Datos Actualizados");
+                acDataGridView.ClearSelection();
+                this.clientesTableAdapter.Fill(this.prestamistaDataSet.clientes);
+                                
+
+                adb.limpiarActualizarCliente();
+                
+            }
+
+        }
+
+        private void acnombre_TextChanged(object sender, EventArgs e)
+        {
+            if (acnombre.Text.Length > 0)
+            {
+                acactualizar.Enabled = true;
+            }
+            else
+            {
+                acactualizar.Enabled = false;
+            }
+        }
+
+        private void accancelar_Click(object sender, EventArgs e)
+        {
+            groupactualizarcliente.Visible = false;
+            adb.limpiarActualizarCliente();
+
+            this.ClientSize = new System.Drawing.Size(751, 261);
+        }
+
+
+
+
+
+
+
+
+
+        //private void actualizarInsertar()
+        //{
+
+        //    Conexion.insertar("prestamos (monto,interes,cuotas,periodoPago,moraPrestamo,fechaInicial,fechaFinal)",
+        //                                "(CONVERT(int," + nfmonto.Text + "), CONVERT(int," + nfinteres.Text + "), " +
+        //                                "CONVERT(int," + nfcuotas.Text + "), " + nfcuotas.Text + ", " + nffechainicial + ", " + fechaFinal + ")", "");
+
+        //    Conexion.insertar("intervalos (idCliente,intervaloFecha,intervaloPago)",
+        //                    "(CONVERT(int," + idCliente + "), " + fechas + "), CONVERT(int," + nfcuotas.Text + "))", "");
+
+
+        //    Conexion.insertar("facturacion (idCliente, idPrestamo)",
+        //                    "(CONVERT(int," + idCliente + "), " + idPrestamo + "))", "");
+
+
+        //    Conexion.actualizar("intervalos", "estado", "PAGADO", "intervalos.idIntervaloPago=CONVERT(int," + idIntervaloPago + ") and intervalos.intervaloFecha=" + fechaPagada + ")");
+
+        //    // idCliente,intervaloFecha,intervaloPago,estado
+
+
+        //    //
+
+        //}
+    
 
     }
 }

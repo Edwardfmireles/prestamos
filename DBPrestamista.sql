@@ -6,16 +6,7 @@ use Prestamista
 
 go
 
-create table facturacion(
-idFactura int identity primary key,
-idCliente int not null,
-idPrestamo int not null,
-fecha date not null 
-)
-
-go
-
-create table prestamo(
+create table prestamos(
 idPrestamo int identity primary key,
 monto int not null,
 interes int not null,
@@ -26,15 +17,6 @@ fechaInicial date not null,
 fechaFinal date not null
 )
 
-go
-
-create table pago(
-idPago int identity primary key,
-idCliente int not null,
-moraPago int not null,
-MontoTotal int not null,
-MontoRestante int not null
-)
 
 go
 
@@ -48,6 +30,18 @@ telefono char(10) not null
 
 go
 
+create table facturacion(
+idFactura int identity primary key,
+idCliente int not null,
+idPrestamo int not null
+
+foreign key(idCliente) references clientes(idCliente),
+foreign key(idPrestamo) references prestamos(idPrestamo) 
+)
+
+
+go
+
 create table empleados(
 nombre varchar(20) not null,
 contrasena varchar(20) not null
@@ -55,7 +49,55 @@ contrasena varchar(20) not null
 
 go
 
+create table intervalos(
+idIntervaloPago int identity primary key,
+idCliente int not null,
+intervaloFecha date not null,
+intervaloPago int not null,
+estado varchar(10) default 'NO PAGO'
+
+foreign key(idCliente) references clientes(idCliente)
+)
+
+go
+
 insert into empleados(nombre, contrasena) values('admin','123')
+insert into clientes(nombre,cedula,direccion,telefono) values('cliente','cedula','direc','tel')
+insert into clientes(nombre,cedula,direccion,telefono) values('cliente 2','cedula','direc','tel')
+insert into clientes(nombre,cedula,direccion,telefono) values('cliente 3','cedula','direc','tel')
+insert into clientes(nombre,cedula,direccion,telefono) values('cliente 4','cedula','direc','tel')
+insert into prestamos (monto,interes,cuotas,periodoPago,moraPrestamo,fechaInicial,fechaFinal) values (1000,100,250,15,15,SYSDATETIME(),SYSDATETIME())
+insert into prestamos (monto,interes,cuotas,periodoPago,moraPrestamo,fechaInicial,fechaFinal) values (2000,200,33,15,15,SYSDATETIME(),SYSDATETIME())
+insert into facturacion(idCliente, idPrestamo) values(1,1)
+insert into intervalos (idCliente,intervaloFecha,intervaloPago) values(1,SYSDATETIME(),41588)
+
+
+
+
+select clientes.nombre,clientes.cedula,intervalos.intervaloFecha,intervalos.intervaloPago,intervalos.estado
+from clientes inner join intervalos
+on intervalos.idCliente = 3 and clientes.idCliente = 3
+
+
+--------------------------------------------
+
+select * from facturacion
+select * from prestamos
+select * from clientes
+select * from intervalos
+
+--------------------------------------------
+
+
+
+
+--  DataGridView  INTÉRVALOS
+
+-- 	| idIntervaloPago | Cliente | Fechas de Pago | Cuotas | estado |
+
+
+-- cuotas = intervalos.intervaloPago
+-- estado = intervalos.estado
 
 
 
