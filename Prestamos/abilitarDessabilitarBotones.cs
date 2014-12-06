@@ -62,5 +62,13 @@ namespace Prestamos
             this.f.actelefono.Text = "";
             this.f.acdireccion.Text = "";
         }
+
+        public void limpiarNuevoCliente()
+        {
+            this.f.rcnombre.Text = "";
+            this.f.rctelefono.Text = "";
+            this.f.rcdirecion.Text = "";
+            this.f.rccedula.Text = "";
+        }
     }
 }

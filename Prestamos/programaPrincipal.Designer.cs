@@ -38,16 +38,14 @@
             this.nuevaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.pagosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.dropregistrarClientes = new System.Windows.Forms.GroupBox();
-            this.button2 = new System.Windows.Forms.Button();
-            this.tcedula = new System.Windows.Forms.TextBox();
-            this.tdireccion = new System.Windows.Forms.TextBox();
-            this.ttelefono = new System.Windows.Forms.TextBox();
+            this.rccancelar = new System.Windows.Forms.Button();
+            this.rcdirecion = new System.Windows.Forms.TextBox();
             this.label5 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
-            this.tnombre = new System.Windows.Forms.TextBox();
-            this.button1 = new System.Windows.Forms.Button();
+            this.rcnombre = new System.Windows.Forms.TextBox();
+            this.rcaceptar = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.dropeliminarcliente = new System.Windows.Forms.GroupBox();
             this.eccancelar = new System.Windows.Forms.Button();
@@ -98,6 +96,10 @@
             this.label7 = new System.Windows.Forms.Label();
             this.groupabono = new System.Windows.Forms.GroupBox();
             this.dataGridabono = new System.Windows.Forms.DataGridView();
+            this.idIntervaloPagoDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.nombreDataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.cedulaDataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataTable1BindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.averregistro = new System.Windows.Forms.Button();
             this.label19 = new System.Windows.Forms.Label();
             this.abuscarcliente = new System.Windows.Forms.TextBox();
@@ -117,14 +119,6 @@
             this.label28 = new System.Windows.Forms.Label();
             this.acactualizar = new System.Windows.Forms.Button();
             this.acDataGridView = new System.Windows.Forms.DataGridView();
-            this.label6 = new System.Windows.Forms.Label();
-            this.clientesTableAdapter1 = new Prestamos.PrestamistaDataSet1TableAdapters.clientesTableAdapter();
-            this.dataTable2TableAdapter = new Prestamos.PrestamistaDataSet1TableAdapters.DataTable2TableAdapter();
-            this.tableAdapterManager1 = new Prestamos.PrestamistaDataSet1TableAdapters.TableAdapterManager();
-            this.dataTable1TableAdapter = new Prestamos.PrestamistaDataSet1TableAdapters.DataTable1TableAdapter();
-            this.clientesBindingSource2 = new System.Windows.Forms.BindingSource(this.components);
-            this.prestamistaDataSet1BindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.dataTable1BindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.idClienteDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.nombreDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.cedulaDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -132,12 +126,18 @@
             this.telefonoDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clientesBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.prestamistaDataSet = new Prestamos.PrestamistaDataSet();
+            this.label6 = new System.Windows.Forms.Label();
+            this.clientesTableAdapter1 = new Prestamos.PrestamistaDataSet1TableAdapters.clientesTableAdapter();
+            this.dataTable2TableAdapter = new Prestamos.PrestamistaDataSet1TableAdapters.DataTable2TableAdapter();
+            this.tableAdapterManager1 = new Prestamos.PrestamistaDataSet1TableAdapters.TableAdapterManager();
+            this.dataTable1TableAdapter = new Prestamos.PrestamistaDataSet1TableAdapters.DataTable1TableAdapter();
+            this.clientesBindingSource2 = new System.Windows.Forms.BindingSource(this.components);
+            this.prestamistaDataSetBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.prestamistaDataSet1BindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.clientesTableAdapter = new Prestamos.PrestamistaDataSetTableAdapters.clientesTableAdapter();
             this.tableAdapterManager = new Prestamos.PrestamistaDataSetTableAdapters.TableAdapterManager();
-            this.prestamistaDataSetBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.idIntervaloPagoDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.nombreDataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.cedulaDataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.rctelefono = new System.Windows.Forms.MaskedTextBox();
+            this.rccedula = new System.Windows.Forms.MaskedTextBox();
             this.menuStrip1.SuspendLayout();
             this.dropregistrarClientes.SuspendLayout();
             this.dropeliminarcliente.SuspendLayout();
@@ -147,14 +147,14 @@
             this.groupnuevafactura.SuspendLayout();
             this.groupabono.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridabono)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataTable1BindingSource)).BeginInit();
             this.groupactualizarcliente.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.acDataGridView)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.clientesBindingSource2)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.prestamistaDataSet1BindingSource)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dataTable1BindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.clientesBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.prestamistaDataSet)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.clientesBindingSource2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.prestamistaDataSetBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.prestamistaDataSet1BindingSource)).BeginInit();
             this.SuspendLayout();
             // 
             // menuStrip1
@@ -225,63 +225,48 @@
             // dropregistrarClientes
             // 
             this.dropregistrarClientes.BackColor = System.Drawing.SystemColors.Menu;
-            this.dropregistrarClientes.Controls.Add(this.button2);
-            this.dropregistrarClientes.Controls.Add(this.tcedula);
-            this.dropregistrarClientes.Controls.Add(this.tdireccion);
-            this.dropregistrarClientes.Controls.Add(this.ttelefono);
+            this.dropregistrarClientes.Controls.Add(this.rccedula);
+            this.dropregistrarClientes.Controls.Add(this.rctelefono);
+            this.dropregistrarClientes.Controls.Add(this.rccancelar);
+            this.dropregistrarClientes.Controls.Add(this.rcdirecion);
             this.dropregistrarClientes.Controls.Add(this.label5);
             this.dropregistrarClientes.Controls.Add(this.label4);
             this.dropregistrarClientes.Controls.Add(this.label3);
             this.dropregistrarClientes.Controls.Add(this.label2);
-            this.dropregistrarClientes.Controls.Add(this.tnombre);
-            this.dropregistrarClientes.Controls.Add(this.button1);
+            this.dropregistrarClientes.Controls.Add(this.rcnombre);
+            this.dropregistrarClientes.Controls.Add(this.rcaceptar);
             this.dropregistrarClientes.Controls.Add(this.label1);
             this.dropregistrarClientes.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.dropregistrarClientes.Location = new System.Drawing.Point(0, 24);
             this.dropregistrarClientes.Name = "dropregistrarClientes";
-            this.dropregistrarClientes.Size = new System.Drawing.Size(751, 241);
+            this.dropregistrarClientes.Size = new System.Drawing.Size(636, 241);
             this.dropregistrarClientes.TabIndex = 5;
             this.dropregistrarClientes.TabStop = false;
             // 
-            // button2
+            // rccancelar
             // 
-            this.button2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button2.Location = new System.Drawing.Point(395, 196);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(85, 27);
-            this.button2.TabIndex = 20;
-            this.button2.Text = "Cancelar";
-            this.button2.UseVisualStyleBackColor = true;
+            this.rccancelar.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.rccancelar.Location = new System.Drawing.Point(338, 196);
+            this.rccancelar.Name = "rccancelar";
+            this.rccancelar.Size = new System.Drawing.Size(85, 27);
+            this.rccancelar.TabIndex = 20;
+            this.rccancelar.Text = "Cancelar";
+            this.rccancelar.UseVisualStyleBackColor = true;
+            this.rccancelar.Click += new System.EventHandler(this.rccancelar_Click);
             // 
-            // tcedula
+            // rcdirecion
             // 
-            this.tcedula.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tcedula.Location = new System.Drawing.Point(493, 64);
-            this.tcedula.Name = "tcedula";
-            this.tcedula.Size = new System.Drawing.Size(232, 26);
-            this.tcedula.TabIndex = 19;
-            // 
-            // tdireccion
-            // 
-            this.tdireccion.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tdireccion.Location = new System.Drawing.Point(110, 132);
-            this.tdireccion.Name = "tdireccion";
-            this.tdireccion.Size = new System.Drawing.Size(232, 26);
-            this.tdireccion.TabIndex = 18;
-            // 
-            // ttelefono
-            // 
-            this.ttelefono.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.ttelefono.Location = new System.Drawing.Point(493, 135);
-            this.ttelefono.Name = "ttelefono";
-            this.ttelefono.Size = new System.Drawing.Size(232, 26);
-            this.ttelefono.TabIndex = 17;
+            this.rcdirecion.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.rcdirecion.Location = new System.Drawing.Point(115, 132);
+            this.rcdirecion.Name = "rcdirecion";
+            this.rcdirecion.Size = new System.Drawing.Size(232, 26);
+            this.rcdirecion.TabIndex = 18;
             // 
             // label5
             // 
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.Location = new System.Drawing.Point(395, 67);
+            this.label5.Location = new System.Drawing.Point(383, 66);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(65, 20);
             this.label5.TabIndex = 16;
@@ -291,7 +276,7 @@
             // 
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.Location = new System.Drawing.Point(12, 135);
+            this.label4.Location = new System.Drawing.Point(17, 135);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(84, 20);
             this.label4.TabIndex = 15;
@@ -301,7 +286,7 @@
             // 
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(395, 138);
+            this.label3.Location = new System.Drawing.Point(383, 137);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(79, 20);
             this.label3.TabIndex = 14;
@@ -311,35 +296,36 @@
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(12, 70);
+            this.label2.Location = new System.Drawing.Point(17, 70);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(71, 20);
             this.label2.TabIndex = 13;
             this.label2.Text = "Nombre";
             // 
-            // tnombre
+            // rcnombre
             // 
-            this.tnombre.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tnombre.Location = new System.Drawing.Point(110, 67);
-            this.tnombre.Name = "tnombre";
-            this.tnombre.Size = new System.Drawing.Size(232, 26);
-            this.tnombre.TabIndex = 12;
+            this.rcnombre.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.rcnombre.Location = new System.Drawing.Point(115, 67);
+            this.rcnombre.Name = "rcnombre";
+            this.rcnombre.Size = new System.Drawing.Size(232, 26);
+            this.rcnombre.TabIndex = 12;
             // 
-            // button1
+            // rcaceptar
             // 
-            this.button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button1.Location = new System.Drawing.Point(270, 196);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(85, 27);
-            this.button1.TabIndex = 6;
-            this.button1.Text = "Aceptar";
-            this.button1.UseVisualStyleBackColor = true;
+            this.rcaceptar.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.rcaceptar.Location = new System.Drawing.Point(213, 196);
+            this.rcaceptar.Name = "rcaceptar";
+            this.rcaceptar.Size = new System.Drawing.Size(85, 27);
+            this.rcaceptar.TabIndex = 6;
+            this.rcaceptar.Text = "Aceptar";
+            this.rcaceptar.UseVisualStyleBackColor = true;
+            this.rcaceptar.Click += new System.EventHandler(this.rcaceptar_Click);
             // 
             // label1
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(293, 22);
+            this.label1.Location = new System.Drawing.Point(236, 22);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(164, 24);
             this.label1.TabIndex = 4;
@@ -905,6 +891,37 @@
             this.dataGridabono.Size = new System.Drawing.Size(411, 150);
             this.dataGridabono.TabIndex = 5;
             // 
+            // idIntervaloPagoDataGridViewTextBoxColumn
+            // 
+            this.idIntervaloPagoDataGridViewTextBoxColumn.DataPropertyName = "idIntervaloPago";
+            this.idIntervaloPagoDataGridViewTextBoxColumn.HeaderText = "Id";
+            this.idIntervaloPagoDataGridViewTextBoxColumn.Name = "idIntervaloPagoDataGridViewTextBoxColumn";
+            this.idIntervaloPagoDataGridViewTextBoxColumn.ReadOnly = true;
+            this.idIntervaloPagoDataGridViewTextBoxColumn.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.idIntervaloPagoDataGridViewTextBoxColumn.Width = 50;
+            // 
+            // nombreDataGridViewTextBoxColumn2
+            // 
+            this.nombreDataGridViewTextBoxColumn2.DataPropertyName = "nombre";
+            this.nombreDataGridViewTextBoxColumn2.HeaderText = "Nombre";
+            this.nombreDataGridViewTextBoxColumn2.Name = "nombreDataGridViewTextBoxColumn2";
+            this.nombreDataGridViewTextBoxColumn2.ReadOnly = true;
+            this.nombreDataGridViewTextBoxColumn2.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.nombreDataGridViewTextBoxColumn2.Width = 250;
+            // 
+            // cedulaDataGridViewTextBoxColumn2
+            // 
+            this.cedulaDataGridViewTextBoxColumn2.DataPropertyName = "cedula";
+            this.cedulaDataGridViewTextBoxColumn2.HeaderText = "Cédula";
+            this.cedulaDataGridViewTextBoxColumn2.Name = "cedulaDataGridViewTextBoxColumn2";
+            this.cedulaDataGridViewTextBoxColumn2.ReadOnly = true;
+            this.cedulaDataGridViewTextBoxColumn2.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            // 
+            // dataTable1BindingSource
+            // 
+            this.dataTable1BindingSource.DataMember = "DataTable1";
+            this.dataTable1BindingSource.DataSource = this.prestamistaDataSet1;
+            // 
             // averregistro
             // 
             this.averregistro.Location = new System.Drawing.Point(331, 64);
@@ -1116,49 +1133,6 @@
             this.acDataGridView.TabIndex = 7;
             this.acDataGridView.SelectionChanged += new System.EventHandler(this.acDataGridView_SelectionChanged);
             // 
-            // label6
-            // 
-            this.label6.AutoSize = true;
-            this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label6.Location = new System.Drawing.Point(217, 21);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(172, 24);
-            this.label6.TabIndex = 6;
-            this.label6.Text = "Actualizar Cliente";
-            // 
-            // clientesTableAdapter1
-            // 
-            this.clientesTableAdapter1.ClearBeforeFill = true;
-            // 
-            // dataTable2TableAdapter
-            // 
-            this.dataTable2TableAdapter.ClearBeforeFill = true;
-            // 
-            // tableAdapterManager1
-            // 
-            this.tableAdapterManager1.BackupDataSetBeforeUpdate = false;
-            this.tableAdapterManager1.clientesTableAdapter = this.clientesTableAdapter1;
-            this.tableAdapterManager1.UpdateOrder = Prestamos.PrestamistaDataSet1TableAdapters.TableAdapterManager.UpdateOrderOption.InsertUpdateDelete;
-            // 
-            // dataTable1TableAdapter
-            // 
-            this.dataTable1TableAdapter.ClearBeforeFill = true;
-            // 
-            // clientesBindingSource2
-            // 
-            this.clientesBindingSource2.DataMember = "clientes";
-            this.clientesBindingSource2.DataSource = this.prestamistaDataSetBindingSource;
-            // 
-            // prestamistaDataSet1BindingSource
-            // 
-            this.prestamistaDataSet1BindingSource.DataSource = this.prestamistaDataSet1;
-            this.prestamistaDataSet1BindingSource.Position = 0;
-            // 
-            // dataTable1BindingSource
-            // 
-            this.dataTable1BindingSource.DataMember = "DataTable1";
-            this.dataTable1BindingSource.DataSource = this.prestamistaDataSet1;
-            // 
             // idClienteDataGridViewTextBoxColumn
             // 
             this.idClienteDataGridViewTextBoxColumn.DataPropertyName = "idCliente";
@@ -1211,6 +1185,49 @@
             this.prestamistaDataSet.DataSetName = "PrestamistaDataSet";
             this.prestamistaDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
             // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label6.Location = new System.Drawing.Point(217, 21);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(172, 24);
+            this.label6.TabIndex = 6;
+            this.label6.Text = "Actualizar Cliente";
+            // 
+            // clientesTableAdapter1
+            // 
+            this.clientesTableAdapter1.ClearBeforeFill = true;
+            // 
+            // dataTable2TableAdapter
+            // 
+            this.dataTable2TableAdapter.ClearBeforeFill = true;
+            // 
+            // tableAdapterManager1
+            // 
+            this.tableAdapterManager1.BackupDataSetBeforeUpdate = false;
+            this.tableAdapterManager1.clientesTableAdapter = this.clientesTableAdapter1;
+            this.tableAdapterManager1.UpdateOrder = Prestamos.PrestamistaDataSet1TableAdapters.TableAdapterManager.UpdateOrderOption.InsertUpdateDelete;
+            // 
+            // dataTable1TableAdapter
+            // 
+            this.dataTable1TableAdapter.ClearBeforeFill = true;
+            // 
+            // clientesBindingSource2
+            // 
+            this.clientesBindingSource2.DataMember = "clientes";
+            this.clientesBindingSource2.DataSource = this.prestamistaDataSetBindingSource;
+            // 
+            // prestamistaDataSetBindingSource
+            // 
+            this.prestamistaDataSetBindingSource.DataSource = this.prestamistaDataSet;
+            this.prestamistaDataSetBindingSource.Position = 0;
+            // 
+            // prestamistaDataSet1BindingSource
+            // 
+            this.prestamistaDataSet1BindingSource.DataSource = this.prestamistaDataSet1;
+            this.prestamistaDataSet1BindingSource.Position = 0;
+            // 
             // clientesTableAdapter
             // 
             this.clientesTableAdapter.ClearBeforeFill = true;
@@ -1221,36 +1238,25 @@
             this.tableAdapterManager.clientesTableAdapter = this.clientesTableAdapter;
             this.tableAdapterManager.UpdateOrder = Prestamos.PrestamistaDataSetTableAdapters.TableAdapterManager.UpdateOrderOption.InsertUpdateDelete;
             // 
-            // prestamistaDataSetBindingSource
+            // rctelefono
             // 
-            this.prestamistaDataSetBindingSource.DataSource = this.prestamistaDataSet;
-            this.prestamistaDataSetBindingSource.Position = 0;
+            this.rctelefono.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.rctelefono.Location = new System.Drawing.Point(473, 134);
+            this.rctelefono.Mask = "000-000-0000";
+            this.rctelefono.Name = "rctelefono";
+            this.rctelefono.Size = new System.Drawing.Size(134, 26);
+            this.rctelefono.TabIndex = 22;
+            this.rctelefono.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
-            // idIntervaloPagoDataGridViewTextBoxColumn
+            // rccedula
             // 
-            this.idIntervaloPagoDataGridViewTextBoxColumn.DataPropertyName = "idIntervaloPago";
-            this.idIntervaloPagoDataGridViewTextBoxColumn.HeaderText = "Id";
-            this.idIntervaloPagoDataGridViewTextBoxColumn.Name = "idIntervaloPagoDataGridViewTextBoxColumn";
-            this.idIntervaloPagoDataGridViewTextBoxColumn.ReadOnly = true;
-            this.idIntervaloPagoDataGridViewTextBoxColumn.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.idIntervaloPagoDataGridViewTextBoxColumn.Width = 50;
-            // 
-            // nombreDataGridViewTextBoxColumn2
-            // 
-            this.nombreDataGridViewTextBoxColumn2.DataPropertyName = "nombre";
-            this.nombreDataGridViewTextBoxColumn2.HeaderText = "Nombre";
-            this.nombreDataGridViewTextBoxColumn2.Name = "nombreDataGridViewTextBoxColumn2";
-            this.nombreDataGridViewTextBoxColumn2.ReadOnly = true;
-            this.nombreDataGridViewTextBoxColumn2.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.nombreDataGridViewTextBoxColumn2.Width = 250;
-            // 
-            // cedulaDataGridViewTextBoxColumn2
-            // 
-            this.cedulaDataGridViewTextBoxColumn2.DataPropertyName = "cedula";
-            this.cedulaDataGridViewTextBoxColumn2.HeaderText = "Cédula";
-            this.cedulaDataGridViewTextBoxColumn2.Name = "cedulaDataGridViewTextBoxColumn2";
-            this.cedulaDataGridViewTextBoxColumn2.ReadOnly = true;
-            this.cedulaDataGridViewTextBoxColumn2.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.rccedula.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.rccedula.Location = new System.Drawing.Point(473, 62);
+            this.rccedula.Mask = "000-0000000-0";
+            this.rccedula.Name = "rccedula";
+            this.rccedula.Size = new System.Drawing.Size(134, 26);
+            this.rccedula.TabIndex = 23;
+            this.rccedula.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // programaPrincipal
             // 
@@ -1258,12 +1264,12 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ActiveCaption;
             this.ClientSize = new System.Drawing.Size(753, 592);
+            this.Controls.Add(this.dropregistrarClientes);
             this.Controls.Add(this.groupabono);
             this.Controls.Add(this.groupactualizarcliente);
             this.Controls.Add(this.menuStrip1);
-            this.Controls.Add(this.dropeliminarcliente);
-            this.Controls.Add(this.dropregistrarClientes);
             this.Controls.Add(this.groupnuevafactura);
+            this.Controls.Add(this.dropeliminarcliente);
             this.MainMenuStrip = this.menuStrip1;
             this.MaximizeBox = false;
             this.Name = "programaPrincipal";
@@ -1284,15 +1290,15 @@
             this.groupabono.ResumeLayout(false);
             this.groupabono.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridabono)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataTable1BindingSource)).EndInit();
             this.groupactualizarcliente.ResumeLayout(false);
             this.groupactualizarcliente.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.acDataGridView)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.clientesBindingSource2)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.prestamistaDataSet1BindingSource)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dataTable1BindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.clientesBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.prestamistaDataSet)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.clientesBindingSource2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.prestamistaDataSetBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.prestamistaDataSet1BindingSource)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -1309,17 +1315,11 @@
         private System.Windows.Forms.ToolStripMenuItem nuevaToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem pagosToolStripMenuItem;
         private System.Windows.Forms.GroupBox dropregistrarClientes;
-        private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Button button2;
-        private System.Windows.Forms.TextBox tcedula;
-        private System.Windows.Forms.TextBox tdireccion;
-        private System.Windows.Forms.TextBox ttelefono;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.TextBox tnombre;
         private System.Windows.Forms.GroupBox dropeliminarcliente;
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.DataGridView dataGridEliminarCliente;
@@ -1410,5 +1410,11 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn idIntervaloPagoDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn nombreDataGridViewTextBoxColumn2;
         private System.Windows.Forms.DataGridViewTextBoxColumn cedulaDataGridViewTextBoxColumn2;
+        public System.Windows.Forms.Button rcaceptar;
+        public System.Windows.Forms.Button rccancelar;
+        public System.Windows.Forms.TextBox rcdirecion;
+        public System.Windows.Forms.TextBox rcnombre;
+        public System.Windows.Forms.MaskedTextBox rctelefono;
+        public System.Windows.Forms.MaskedTextBox rccedula;
     }
 }

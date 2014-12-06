@@ -90,7 +90,7 @@ namespace Prestamos
             groupabono.Visible = false;
             groupnuevafactura.Visible = false;
 
-            this.ClientSize = new System.Drawing.Size(751, dropregistrarClientes.Height + 20);
+            this.ClientSize = new System.Drawing.Size(636, dropregistrarClientes.Height + 20);
         }
 
         private void eliminarClienteToolStripMenuItem_Click(object sender, EventArgs e)
@@ -117,8 +117,12 @@ namespace Prestamos
 
 
             this.clientesTableAdapter.Fill(this.prestamistaDataSet.clientes);
-            acDataGridView.ClearSelection();
-            acDataGridView.Rows[0].Cells[0].Selected = false;
+            if (acDataGridView.Rows.Count > 0)
+            {
+                acDataGridView.ClearSelection();
+                acDataGridView.Rows[0].Cells[0].Selected = false;
+            }
+            
 
             this.adb.limpiarActualizarCliente();
         }
@@ -675,8 +679,85 @@ namespace Prestamos
             }
         }
 
+        private void rccedula_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if ((e.KeyChar >= 48 && e.KeyChar <= 57) || e.KeyChar == 13 || e.KeyChar == 8 || e.KeyChar.ToString() == "-")
+            {
+                e.Handled = false;
+            }
+            else
+            {
+                MessageBox.Show(e.KeyChar.ToString());
+                e.Handled = true;
+            }
+        }
 
+        private void rctelefono_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if ((e.KeyChar >= 48 && e.KeyChar <= 57) || e.KeyChar == 13 || e.KeyChar == 8 || e.KeyChar.ToString() == "-")
+            {
+                e.Handled = false;
+            }
+            else
+            {
+                MessageBox.Show(e.KeyChar.ToString());
+                e.Handled = true;
+            }
+        }
 
+        private void rcaceptar_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show(rctelefono.Text);
+            if (rcnombre.Text.Trim().Length > 2)
+            {
+                if (rcdirecion.Text.Trim().Length > 10)
+                {
+                    if (rccedula.Text.Trim().Length == 13)
+                    {
+                        if (rctelefono.Text.Trim().Length == 12)
+                        {
+                            Conexion conn = new Conexion();
+
+                            if (conn.insertar("clientes(nombre,cedula,direccion,telefono)", "('" + rcnombre.Text.Trim() + "','" + rccedula.Text.Trim() + "','" + rcdirecion.Text.Trim() + "','" + rctelefono.Text.Trim() + "')", "") == true)
+                            {
+                                MessageBox.Show("Cliente guardado");
+                                this.adb.limpiarNuevoCliente();
+                            }
+                            else
+                            {
+                                MessageBox.Show(Conexion.mensaje);
+                            }
+                        }
+                        else
+                        {
+                            MessageBox.Show("Tamaño de teléfono incorrecto");
+                            rctelefono.Focus();
+                        }
+                    }
+                    else
+                    {
+                        MessageBox.Show("Tamaño de cédula incorrecto");
+                        rccedula.Focus();                 
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("Dirección muy corta");
+                    rcdirecion.Focus();
+                }
+            }
+            else
+            {
+                MessageBox.Show("Nombre muy corto");
+                rcnombre.Focus();
+            }
+        }
+
+        private void rccancelar_Click(object sender, EventArgs e)
+        {
+            dropregistrarClientes.Visible = false;
+            this.adb.limpiarNuevoCliente();
+        }
 
     }
 }
