@@ -67,6 +67,67 @@ SELECT idCliente, nombre, cedula, direccion, telefono FROM clientes WHERE (idCli
               <Mapping SourceColumn="direccion" DataSetColumn="direccion" />
               <Mapping SourceColumn="telefono" DataSetColumn="telefono" />
             </Mappings>
+            <Sources>
+              <DbSource ConnectionRef="PrestamistaConnectionString (Settings)" DbObjectType="Unknown" FillMethodModifier="Public" FillMethodName="abono" GenerateMethods="Both" GenerateShortCommands="true" GeneratorGetMethodName="Getabono" GeneratorSourceName="abono" GetMethodModifier="Public" GetMethodName="Getabono" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="Getabono" UserSourceName="abono">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="true">
+                    <CommandText>SELECT        intervalos.idIntervaloPago, clientes.nombre, clientes.cedula
+FROM            clientes INNER JOIN
+                         intervalos ON intervalos.idCliente = clientes.idCliente
+WHERE        EXISTS
+                             (SELECT        prestamos.fechaInicial, prestamos.fechaFinal
+                               FROM            prestamos INNER JOIN
+                                                         facturacion ON prestamos.idPrestamo = facturacion.idPrestamo)</CommandText>
+                    <Parameters />
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </Sources>
+          </TableAdapter>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="DataTable1TableAdapter" GeneratorDataComponentClassName="DataTable1TableAdapter" Name="DataTable1" UserDataComponentName="DataTable1TableAdapter">
+            <MainSource>
+              <DbSource ConnectionRef="PrestamistaConnectionString (Settings)" DbObjectType="Unknown" FillMethodModifier="Public" FillMethodName="ab" GenerateMethods="Both" GenerateShortCommands="false" GeneratorGetMethodName="GetAb" GeneratorSourceName="ab" GetMethodModifier="Public" GetMethodName="GetAb" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetAb" UserSourceName="ab">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="true">
+                    <CommandText>SELECT idIntervaloPago, nombre, cedula
+FROM dbo.clientes inner join dbo.intervalos
+on intervalos.idCliente=clientes.idCliente 
+where  exists (select fechaInicial, fechaFinal from prestamos, facturacion where facturacion.idPrestamo=prestamos.idPrestamo)
+</CommandText>
+                    <Parameters />
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings>
+              <Mapping SourceColumn="idIntervaloPago" DataSetColumn="idIntervaloPago" />
+              <Mapping SourceColumn="nombre" DataSetColumn="nombre" />
+              <Mapping SourceColumn="cedula" DataSetColumn="cedula" />
+            </Mappings>
+            <Sources />
+          </TableAdapter>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="DataTable2TableAdapter" GeneratorDataComponentClassName="DataTable2TableAdapter" Name="DataTable2" UserDataComponentName="DataTable2TableAdapter">
+            <MainSource>
+              <DbSource ConnectionRef="PrestamistaConnectionString (Settings)" DbObjectType="Unknown" FillMethodModifier="Public" FillMethodName="DatosAbono" GenerateMethods="Both" GenerateShortCommands="false" GeneratorGetMethodName="GetDatosAbono" GeneratorSourceName="DatosAbono" GetMethodModifier="Public" GetMethodName="GetDatosAbono" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDatosAbono" UserSourceName="DatosAbono">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="true">
+                    <CommandText>SELECT        intervalos.idIntervaloPago, clientes.nombre, clientes.cedula
+FROM            clientes INNER JOIN
+                         intervalos ON intervalos.idCliente = clientes.idCliente
+WHERE        EXISTS
+                             (SELECT        prestamos.fechaInicial, prestamos.fechaFinal
+                               FROM            prestamos INNER JOIN
+                                                         facturacion ON prestamos.idPrestamo = facturacion.idPrestamo)</CommandText>
+                    <Parameters />
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings>
+              <Mapping SourceColumn="idIntervaloPago" DataSetColumn="idIntervaloPago" />
+              <Mapping SourceColumn="nombre" DataSetColumn="nombre" />
+              <Mapping SourceColumn="cedula" DataSetColumn="cedula" />
+            </Mappings>
             <Sources />
           </TableAdapter>
         </Tables>
@@ -112,11 +173,61 @@ SELECT idCliente, nombre, cedula, direccion, telefono FROM clientes WHERE (idCli
             </xs:sequence>
           </xs:complexType>
         </xs:element>
+        <xs:element name="DataTable1" msprop:Generator_TableClassName="DataTable1DataTable" msprop:Generator_TableVarName="tableDataTable1" msprop:Generator_TablePropName="DataTable1" msprop:Generator_RowDeletingName="DataTable1RowDeleting" msprop:Generator_RowChangingName="DataTable1RowChanging" msprop:Generator_RowEvHandlerName="DataTable1RowChangeEventHandler" msprop:Generator_RowDeletedName="DataTable1RowDeleted" msprop:Generator_UserTableName="DataTable1" msprop:Generator_RowChangedName="DataTable1RowChanged" msprop:Generator_RowEvArgName="DataTable1RowChangeEvent" msprop:Generator_RowClassName="DataTable1Row">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="idIntervaloPago" msdata:ReadOnly="true" msdata:AutoIncrement="true" msdata:AutoIncrementSeed="-1" msdata:AutoIncrementStep="-1" msprop:Generator_ColumnVarNameInTable="columnidIntervaloPago" msprop:Generator_ColumnPropNameInRow="idIntervaloPago" msprop:Generator_ColumnPropNameInTable="idIntervaloPagoColumn" msprop:Generator_UserColumnName="idIntervaloPago" type="xs:int" />
+              <xs:element name="nombre" msprop:Generator_ColumnVarNameInTable="columnnombre" msprop:Generator_ColumnPropNameInRow="nombre" msprop:Generator_ColumnPropNameInTable="nombreColumn" msprop:Generator_UserColumnName="nombre">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="30" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="cedula" msprop:Generator_ColumnVarNameInTable="columncedula" msprop:Generator_ColumnPropNameInRow="cedula" msprop:Generator_ColumnPropNameInTable="cedulaColumn" msprop:Generator_UserColumnName="cedula">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="11" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="DataTable2" msprop:Generator_TableClassName="DataTable2DataTable" msprop:Generator_TableVarName="tableDataTable2" msprop:Generator_TablePropName="DataTable2" msprop:Generator_RowDeletingName="DataTable2RowDeleting" msprop:Generator_RowChangingName="DataTable2RowChanging" msprop:Generator_RowEvHandlerName="DataTable2RowChangeEventHandler" msprop:Generator_RowDeletedName="DataTable2RowDeleted" msprop:Generator_UserTableName="DataTable2" msprop:Generator_RowChangedName="DataTable2RowChanged" msprop:Generator_RowEvArgName="DataTable2RowChangeEvent" msprop:Generator_RowClassName="DataTable2Row">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="idIntervaloPago" msdata:ReadOnly="true" msdata:AutoIncrement="true" msdata:AutoIncrementSeed="-1" msdata:AutoIncrementStep="-1" msprop:Generator_ColumnVarNameInTable="columnidIntervaloPago" msprop:Generator_ColumnPropNameInRow="idIntervaloPago" msprop:Generator_ColumnPropNameInTable="idIntervaloPagoColumn" msprop:Generator_UserColumnName="idIntervaloPago" type="xs:int" />
+              <xs:element name="nombre" msprop:Generator_ColumnVarNameInTable="columnnombre" msprop:Generator_ColumnPropNameInRow="nombre" msprop:Generator_ColumnPropNameInTable="nombreColumn" msprop:Generator_UserColumnName="nombre">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="30" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="cedula" msprop:Generator_ColumnVarNameInTable="columncedula" msprop:Generator_ColumnPropNameInRow="cedula" msprop:Generator_ColumnPropNameInTable="cedulaColumn" msprop:Generator_UserColumnName="cedula">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="11" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
       </xs:choice>
     </xs:complexType>
     <xs:unique name="Constraint1" msdata:PrimaryKey="true">
       <xs:selector xpath=".//mstns:clientes" />
       <xs:field xpath="mstns:idCliente" />
+    </xs:unique>
+    <xs:unique name="DataTable1_Constraint1" msdata:ConstraintName="Constraint1" msdata:PrimaryKey="true">
+      <xs:selector xpath=".//mstns:DataTable1" />
+      <xs:field xpath="mstns:idIntervaloPago" />
+    </xs:unique>
+    <xs:unique name="DataTable2_Constraint1" msdata:ConstraintName="Constraint1" msdata:PrimaryKey="true">
+      <xs:selector xpath=".//mstns:DataTable2" />
+      <xs:field xpath="mstns:idIntervaloPago" />
     </xs:unique>
   </xs:element>
 </xs:schema>

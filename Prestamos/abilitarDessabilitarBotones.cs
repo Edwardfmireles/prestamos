@@ -21,6 +21,7 @@ namespace Prestamos
         public void deshabilitarLimpiarnuevaFactura() 
         {
           // NUEVA FACTURA
+            this.f.nfperiodopago.SelectedIndex = -1;
 
             this.f.nfnombre.Enabled = false;
             this.f.nfcedula.Enabled = false;

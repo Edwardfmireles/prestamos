@@ -847,8 +847,8 @@ namespace Prestamos.PrestamistaDataSetTableAdapters {
             this._adapter.InsertCommand = new global::System.Data.SqlClient.SqlCommand();
             this._adapter.InsertCommand.Connection = this.Connection;
             this._adapter.InsertCommand.CommandText = "INSERT INTO [dbo].[clientes] ([nombre], [cedula], [direccion], [telefono]) VALUES" +
-                " (@nombre, @cedula, @direccion, @telefono);\r\nSELECT idCliente, nombre, cedula, d" +
-                "ireccion, telefono FROM clientes WHERE (idCliente = SCOPE_IDENTITY())";
+                " (@nombre, @cedula, @direccion, @telefono);\nSELECT idCliente, nombre, cedula, di" +
+                "reccion, telefono FROM clientes WHERE (idCliente = SCOPE_IDENTITY())";
             this._adapter.InsertCommand.CommandType = global::System.Data.CommandType.Text;
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@nombre", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "nombre", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@cedula", global::System.Data.SqlDbType.Char, 0, global::System.Data.ParameterDirection.Input, 0, 0, "cedula", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));

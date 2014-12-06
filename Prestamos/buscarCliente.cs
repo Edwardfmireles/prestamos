@@ -44,7 +44,7 @@ namespace Prestamos
         private void bcDataGridView_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
             //MessageBox.Show(bcDataGridView.Rows[e.RowIndex].Cells[1].Value.ToString());
-
+            this.f.clienteId = Convert.ToInt16(bcDataGridView.Rows[bcDataGridView.CurrentRow.Index].Cells[0].Value.ToString());
             this.f.nfnombre.Text = bcDataGridView.Rows[e.RowIndex].Cells[1].Value.ToString();
             this.f.nfcedula.Text = bcDataGridView.Rows[e.RowIndex].Cells[2].Value.ToString();
 
@@ -59,6 +59,7 @@ namespace Prestamos
 
         private void eccancelar_Click(object sender, EventArgs e)
         {
+            this.f.clienteId = Convert.ToInt16(bcDataGridView.Rows[bcDataGridView.CurrentRow.Index].Cells[0].Value.ToString());
             this.f.nfnombre.Text = bcDataGridView.Rows[bcDataGridView.CurrentRow.Index].Cells[1].Value.ToString();
             this.f.nfcedula.Text = bcDataGridView.Rows[bcDataGridView.CurrentRow.Index].Cells[2].Value.ToString();
             this.Dispose();

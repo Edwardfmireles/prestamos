@@ -41,7 +41,7 @@ namespace Prestamos
             
         }
 
-        public int consulta(string select, string from, string where)
+        public int obtenerUltimoId(string select, string from, string where)
         {
 
             if (select != String.Empty && select.Length > 4 && from != String.Empty && from.Length > 4)
@@ -102,7 +102,7 @@ namespace Prestamos
 
             }
 
-
+            Conexion.mensaje = this.query;
                 
                 try
                 {

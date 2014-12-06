@@ -1,3 +1,11 @@
+use master
+
+go 
+
+drop database Prestamista
+
+go
+
 create database Prestamista
 
 go
@@ -11,10 +19,10 @@ idPrestamo int identity primary key,
 monto int not null,
 interes int not null,
 cuotas int not null,
-periodoPago int not null,
+periodoPago varchar(10) not null,
 moraPrestamo int not null,
 fechaInicial date not null,
-fechaFinal date not null
+fechaFinal varchar(20) not null
 )
 
 
@@ -27,7 +35,6 @@ cedula char(11) not null,
 direccion varchar(50) not null,
 telefono char(10) not null
 )
-
 go
 
 create table facturacion(
@@ -52,7 +59,8 @@ go
 create table intervalos(
 idIntervaloPago int identity primary key,
 idCliente int not null,
-intervaloFecha date not null,
+--idFactura int not null,
+intervaloFecha varchar(20) not null,
 intervaloPago int not null,
 estado varchar(10) default 'NO PAGO'
 
@@ -66,10 +74,11 @@ insert into clientes(nombre,cedula,direccion,telefono) values('cliente','cedula'
 insert into clientes(nombre,cedula,direccion,telefono) values('cliente 2','cedula','direc','tel')
 insert into clientes(nombre,cedula,direccion,telefono) values('cliente 3','cedula','direc','tel')
 insert into clientes(nombre,cedula,direccion,telefono) values('cliente 4','cedula','direc','tel')
-insert into prestamos (monto,interes,cuotas,periodoPago,moraPrestamo,fechaInicial,fechaFinal) values (1000,100,250,15,15,SYSDATETIME(),SYSDATETIME())
+insert into clientes(nombre,cedula,direccion,telefono) values('edward','22222222','direc','tel')
+insert into prestamos (monto,interes,cuotas,periodoPago,moraPrestamo,fechaInicial,fechaFinal) values (1000,100,250,15,15,'',SYSDATETIME())
 insert into prestamos (monto,interes,cuotas,periodoPago,moraPrestamo,fechaInicial,fechaFinal) values (2000,200,33,15,15,SYSDATETIME(),SYSDATETIME())
 insert into facturacion(idCliente, idPrestamo) values(1,1)
-insert into intervalos (idCliente,intervaloFecha,intervaloPago) values(1,SYSDATETIME(),41588)
+insert into intervalos (idCliente,idFactura,intervaloFecha,intervaloPago) values(4,1,CONVERT(datetime,'05/12/2014'),41588)
 
 
 
@@ -78,6 +87,7 @@ select clientes.nombre,clientes.cedula,intervalos.intervaloFecha,intervalos.inte
 from clientes inner join intervalos
 on intervalos.idCliente = 3 and clientes.idCliente = 3
 
+delete from intervalos where intervalos.idCliente=1
 
 --------------------------------------------
 
@@ -87,9 +97,9 @@ select * from clientes
 select * from intervalos
 
 --------------------------------------------
+select idPrestamo from prestamos where fechaFinal>Convert(datetime,'1990-01-01')
 
-
-
+update clientes set nombre='asdf' where clientes.idCliente = 1
 
 --  DataGridView  INTÉRVALOS
 
@@ -101,5 +111,16 @@ select * from intervalos
 
 
 
+select * from intervalos
 
+SELECT idIntervaloPago, nombre, cedula
+FROM dbo.clientes inner join dbo.intervalos
+on intervalos.idCliente=clientes.idCliente 
+where  exists (select fechaInicial, fechaFinal from prestamos, facturacion where facturacion.idPrestamo=prestamos.idPrestamo)
 
+SELECT idIntervaloPago, nombre, cedula 
+FROM dbo.clientes right join dbo.intervalos 
+on clientes.idCliente=intervalos.idCliente 
+WHERE exists (select fechaInicial, FechaFinal from prestamos, facturacion where prestamos.idPrestamo=facturacion.idPrestamo)
+
+SELECT idIntervaloPago, nombre, cedula FROM dbo.clientes right join dbo.intervalos on clientes.idCliente=intervalos.idCliente WHERE exists (select fechaInicial, FechaFinal from prestamos, facturacion where prestamos.idPrestamo=facturacion.idPrestamo)

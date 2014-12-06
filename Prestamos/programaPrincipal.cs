@@ -20,31 +20,61 @@ namespace Prestamos
         private int meses;
         private List<DateTime> fechas = new List<DateTime>();
         private DateTime[] fechasArray;
-        private short cuotas;
-        private DateTime dFechaInicial = DateTime.Today;
-        private DateTime dFechaFinal;
+        private int cuotas;
+        private DateTime dFechaInicial = DateTime.Now;
+        private int facturaNumero = 0;
+        private string periodoPago;
+        public int clienteId;
 
         public programaPrincipal()
         {
             InitializeComponent();
             adb = new abilitarDessabilitarBotones(this);
-            
-            nffecha.Text = Convert.ToString(dFechaInicial.Day + "/" + dFechaInicial.Month + "/" + dFechaInicial.Year);
-            nffechainicial.Text = nffecha.Text;
-
+            generarNuevaFactura();
         }
 
         private void programaPrincipal_Load(object sender, EventArgs e)
         {
             // TODO: esta línea de código carga datos en la tabla 'prestamistaDataSet1.clientes' Puede moverla o quitarla según sea necesario.
             this.clientesTableAdapter1.Fill(this.prestamistaDataSet1.clientes);
-            // TODO: esta línea de código carga datos en la tabla 'prestamistaDataSet.clientes' Puede moverla o quitarla según sea necesario.
-
+            //this.clientesTableAdapter1.abono(this.pres);
             dropregistrarClientes.Visible = false;
             dropeliminarcliente.Visible = false;
             groupactualizarcliente.Visible = false;
             groupabono.Visible = false;
             groupnuevafactura.Visible = false;
+        }
+
+        private void generarNuevaFactura()
+        {
+
+            nffecha.Text = Convert.ToString(dFechaInicial.Day + "/" + dFechaInicial.Month + "/" + dFechaInicial.Year);
+            nffechainicial.Text = nffecha.Text;
+
+            Conexion conn = new Conexion();
+
+            this.facturaNumero = (conn.obtenerUltimoId("prestamos.idPrestamo", "prestamos", "") + 1);
+
+            if (this.facturaNumero < 9)
+            {
+                this.nfnumerofactura.Text = "00000" + this.facturaNumero.ToString();
+            }
+            else if (this.facturaNumero < 100)
+            {
+                this.nfnumerofactura.Text = "0000" + this.facturaNumero.ToString();
+            }
+            else if (this.facturaNumero < 9999)
+            {
+                this.nfnumerofactura.Text = "000" + this.facturaNumero.ToString();
+            }
+            else if (this.facturaNumero < 99999)
+            {
+                this.nfnumerofactura.Text = "0" + this.facturaNumero.ToString();
+            }
+            else
+            {
+                this.nfnumerofactura.Text = this.facturaNumero.ToString();
+            }
         }
 
         private void textBox1_TextChanged(object sender, EventArgs e)
@@ -73,15 +103,6 @@ namespace Prestamos
 
             this.ClientSize = new System.Drawing.Size(751, dropeliminarcliente.Height + 20);
 
-
-            try
-            {
-                this.clientesTableAdapter1.EliminarCliente(this.prestamistaDataSet1.clientes);
-            }
-            catch (System.Exception ex)
-            {
-                System.Windows.Forms.MessageBox.Show(ex.Message);
-            }
         }
 
         private void actualizarToolStripMenuItem_Click(object sender, EventArgs e)
@@ -98,7 +119,7 @@ namespace Prestamos
             this.clientesTableAdapter.Fill(this.prestamistaDataSet.clientes);
             acDataGridView.ClearSelection();
             acDataGridView.Rows[0].Cells[0].Selected = false;
-            
+
             this.adb.limpiarActualizarCliente();
         }
 
@@ -112,7 +133,7 @@ namespace Prestamos
             this.nfbuscarcliente.Focus();
             this.ClientSize = new System.Drawing.Size(751, groupnuevafactura.Height + 20);
 
-            
+
         }
 
         private void pagosToolStripMenuItem_Click(object sender, EventArgs e)
@@ -123,7 +144,9 @@ namespace Prestamos
             groupabono.Visible = true;
             groupnuevafactura.Visible = false;
 
-            this.ClientSize = new System.Drawing.Size(751, groupabono.Height + 20);
+            this.ClientSize = new System.Drawing.Size(454, groupabono.Height + 20);
+
+
         }
 
         private void label19_Click(object sender, EventArgs e)
@@ -146,7 +169,6 @@ namespace Prestamos
                 nfmeses.Enabled = true;
                 nfinteres.Enabled = true;
                 nfmora.Enabled = true;
-                nffacturar.Enabled = true;
                 nfCalcularMonto.Enabled = true;
             }
         }
@@ -154,14 +176,13 @@ namespace Prestamos
         private void nfmonto_TextChanged(object sender, EventArgs e)
         {
             TextBox sen = (TextBox)sender;
-            int parse;
 
 
-            if (!int.TryParse(sen.Text.ToString().Trim(), out this.meses) && this.meses < 1 )
+            if (!int.TryParse(sen.Text.ToString().Trim(), out this.meses) && this.meses < 1)
             {
                 sen.Text = "";
                 nfcuotas.Text = "";
-                
+
             }
 
 
@@ -172,24 +193,27 @@ namespace Prestamos
 
         private void nfperiodopago_SelectedIndexChanged(object sender, EventArgs e)
         {
-            switch (nfperiodopago.SelectedIndex) 
+            switch (nfperiodopago.SelectedIndex)
             {
                 case 0:
                     this.quinsenalMensualAnual = 15; // 15 días
                     nfcambiomeses.Text = "Quinsenas";
                     nfmeses.Text = "";
+                    this.periodoPago = "QUINCENAL";
                     nfmeses.Focus();
                     break;
                 case 1:
                     this.quinsenalMensualAnual = 30; // 30 días
                     nfcambiomeses.Text = "Meses";
                     nfmeses.Text = "";
+                    this.periodoPago = "MENSUAL";
                     nfmeses.Focus();
                     break;
                 case 2:
                     this.quinsenalMensualAnual = 365; // 365 días
                     nfcambiomeses.Text = "Año(s)";
                     nfmeses.Text = "";
+                    this.periodoPago = "ANUAL";
                     nfmeses.Focus();
                     break;
             }
@@ -220,10 +244,10 @@ namespace Prestamos
         {
             TextBox sen = (TextBox)sender;
 
-            if (!int.TryParse(sen.Text.ToString().Trim(), out this.meses) && this.meses < 1 || this.meses > 50 || this.meses == 0) 
+            if (!int.TryParse(sen.Text.ToString().Trim(), out this.meses) && this.meses < 1 || this.meses > 50 || this.meses == 0)
             {
                 sen.Text = "";
-                
+
             }
 
 
@@ -252,22 +276,74 @@ namespace Prestamos
             {
                 nfCalcularMonto.Visible = false;
                 genearCuotasYTotal();
+                nffacturar.Enabled = true;
             }
         }
 
 
         private void nffacturar_Click(object sender, EventArgs e)
         {
-            //////////////////////////////////////////////////////////////////////////////////////////////////////////
+            if (validarCamposVacios() == true)
+            {
+
+                Conexion conn = new Conexion();
+                string cadena = "intervalos(idCliente,intervaloFecha,intervaloPago)" +
+                                    "( CONVERT(int," + clienteId + "), CONVERT(DATETIME," + this.fechasArray[fechas.Count - 1].ToString("yyyy-MM-dd") + "), CONVERT(int," + this.cuotas + ") )";
+
+               // MessageBox.Show(cadena);
+                if (conn.insertar("prestamos(monto,interes,cuotas,periodoPago,moraPrestamo,fechaInicial,fechaFinal)",
+                                            "( CONVERT(int," + nfmonto.Text.Trim() +
+                                            "), CONVERT(int," + nfinteres.Text.Trim() + "), " +
+                                            "CONVERT(int," + this.cuotas + "), '" +
+                                            this.periodoPago +
+                                            "', CONVERT(int," + nfmora.Text.Trim() + "), SYSDATETIME()," +
+                                            this.fechasArray[fechas.Count - 1].ToString("yyyy-MM-dd") + " )", "") == true)
+                {
+
+
+                    if (conn.insertar("facturacion (idCliente, idPrestamo)",
+                                   "(CONVERT(int," + clienteId + "), CONVERT(int," + facturaNumero + "))", ""))
+                    {
+                        for (int i = 0; i < fechas.Count; i++)
+                        {
+                            if (conn.insertar("intervalos(idCliente,intervaloFecha,intervaloPago)",
+                                    "( CONVERT(int," + clienteId + "), '" + fechasArray[i].ToString("yyyy-MM-dd") + "', CONVERT(int," + this.cuotas + ") )", "") == false)
+                            {
+                                MessageBox.Show("No se agrego el intervalo " + i + " fecha " + fechas[i].ToString("yyyy-MM-dd"));
+                            }
+                            else
+                            {
+                                MessageBox.Show(Conexion.mensaje);
+                            }
+                        }
+
+
+                    }
+                    else
+                    {
+                        MessageBox.Show("No se hizo la Factura");
+                    }
+                }
+                else
+                {
+                    MessageBox.Show(Conexion.mensaje);
+                }
+
+
+                MessageBox.Show("Factura Realizada");
+                this.adb.deshabilitarLimpiarnuevaFactura();
+                generarNuevaFactura();
+
+            }
         }
 
         private void nfcancelar_Click(object sender, EventArgs e)
         {
-            groupnuevafactura.Visible = false; 
+            groupnuevafactura.Visible = false;
             adb.deshabilitarLimpiarnuevaFactura();
             nfperiodopago.SelectedIndex = -1;
 
-            this.ClientSize = new System.Drawing.Size(751,261);
+            this.ClientSize = new System.Drawing.Size(751, 261);
         }
 
         private bool validarCamposVacios()
@@ -337,7 +413,7 @@ namespace Prestamos
                 {
                     fechas.Add(DateTime.Today.AddDays(i * 15));
                 }
-               
+
 
                 foreach (var item in fechas)
                 {
@@ -402,11 +478,11 @@ namespace Prestamos
             float monto = float.Parse(nfmonto.Text);
             float interes = (float.Parse(nfinteres.Text) / 100) * monto;
             float montoT = monto + interes;
-            float cuotas = montoT / float.Parse(nfmeses.Text);
+            float cuota = montoT / float.Parse(nfmeses.Text);
 
-            
+            this.cuotas = Convert.ToInt16(Math.Floor(cuota));
 
-            nfcuotas.Text = Convert.ToString((Math.Floor(cuotas))) + ".00";
+            nfcuotas.Text = Convert.ToString((Math.Floor(cuota))) + ".00";
 
             nfMontoTotal.Text = Convert.ToString((Math.Floor(montoT))) + ".00";
 
@@ -419,7 +495,7 @@ namespace Prestamos
 
         private void dataGridEliminarCliente_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
-            
+
             string nombre = dataGridEliminarCliente.Rows[e.RowIndex].Cells[1].Value.ToString();
             int idCliente = Convert.ToInt16(dataGridEliminarCliente.Rows[e.RowIndex].Cells[0].Value.ToString());
 
@@ -480,7 +556,7 @@ namespace Prestamos
 
         private void acbuscarcliente_TextChanged(object sender, EventArgs e)
         {
-            seleccionarLineaDataGridView(sender,acDataGridView);
+            seleccionarLineaDataGridView(sender, acDataGridView);
         }
 
         private void aceditar_Click(object sender, EventArgs e)
@@ -514,19 +590,19 @@ namespace Prestamos
 
         private void llenarCamposActualizarCliente()
         {
-            if(acDataGridView.Rows.Count > 0)
+            if (acDataGridView.Rows.Count > 0)
             {
                 this.acnombre.Text = acDataGridView.Rows[acDataGridView.CurrentRow.Index].Cells[1].Value.ToString();
                 this.accedula.Text = acDataGridView.Rows[acDataGridView.CurrentRow.Index].Cells[2].Value.ToString();
                 this.acdireccion.Text = acDataGridView.Rows[acDataGridView.CurrentRow.Index].Cells[3].Value.ToString();
                 this.actelefono.Text = acDataGridView.Rows[acDataGridView.CurrentRow.Index].Cells[4].Value.ToString();
             }
-            
+
         }
 
         private void acactualizar_Click(object sender, EventArgs e)
         {
-            
+
             bool dir = false;
             bool tel = false;
 
@@ -548,7 +624,7 @@ namespace Prestamos
 
                     tel = con.actualizar("clientes", "telefono", actelefono.Text.Trim(), "clientes.idCliente=CONVERT(int," + acDataGridView.Rows[acDataGridView.CurrentRow.Index].Cells[0].Value.ToString() + ")");
                 }
-                
+
 
             }
             catch (SqlException)
@@ -563,10 +639,10 @@ namespace Prestamos
                 MessageBox.Show("Datos Actualizados");
                 acDataGridView.ClearSelection();
                 this.clientesTableAdapter.Fill(this.prestamistaDataSet.clientes);
-                                
+
 
                 adb.limpiarActualizarCliente();
-                
+
             }
 
         }
@@ -591,38 +667,16 @@ namespace Prestamos
             this.ClientSize = new System.Drawing.Size(751, 261);
         }
 
+        private void nfCalcularMonto_VisibleChanged(object sender, EventArgs e)
+        {
+            if (nfCalcularMonto.Visible == true)
+            {
+                nffacturar.Enabled = false;
+            }
+        }
 
 
 
-
-
-
-
-
-        //private void actualizarInsertar()
-        //{
-
-        //    Conexion.insertar("prestamos (monto,interes,cuotas,periodoPago,moraPrestamo,fechaInicial,fechaFinal)",
-        //                                "(CONVERT(int," + nfmonto.Text + "), CONVERT(int," + nfinteres.Text + "), " +
-        //                                "CONVERT(int," + nfcuotas.Text + "), " + nfcuotas.Text + ", " + nffechainicial + ", " + fechaFinal + ")", "");
-
-        //    Conexion.insertar("intervalos (idCliente,intervaloFecha,intervaloPago)",
-        //                    "(CONVERT(int," + idCliente + "), " + fechas + "), CONVERT(int," + nfcuotas.Text + "))", "");
-
-
-        //    Conexion.insertar("facturacion (idCliente, idPrestamo)",
-        //                    "(CONVERT(int," + idCliente + "), " + idPrestamo + "))", "");
-
-
-        //    Conexion.actualizar("intervalos", "estado", "PAGADO", "intervalos.idIntervaloPago=CONVERT(int," + idIntervaloPago + ") and intervalos.intervaloFecha=" + fechaPagada + ")");
-
-        //    // idCliente,intervaloFecha,intervaloPago,estado
-
-
-        //    //
-
-        //}
-    
 
     }
 }
