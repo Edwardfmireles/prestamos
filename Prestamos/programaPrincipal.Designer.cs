@@ -55,11 +55,6 @@
             this.ecbuscarcliente = new System.Windows.Forms.TextBox();
             this.label26 = new System.Windows.Forms.Label();
             this.dataGridEliminarCliente = new System.Windows.Forms.DataGridView();
-            this.idClienteDataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.nombreDataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.cedulaDataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clientesBindingSource1 = new System.Windows.Forms.BindingSource(this.components);
-            this.prestamistaDataSet1 = new Prestamos.PrestamistaDataSet1();
             this.label10 = new System.Windows.Forms.Label();
             this.groupnuevafactura = new System.Windows.Forms.GroupBox();
             this.nfcuotas = new System.Windows.Forms.Label();
@@ -117,14 +112,6 @@
             this.label28 = new System.Windows.Forms.Label();
             this.acactualizar = new System.Windows.Forms.Button();
             this.acDataGridView = new System.Windows.Forms.DataGridView();
-            this.label6 = new System.Windows.Forms.Label();
-            this.clientesTableAdapter1 = new Prestamos.PrestamistaDataSet1TableAdapters.clientesTableAdapter();
-            this.dataTable2TableAdapter = new Prestamos.PrestamistaDataSet1TableAdapters.DataTable2TableAdapter();
-            this.tableAdapterManager1 = new Prestamos.PrestamistaDataSet1TableAdapters.TableAdapterManager();
-            this.dataTable1TableAdapter = new Prestamos.PrestamistaDataSet1TableAdapters.DataTable1TableAdapter();
-            this.clientesBindingSource2 = new System.Windows.Forms.BindingSource(this.components);
-            this.prestamistaDataSet1BindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.dataTable1BindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.idClienteDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.nombreDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.cedulaDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -132,9 +119,22 @@
             this.telefonoDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clientesBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.prestamistaDataSet = new Prestamos.PrestamistaDataSet();
+            this.label6 = new System.Windows.Forms.Label();
+            this.clientesBindingSource2 = new System.Windows.Forms.BindingSource(this.components);
+            this.prestamistaDataSetBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.clientesTableAdapter = new Prestamos.PrestamistaDataSetTableAdapters.clientesTableAdapter();
             this.tableAdapterManager = new Prestamos.PrestamistaDataSetTableAdapters.TableAdapterManager();
-            this.prestamistaDataSetBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.dataTable1BindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.prestamistaDataSet1 = new Prestamos.PrestamistaDataSet1();
+            this.idClienteDataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.nombreDataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.cedulaDataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clientesBindingSource1 = new System.Windows.Forms.BindingSource(this.components);
+            this.clientesTableAdapter1 = new Prestamos.PrestamistaDataSet1TableAdapters.clientesTableAdapter();
+            this.dataTable2TableAdapter = new Prestamos.PrestamistaDataSet1TableAdapters.DataTable2TableAdapter();
+            this.tableAdapterManager1 = new Prestamos.PrestamistaDataSet1TableAdapters.TableAdapterManager();
+            this.dataTable1TableAdapter = new Prestamos.PrestamistaDataSet1TableAdapters.DataTable1TableAdapter();
+            this.prestamistaDataSet1BindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.idIntervaloPagoDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.nombreDataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.cedulaDataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -142,19 +142,19 @@
             this.dropregistrarClientes.SuspendLayout();
             this.dropeliminarcliente.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridEliminarCliente)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.clientesBindingSource1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.prestamistaDataSet1)).BeginInit();
             this.groupnuevafactura.SuspendLayout();
             this.groupabono.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridabono)).BeginInit();
             this.groupactualizarcliente.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.acDataGridView)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.clientesBindingSource2)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.prestamistaDataSet1BindingSource)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dataTable1BindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.clientesBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.prestamistaDataSet)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.clientesBindingSource2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.prestamistaDataSetBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataTable1BindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.prestamistaDataSet1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.clientesBindingSource1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.prestamistaDataSet1BindingSource)).BeginInit();
             this.SuspendLayout();
             // 
             // menuStrip1
@@ -421,42 +421,6 @@
             this.dataGridEliminarCliente.Size = new System.Drawing.Size(654, 143);
             this.dataGridEliminarCliente.TabIndex = 5;
             this.dataGridEliminarCliente.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridEliminarCliente_CellDoubleClick);
-            // 
-            // idClienteDataGridViewTextBoxColumn1
-            // 
-            this.idClienteDataGridViewTextBoxColumn1.DataPropertyName = "idCliente";
-            this.idClienteDataGridViewTextBoxColumn1.HeaderText = "ID";
-            this.idClienteDataGridViewTextBoxColumn1.Name = "idClienteDataGridViewTextBoxColumn1";
-            this.idClienteDataGridViewTextBoxColumn1.ReadOnly = true;
-            this.idClienteDataGridViewTextBoxColumn1.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            // 
-            // nombreDataGridViewTextBoxColumn1
-            // 
-            this.nombreDataGridViewTextBoxColumn1.DataPropertyName = "nombre";
-            this.nombreDataGridViewTextBoxColumn1.HeaderText = "NOMBRE";
-            this.nombreDataGridViewTextBoxColumn1.Name = "nombreDataGridViewTextBoxColumn1";
-            this.nombreDataGridViewTextBoxColumn1.ReadOnly = true;
-            this.nombreDataGridViewTextBoxColumn1.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.nombreDataGridViewTextBoxColumn1.Width = 320;
-            // 
-            // cedulaDataGridViewTextBoxColumn1
-            // 
-            this.cedulaDataGridViewTextBoxColumn1.DataPropertyName = "cedula";
-            this.cedulaDataGridViewTextBoxColumn1.HeaderText = "CÉDULA";
-            this.cedulaDataGridViewTextBoxColumn1.Name = "cedulaDataGridViewTextBoxColumn1";
-            this.cedulaDataGridViewTextBoxColumn1.ReadOnly = true;
-            this.cedulaDataGridViewTextBoxColumn1.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.cedulaDataGridViewTextBoxColumn1.Width = 200;
-            // 
-            // clientesBindingSource1
-            // 
-            this.clientesBindingSource1.DataMember = "clientes";
-            this.clientesBindingSource1.DataSource = this.prestamistaDataSet1;
-            // 
-            // prestamistaDataSet1
-            // 
-            this.prestamistaDataSet1.DataSetName = "PrestamistaDataSet1";
-            this.prestamistaDataSet1.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
             // 
             // label10
             // 
@@ -1116,49 +1080,6 @@
             this.acDataGridView.TabIndex = 7;
             this.acDataGridView.SelectionChanged += new System.EventHandler(this.acDataGridView_SelectionChanged);
             // 
-            // label6
-            // 
-            this.label6.AutoSize = true;
-            this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label6.Location = new System.Drawing.Point(217, 21);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(172, 24);
-            this.label6.TabIndex = 6;
-            this.label6.Text = "Actualizar Cliente";
-            // 
-            // clientesTableAdapter1
-            // 
-            this.clientesTableAdapter1.ClearBeforeFill = true;
-            // 
-            // dataTable2TableAdapter
-            // 
-            this.dataTable2TableAdapter.ClearBeforeFill = true;
-            // 
-            // tableAdapterManager1
-            // 
-            this.tableAdapterManager1.BackupDataSetBeforeUpdate = false;
-            this.tableAdapterManager1.clientesTableAdapter = this.clientesTableAdapter1;
-            this.tableAdapterManager1.UpdateOrder = Prestamos.PrestamistaDataSet1TableAdapters.TableAdapterManager.UpdateOrderOption.InsertUpdateDelete;
-            // 
-            // dataTable1TableAdapter
-            // 
-            this.dataTable1TableAdapter.ClearBeforeFill = true;
-            // 
-            // clientesBindingSource2
-            // 
-            this.clientesBindingSource2.DataMember = "clientes";
-            this.clientesBindingSource2.DataSource = this.prestamistaDataSetBindingSource;
-            // 
-            // prestamistaDataSet1BindingSource
-            // 
-            this.prestamistaDataSet1BindingSource.DataSource = this.prestamistaDataSet1;
-            this.prestamistaDataSet1BindingSource.Position = 0;
-            // 
-            // dataTable1BindingSource
-            // 
-            this.dataTable1BindingSource.DataMember = "DataTable1";
-            this.dataTable1BindingSource.DataSource = this.prestamistaDataSet1;
-            // 
             // idClienteDataGridViewTextBoxColumn
             // 
             this.idClienteDataGridViewTextBoxColumn.DataPropertyName = "idCliente";
@@ -1211,6 +1132,26 @@
             this.prestamistaDataSet.DataSetName = "PrestamistaDataSet";
             this.prestamistaDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
             // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label6.Location = new System.Drawing.Point(217, 21);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(172, 24);
+            this.label6.TabIndex = 6;
+            this.label6.Text = "Actualizar Cliente";
+            // 
+            // clientesBindingSource2
+            // 
+            this.clientesBindingSource2.DataMember = "clientes";
+            this.clientesBindingSource2.DataSource = this.prestamistaDataSetBindingSource;
+            // 
+            // prestamistaDataSetBindingSource
+            // 
+            this.prestamistaDataSetBindingSource.DataSource = this.prestamistaDataSet;
+            this.prestamistaDataSetBindingSource.Position = 0;
+            // 
             // clientesTableAdapter
             // 
             this.clientesTableAdapter.ClearBeforeFill = true;
@@ -1221,10 +1162,69 @@
             this.tableAdapterManager.clientesTableAdapter = this.clientesTableAdapter;
             this.tableAdapterManager.UpdateOrder = Prestamos.PrestamistaDataSetTableAdapters.TableAdapterManager.UpdateOrderOption.InsertUpdateDelete;
             // 
-            // prestamistaDataSetBindingSource
+            // dataTable1BindingSource
             // 
-            this.prestamistaDataSetBindingSource.DataSource = this.prestamistaDataSet;
-            this.prestamistaDataSetBindingSource.Position = 0;
+            this.dataTable1BindingSource.DataMember = "DataTable1";
+            this.dataTable1BindingSource.DataSource = this.prestamistaDataSet1;
+            // 
+            // prestamistaDataSet1
+            // 
+            this.prestamistaDataSet1.DataSetName = "PrestamistaDataSet1";
+            this.prestamistaDataSet1.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
+            // 
+            // idClienteDataGridViewTextBoxColumn1
+            // 
+            this.idClienteDataGridViewTextBoxColumn1.DataPropertyName = "idCliente";
+            this.idClienteDataGridViewTextBoxColumn1.HeaderText = "ID";
+            this.idClienteDataGridViewTextBoxColumn1.Name = "idClienteDataGridViewTextBoxColumn1";
+            this.idClienteDataGridViewTextBoxColumn1.ReadOnly = true;
+            this.idClienteDataGridViewTextBoxColumn1.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            // 
+            // nombreDataGridViewTextBoxColumn1
+            // 
+            this.nombreDataGridViewTextBoxColumn1.DataPropertyName = "nombre";
+            this.nombreDataGridViewTextBoxColumn1.HeaderText = "NOMBRE";
+            this.nombreDataGridViewTextBoxColumn1.Name = "nombreDataGridViewTextBoxColumn1";
+            this.nombreDataGridViewTextBoxColumn1.ReadOnly = true;
+            this.nombreDataGridViewTextBoxColumn1.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.nombreDataGridViewTextBoxColumn1.Width = 320;
+            // 
+            // cedulaDataGridViewTextBoxColumn1
+            // 
+            this.cedulaDataGridViewTextBoxColumn1.DataPropertyName = "cedula";
+            this.cedulaDataGridViewTextBoxColumn1.HeaderText = "CÉDULA";
+            this.cedulaDataGridViewTextBoxColumn1.Name = "cedulaDataGridViewTextBoxColumn1";
+            this.cedulaDataGridViewTextBoxColumn1.ReadOnly = true;
+            this.cedulaDataGridViewTextBoxColumn1.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.cedulaDataGridViewTextBoxColumn1.Width = 200;
+            // 
+            // clientesBindingSource1
+            // 
+            this.clientesBindingSource1.DataMember = "clientes";
+            this.clientesBindingSource1.DataSource = this.prestamistaDataSet1;
+            // 
+            // clientesTableAdapter1
+            // 
+            this.clientesTableAdapter1.ClearBeforeFill = true;
+            // 
+            // dataTable2TableAdapter
+            // 
+            this.dataTable2TableAdapter.ClearBeforeFill = true;
+            // 
+            // tableAdapterManager1
+            // 
+            this.tableAdapterManager1.BackupDataSetBeforeUpdate = false;
+            this.tableAdapterManager1.clientesTableAdapter = this.clientesTableAdapter1;
+            this.tableAdapterManager1.UpdateOrder = Prestamos.PrestamistaDataSet1TableAdapters.TableAdapterManager.UpdateOrderOption.InsertUpdateDelete;
+            // 
+            // dataTable1TableAdapter
+            // 
+            this.dataTable1TableAdapter.ClearBeforeFill = true;
+            // 
+            // prestamistaDataSet1BindingSource
+            // 
+            this.prestamistaDataSet1BindingSource.DataSource = this.prestamistaDataSet1;
+            this.prestamistaDataSet1BindingSource.Position = 0;
             // 
             // idIntervaloPagoDataGridViewTextBoxColumn
             // 
@@ -1277,8 +1277,6 @@
             this.dropeliminarcliente.ResumeLayout(false);
             this.dropeliminarcliente.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridEliminarCliente)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.clientesBindingSource1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.prestamistaDataSet1)).EndInit();
             this.groupnuevafactura.ResumeLayout(false);
             this.groupnuevafactura.PerformLayout();
             this.groupabono.ResumeLayout(false);
@@ -1287,12 +1285,14 @@
             this.groupactualizarcliente.ResumeLayout(false);
             this.groupactualizarcliente.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.acDataGridView)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.clientesBindingSource2)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.prestamistaDataSet1BindingSource)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dataTable1BindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.clientesBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.prestamistaDataSet)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.clientesBindingSource2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.prestamistaDataSetBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataTable1BindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.prestamistaDataSet1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.clientesBindingSource1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.prestamistaDataSet1BindingSource)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -1325,7 +1325,6 @@
         private System.Windows.Forms.DataGridView dataGridEliminarCliente;
         private System.Windows.Forms.GroupBox groupnuevafactura;
         private System.Windows.Forms.GroupBox groupabono;
-        private System.Windows.Forms.DataGridView dataGridabono;
         //private System.Windows.Forms.DataGridViewTextBoxColumn montoTotal;
         private System.Windows.Forms.Label label17;
         private System.Windows.Forms.Label label19;
@@ -1407,6 +1406,7 @@
         private System.Windows.Forms.BindingSource prestamistaDataSetBindingSource;
         private System.Windows.Forms.BindingSource clientesBindingSource2;
         private System.Windows.Forms.BindingSource dataTable1BindingSource;
+        private System.Windows.Forms.DataGridView dataGridabono;
         private System.Windows.Forms.DataGridViewTextBoxColumn idIntervaloPagoDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn nombreDataGridViewTextBoxColumn2;
         private System.Windows.Forms.DataGridViewTextBoxColumn cedulaDataGridViewTextBoxColumn2;

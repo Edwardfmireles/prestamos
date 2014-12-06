@@ -135,7 +135,7 @@ namespace Prestamos
 
 
         }
-
+        //-------------------------------------------------------------------------------------------------------------------------
         private void pagosToolStripMenuItem_Click(object sender, EventArgs e)
         {
             dropregistrarClientes.Visible = false;
@@ -146,7 +146,14 @@ namespace Prestamos
 
             this.ClientSize = new System.Drawing.Size(454, groupabono.Height + 20);
 
-
+            try
+            {
+                this.dataTable2TableAdapter.DatosAbono(this.prestamistaDataSet1.DataTable1);
+            }
+            catch (System.Exception ex)
+            {
+                System.Windows.Forms.MessageBox.Show(ex.Message);
+            }
         }
 
         private void label19_Click(object sender, EventArgs e)
@@ -310,10 +317,6 @@ namespace Prestamos
                                     "( CONVERT(int," + clienteId + "), '" + fechasArray[i].ToString("yyyy-MM-dd") + "', CONVERT(int," + this.cuotas + ") )", "") == false)
                             {
                                 MessageBox.Show("No se agrego el intervalo " + i + " fecha " + fechas[i].ToString("yyyy-MM-dd"));
-                            }
-                            else
-                            {
-                                MessageBox.Show(Conexion.mensaje);
                             }
                         }
 
@@ -674,6 +677,20 @@ namespace Prestamos
                 nffacturar.Enabled = false;
             }
         }
+
+        private void fillByToolStripButton_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                this.dataTable2TableAdapter.FillBy(this.prestamistaDataSet1.DataTable2);
+            }
+            catch (System.Exception ex)
+            {
+                System.Windows.Forms.MessageBox.Show(ex.Message);
+            }
+
+        }
+
 
 
 

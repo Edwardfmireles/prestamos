@@ -680,6 +680,12 @@ namespace Prestamos {
             private global::System.Data.DataColumn columnnombre;
             
             private global::System.Data.DataColumn columncedula;
+
+            private global::System.Data.DataColumn columnmonto;
+
+            private global::System.Data.DataColumn columnfechaInicial;
+
+            private global::System.Data.DataColumn columnfechaFinal;
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
@@ -719,6 +725,36 @@ namespace Prestamos {
             public global::System.Data.DataColumn idIntervaloPagoColumn {
                 get {
                     return this.columnidIntervaloPago;
+                }
+            }
+
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn fechaFinalColumn
+            {
+                get
+                {
+                    return this.columnfechaFinal;
+                }
+            }
+
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn fechaInicialColumn
+            {
+                get
+                {
+                    return this.columnfechaInicial;
+                }
+            }
+
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn montoColumn
+            {
+                get
+                {
+                    return this.columnmonto;
                 }
             }
             
@@ -813,6 +849,9 @@ namespace Prestamos {
                 this.columnidIntervaloPago = base.Columns["idIntervaloPago"];
                 this.columnnombre = base.Columns["nombre"];
                 this.columncedula = base.Columns["cedula"];
+                this.columnmonto = base.Columns["monto"];
+                this.columnfechaInicial = base.Columns["fechaInicial"];
+                this.columnfechaFinal = base.Columns["fechaFinal"];
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -824,6 +863,12 @@ namespace Prestamos {
                 base.Columns.Add(this.columnnombre);
                 this.columncedula = new global::System.Data.DataColumn("cedula", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columncedula);
+                this.columnmonto = new global::System.Data.DataColumn("monto", typeof(int), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnmonto);
+                this.columnfechaInicial = new global::System.Data.DataColumn("fechaInicial", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnfechaInicial);
+                this.columnfechaFinal = new global::System.Data.DataColumn("fechaFinal", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnfechaFinal);
                 this.Constraints.Add(new global::System.Data.UniqueConstraint("Constraint1", new global::System.Data.DataColumn[] {
                                 this.columnidIntervaloPago}, true));
                 this.columnidIntervaloPago.AutoIncrement = true;
@@ -1010,11 +1055,15 @@ namespace Prestamos {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public global::System.Data.DataColumn idIntervaloPagoColumn {
-                get {
+            public global::System.Data.DataColumn idIntervaloPagoColumn
+            {
+                get
+                {
                     return this.columnidIntervaloPago;
                 }
             }
+
+
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
@@ -2265,6 +2314,9 @@ where  exists (select fechaInicial, fechaFinal from prestamos, facturacion where
             tableMapping.ColumnMappings.Add("idIntervaloPago", "idIntervaloPago");
             tableMapping.ColumnMappings.Add("nombre", "nombre");
             tableMapping.ColumnMappings.Add("cedula", "cedula");
+            tableMapping.ColumnMappings.Add("monto", "monto");
+            tableMapping.ColumnMappings.Add("fechaInicial", "fechaInicial");
+            tableMapping.ColumnMappings.Add("fechaFinal", "fechaFinal");
             this._adapter.TableMappings.Add(tableMapping);
         }
         
@@ -2278,17 +2330,18 @@ where  exists (select fechaInicial, fechaFinal from prestamos, facturacion where
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         private void InitCommandCollection() {
-            this._commandCollection = new global::System.Data.SqlClient.SqlCommand[1];
+            this._commandCollection = new global::System.Data.SqlClient.SqlCommand[2];
             this._commandCollection[0] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[0].Connection = this.Connection;
-            this._commandCollection[0].CommandText = @"SELECT        intervalos.idIntervaloPago, clientes.nombre, clientes.cedula
-FROM            clientes INNER JOIN
-                         intervalos ON intervalos.idCliente = clientes.idCliente
-WHERE        EXISTS
-                             (SELECT        prestamos.fechaInicial, prestamos.fechaFinal
-                               FROM            prestamos INNER JOIN
-                                                         facturacion ON prestamos.idPrestamo = facturacion.idPrestamo)";
+            this._commandCollection[0].CommandText = @"select clientes.idCliente, clientes.nombre, clientes.cedula, monto, fechaInicial, fechaFinal " +
+"from clientes,facturacion,prestamos where facturacion.idCliente = clientes.idCliente and facturacion.idPrestamo = prestamos.idPrestamo order by nombre ASC";
             this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
+            this._commandCollection[1] = new global::System.Data.SqlClient.SqlCommand();
+            this._commandCollection[1].Connection = this.Connection;
+            this._commandCollection[1].CommandText = @"select clientes.idCliente, clientes.nombre, clientes.cedula, monto, fechaInicial, fechaFinal
+from clientes,facturacion,prestamos 
+where facturacion.idCliente = clientes.idCliente and facturacion.idPrestamo = prestamos.idPrestamo order by nombre ASC";
+            this._commandCollection[1].CommandType = global::System.Data.CommandType.Text;
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -2313,6 +2366,19 @@ WHERE        EXISTS
             PrestamistaDataSet1.DataTable2DataTable dataTable = new PrestamistaDataSet1.DataTable2DataTable();
             this.Adapter.Fill(dataTable);
             return dataTable;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Fill, false)]
+        public virtual int FillBy(PrestamistaDataSet1.DataTable2DataTable dataTable) {
+            this.Adapter.SelectCommand = this.CommandCollection[1];
+            if ((this.ClearBeforeFill == true)) {
+                dataTable.Clear();
+            }
+            int returnValue = this.Adapter.Fill(dataTable);
+            return returnValue;
         }
     }
     
